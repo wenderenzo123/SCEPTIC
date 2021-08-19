@@ -152,8 +152,6 @@ public class NotaFiscalVO {
 		}
 	}
 	
-	// deixei o teste do nomecliente igual o teste realizado na classe ClienteVO para nome e cpf.
-	// ver se esta correto
 	public ClienteVO getNomeCliente() {
 		return nomeCliente;
 	}
