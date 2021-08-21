@@ -6,8 +6,8 @@ public class EquipamentoVO {
 	private int numeroDeSerie;
 	private double preco;
 	private int quantidade;
+	private FuncionarioVO Responsavel;
 	
-	private String Responsavel;
 	public String getNome() {
 		return nome;
 	}
@@ -69,19 +69,19 @@ public class EquipamentoVO {
 			
 		}
 	}
-	public String getResponsavel() {
+	public FuncionarioVO getResponsavel() {
 		return Responsavel;
 	}
-	public void setResponsavel(String responsavel) {
-		if(responsavel==null) {
+	public void setResponsavel(FuncionarioVO responsavel) {
+		if(Responsavel==null) {
 			
 		}
 		else {
-			if(responsavel.equals("")) {
+			if(Responsavel.getNome().equals("")) {
 				
 			}
 			else {
-				Responsavel = responsavel;
+				this.Responsavel = responsavel;
 			}
 		}
 	}

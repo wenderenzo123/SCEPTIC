@@ -161,7 +161,7 @@ public class NotaFiscalVO {
 			
 		}
 		else {
-			if(nomeCliente.equals("")) {
+			if(nomeCliente.getNome().equals("")) {
 				
 			}
 			else {
@@ -177,7 +177,7 @@ public class NotaFiscalVO {
 			
 		}
 		else {
-			if(CPF.equals("")) {
+			if(CPF.getCPF().equals("")) {
 				
 			}
 			else {
