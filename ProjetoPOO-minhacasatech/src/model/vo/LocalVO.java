@@ -1,8 +1,10 @@
 package model.vo;
 
 public class LocalVO {
+	private Long id;
 	private String nome;
 	private String compartimento;
+	
 	public String getNome() {
 		return nome;
 	}
@@ -34,6 +36,12 @@ public class LocalVO {
 				this.compartimento = compartimento;
 			}
 		}	
+	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
 	}
 	
 }

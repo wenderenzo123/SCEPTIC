@@ -4,6 +4,7 @@ public class FuncionarioVO {
 	private String nome;
 	private String endereco;
 	private int telefone;
+	private Long Id;
 	public String getNome() {
 		return nome;
 	}
@@ -46,6 +47,12 @@ public class FuncionarioVO {
 		else {
 			
 		}
+	}
+	public Long getId() {
+		return Id;
+	}
+	public void setId(Long id) {
+		Id = id;
 	}
 	
 }

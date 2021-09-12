@@ -1,12 +1,14 @@
 package model.vo;
 
 public class EquipamentoVO {
+	private Long Id;
 	private String nome;
 	private double peso;
 	private int numeroDeSerie;
 	private double preco;
 	private int quantidade;
 	private FuncionarioVO Responsavel;
+	private LocalVO Local;
 	
 	public String getNome() {
 		return nome;
@@ -85,5 +87,28 @@ public class EquipamentoVO {
 			}
 		}
 	}
+	public LocalVO getLocal() {
+		return Local;
+	}
+	public void setLocal(LocalVO local) {
+		if(Local==null) {
+			
+		}
+		else {
+			if(Local.getNome().equals("")) {
+				
+			}
+			else {
+				this.Local = local;
+			}
+		}
+	}
+	public Long getId() {
+		return Id;
+	}
+	public void setId(Long id) {
+		Id = id;
+	}
+	
 	
 }
