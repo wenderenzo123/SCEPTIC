@@ -36,18 +36,18 @@ public class EquipamentoDAO extends BaseDAO {
 	}
 	public void remover_eq(EquipamentoVO vo) {
 		conn = getConnection();
-		String sql = "DELETE FROM equipamentos WHERE id_loc = ?";
+		String sql = "DELETE FROM equipamentos WHERE id_eq = ?";
 		PreparedStatement ptst;
 		try {
 			ptst = conn.prepareStatement(sql);
-			ptst.setLong(1,vo.getId());
+			ptst.setLong(1, vo.getId());
 			ptst.execute();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-	public List<EquipamentoVO> listar_local() {
+	public List<EquipamentoVO> listar_eq() {
 		conn = getConnection();
 		String sql = "SELECT * FROM equipamentos";
 		Statement st;
