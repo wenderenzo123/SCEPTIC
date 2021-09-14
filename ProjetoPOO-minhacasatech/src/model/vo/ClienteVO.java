@@ -3,7 +3,8 @@ package model.vo;
 public class ClienteVO {
 	private String nome;
 	private String endereco;
-	private String CPF;
+	private int CPF;
+	private Long Id;
 	
 	public String getNome() {
 		return nome;
@@ -40,23 +41,25 @@ public class ClienteVO {
 		
 	}
 	
-	public String getCPF() {
+	public int getCPF() {
 		return CPF;
 	}
-	public void setCPF(String CPF) {
-		if(CPF==null) {
-			
+	public void setCPF(int cPF) {
+		if(cPF>0)
+		{
+			this.CPF = cPF;
 		}
 		else {
-			if(CPF.equals("")) {
-				
-			}
-			else {
-				this.CPF = CPF;
-			}
+			
 		}
 	}
+
 	
-	
+	public Long getId() {
+		return Id;
+	}
+	public void setId(Long id) {
+		Id = id;
+	}
 	
 }
