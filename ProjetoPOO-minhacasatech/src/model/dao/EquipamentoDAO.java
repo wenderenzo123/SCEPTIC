@@ -13,7 +13,7 @@ import model.vo.LocalVO;
 
 public class EquipamentoDAO extends BaseDAO {
 
-	public void inserir_eq(EquipamentoVO vo,LocalVO lo, FuncionarioVO fu) {
+	public boolean inserir_eq(EquipamentoVO vo,LocalVO lo, FuncionarioVO fu) {
 		conn = getConnection();
 		String sql = "INSERT INTO equipamentos (nome_eq,peso_eq,num_serie_eq,preco_eq,quant_eq,responsavel_id_respon,locais_id_loc) VALUES (?,?,?,?,?,?,?)";
 		PreparedStatement ptst;
@@ -27,27 +27,31 @@ public class EquipamentoDAO extends BaseDAO {
 			ptst.setLong(6,fu.getId());
 			ptst.setLong(7,lo.getId());
 			ptst.execute();
+			return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return false;
 		}
 
 		
 	}
-	public void remover_eq(EquipamentoVO vo) {
+	public boolean remover_eq(EquipamentoVO vo) {
 		conn = getConnection();
-		String sql = "DELETE FROM equipamentos WHERE id_loc = ?";
+		String sql = "DELETE FROM equipamentos WHERE id_eq = ?";
 		PreparedStatement ptst;
 		try {
 			ptst = conn.prepareStatement(sql);
-			ptst.setLong(1,vo.getId());
+			ptst.setLong(1, vo.getId());
 			ptst.execute();
+			return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return false;
 		}
 	}
-	public List<EquipamentoVO> listar_local() {
+	public List<EquipamentoVO> listar_eq() {
 		conn = getConnection();
 		String sql = "SELECT * FROM equipamentos";
 		Statement st;
@@ -78,18 +82,21 @@ public class EquipamentoDAO extends BaseDAO {
 		}
 		return list;
 	}
-	public void alterar_eq(EquipamentoVO vo) {
+	public boolean alterar_eq(EquipamentoVO vo) {
 		conn = getConnection();
-		String sql = "UPDATE equipamentos SET nome_eq = ? where id_eq = ?";
+		String sql = "UPDATE equipamentos SET nome_eq = ?, preco_eq = ? where id_eq = ?";
 		PreparedStatement ptst;
 		try {
 			ptst = conn.prepareStatement(sql);
 			ptst.setString(1,vo.getNome());
-			ptst.setLong(2,vo.getId());
+			ptst.setDouble(2,vo.getPreco());
+			ptst.setLong(3,vo.getId());
 			ptst.execute();
+			return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return false;
 		}
 	}
 

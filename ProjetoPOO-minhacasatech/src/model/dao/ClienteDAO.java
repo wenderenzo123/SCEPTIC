@@ -1,7 +1,5 @@
 package model.dao;
 
-import model.vo.LocalVO;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,16 +7,19 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LocalDAO extends BaseDAO{
+import model.vo.ClienteVO;
+
+public class ClienteDAO extends BaseDAO{
 	
-	public boolean inserir_local(LocalVO vo) {
+	public boolean inserir_clien(ClienteVO vo) {
 		conn = getConnection();
-		String sql = "INSERT INTO locais (nome_loc,nome_comp_loc) VALUES (?,?)";
+		String sql = "INSERT INTO  cliente (nome_cli,end_cli,cpf_cli) values (?,?,?)";
 		PreparedStatement ptst;
 		try {
 			ptst = conn.prepareStatement(sql);
-			ptst.setString(1,vo.getNome());
-			ptst.setString(2, vo.getCompartimento());
+			ptst.setString(1, vo.getNome());
+			ptst.setString(2, vo.getEndereco());
+			ptst.setInt(3, vo.getCPF());
 			ptst.execute();
 			return true;
 		} catch (SQLException e) {
@@ -26,17 +27,17 @@ public class LocalDAO extends BaseDAO{
 			e.printStackTrace();
 			return false;
 		}
-
 		
 	}
-	public boolean remover_local(LocalVO vo) {
+	
+	public boolean remover_clien(ClienteVO vo) {
 		conn = getConnection();
-		String sql = "DELETE FROM Locais WHERE id_loc = ?";
+		String sql = "DELETE FROM cliente where id_cli = ?";
 		PreparedStatement ptst;
 		try {
 			ptst = conn.prepareStatement(sql);
-			ptst.setLong(1,vo.getId());
-			ptst.execute();
+			ptst.setLong(1, vo.getId());
+			ptst.executeUpdate();
 			return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -44,22 +45,23 @@ public class LocalDAO extends BaseDAO{
 			return false;
 		}
 	}
-	public List<LocalVO> listar_local() {
+	
+	public List<ClienteVO> listar_clien(){
 		conn = getConnection();
-		String sql = "SELECT * FROM locais";
+		String sql = "SELECT * FROM cliente ";
 		Statement st;
 		ResultSet rs;
-		List<LocalVO> list = new ArrayList<LocalVO>();
-		
+		List<ClienteVO> list = new ArrayList<ClienteVO>();
 		
 		try {
 			st = conn.createStatement();
-			rs=st.executeQuery(sql);
+			rs= st.executeQuery(sql);
 			while(rs.next()) {
-				LocalVO vo = new LocalVO();
-				vo.setId(rs.getLong("id_loc"));
-				vo.setNome(rs.getString("nome_loc"));
-				vo.setCompartimento(rs.getString("nome_comp_loc"));
+				ClienteVO vo = new ClienteVO();
+				vo.setId(rs.getLong("id_cli"));
+				vo.setNome(rs.getString("nome_cli"));
+				vo.setEndereco(rs.getString("end_cli"));
+				vo.setCPF(rs.getInt("cpf_cli"));
 				list.add(vo);
 			}
 		} catch (SQLException e) {
@@ -68,16 +70,17 @@ public class LocalDAO extends BaseDAO{
 		}
 		return list;
 	}
-	public boolean alterar_local(LocalVO vo) {
+	
+	public boolean alterar_clien(ClienteVO vo) {
 		conn = getConnection();
-		String sql = "UPDATE locais SET nome_loc = ?, nome_comp_loc = ? where id_loc = ?";
+		String sql = "UPDATE cliente set nome_cli = ?, cpf_cli = ? where id_cli = ?";
 		PreparedStatement ptst;
 		try {
 			ptst = conn.prepareStatement(sql);
-			ptst.setString(1,vo.getNome());
-			ptst.setString(2,vo.getCompartimento());
-			ptst.setLong(3,vo.getId());
-			ptst.execute();
+			ptst.setString(1, vo.getNome());
+			ptst.setInt(2, vo.getCPF());
+			ptst.setLong(3, vo.getId());
+			ptst.executeUpdate();
 			return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -85,6 +88,4 @@ public class LocalDAO extends BaseDAO{
 			return false;
 		}
 	}
-	
-		
 }
