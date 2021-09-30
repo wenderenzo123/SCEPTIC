@@ -9,33 +9,38 @@ import java.util.List;
 
 import model.vo.ClienteVO;
 
-public class ClienteDAO extends BaseDAO{
-	
-	public boolean inserir_clien(ClienteVO vo) {
-		conn = getConnection();
-		String sql = "INSERT INTO  cliente (nome_cli,end_cli,cpf_cli) values (?,?,?)";
-		PreparedStatement ptst;
+public class ClienteDAO extends PessoaDAO<ClienteVO>{
+	public void inserir(ClienteVO vo) {
 		try {
-			ptst = conn.prepareStatement(sql);
-			ptst.setString(1, vo.getNome());
-			ptst.setString(2, vo.getEndereco());
-			ptst.setInt(3, vo.getCPF());
-			ptst.execute();
-			return true;
+			super.inserir(vo);
+			String sql = "INSERT INTO  cliente (cpf_cli, id_pes) values (?,?)";
+			PreparedStatement ptst;
+			ptst = getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			ptst.setInt(1, vo.getCPF());
+			int affectedRows = ptst.executeUpdate();
+			if(affectedRows == 0) {
+				throw new SQLException("A inserção falhou. Nenhuma linha foi alterada.");
+			}
+			ResultSet generatedKeys = ptst.getGeneratedKeys();
+			if(generatedKeys.next()) {
+				vo.setId(generatedKeys.getLong(1));
+			}
+			else {
+				throw new SQLException("A inserção falhou. Nenhuma linha foi alterada.");
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return false;
 		}
 		
 	}
 	
-	public boolean remover_clien(ClienteVO vo) {
-		conn = getConnection();
-		String sql = "DELETE FROM cliente where id_cli = ?";
-		PreparedStatement ptst;
+	public void remover(ClienteVO vo) {
 		try {
-			ptst = conn.prepareStatement(sql);
+			super.remover(vo);
+			String sql = "DELETE FROM cliente where id_cli = ?";
+			PreparedStatement ptst;
+			ptst = getConnection.prepareStatement(sql, Sta);
 			ptst.setLong(1, vo.getId());
 			ptst.executeUpdate();
 			return true;

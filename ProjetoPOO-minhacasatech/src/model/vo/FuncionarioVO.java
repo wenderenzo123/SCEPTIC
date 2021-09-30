@@ -1,46 +1,12 @@
 package model.vo;
 
-public class FuncionarioVO {
-	private String nome;
-	private String endereco;
+public class FuncionarioVO extends PessoaVO{
 	private int telefone;
 	private Long Id;
 	private String email;
 	private String senha;
 	private int tipo;
-	public String getNome() {
-		return nome;
-	}
-	public void setNome(String nome) {
-		if(nome==null) {
-			
-		}
-		else {
-			if(nome.equals("")) {
-				
-			}
-			else {
-				this.nome = nome;
-			}
-		}
-	}
-	public String getEndereco() {
-		return endereco;
-	}
-	public void setEndereco(String endereco) {
-		if(endereco==null) {
-			
-		}
-		else {
-			if(endereco.equals("")) {
-				
-			}
-			else {
-				this.endereco = endereco;
-			}
-		}
-	}
-	
+
 	public int getTelefone() {
 		return telefone;
 	}
