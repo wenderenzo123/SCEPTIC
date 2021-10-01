@@ -11,88 +11,81 @@ import java.util.List;
 import model.vo.FuncionarioVO;
 
 
-public class FuncionarioDAO extends BaseDAO{
+public class FuncionarioDAO extends PessoaDAO<FuncionarioVO>{
 	
-	public boolean inserir_func(FuncionarioVO vo) {
-		conn = getConnection();
-		String sql = "INSERT INTO responsavel (nome_respon,end_respon,tel_respon,email,senha,tipo) values (?,?,?,?,?,?)";
-		PreparedStatement ptst;
+public void inserir_func(FuncionarioVO vo) {
+
 		try {
-			ptst = conn.prepareStatement(sql);
-			ptst.setString(1, vo.getNome());
-			ptst.setString(2, vo.getEndereco());
-			ptst.setInt(3, vo.getTelefone());
-			ptst.setString(4, vo.getEmail());
-			ptst.setString(5, vo.getSenha());
-			ptst.setInt(6, vo.getTipo());
-			ptst.execute();
-			return true;
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return false;
-		}
-		
-		
-	}
-	
-	public boolean remover_func(FuncionarioVO vo) {
-		conn = getConnection();
-		String sql = "DELETE FROM responsavel where id_respon = ?";
-		PreparedStatement ptst;
-		try {
-			ptst = conn.prepareStatement(sql);
-			ptst.setLong(1,vo.getId());
-			ptst.executeUpdate();
-			return true;
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return false;
-		}
-	}
-	
-	public List<FuncionarioVO> listar_func() {
-		conn = getConnection();
-		String sql = "SELECT * FROM responsavel ";
-		Statement st;
-		ResultSet rs;
-		List<FuncionarioVO> list = new ArrayList<FuncionarioVO>();
-		
-		try {
-			st = conn.createStatement();
-			rs= st.executeQuery(sql);
-			while(rs.next()) {
-				FuncionarioVO vo = new FuncionarioVO();
-				vo.setId(rs.getLong("id_respon"));
-				vo.setNome(rs.getString("nome_respon"));
-				vo.setTelefone(rs.getInt("tel_respon"));
-				vo.setEndereco(rs.getString("end_respon"));
-				vo.setEmail(rs.getString("email"));
-				vo.setTipo(rs.getInt("tipo"));
-				list.add(vo);
+			super.inserir(vo);
+			String sql = "INSERT INTO responsavel (tel_respon,email,senha,tipo) values (?,?,?,?)";
+			PreparedStatement ptst;
+			ptst = getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			ptst.setInt(1, vo.getTelefone());
+			ptst.setString(2, vo.getEmail());
+			ptst.setString(3, vo.getSenha());
+			ptst.setInt(4, vo.getTipo());
+			int affectedRows = ptst.executeUpdate();
+			if(affectedRows == 0) {
+				throw new SQLException("A inserção falhou. Nenhuma linha foi alterada.");
+			}
+			ResultSet generatedKeys = ptst.getGeneratedKeys();
+			if(generatedKeys.next()) {
+				vo.setId(generatedKeys.getLong(1));
+			}
+			else {
+				throw new SQLException("A inserção falhou. Nenhuma linha foi alterada.");
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return list;
+		
 		
 	}
-	public boolean alterar_func(FuncionarioVO vo) {
-		conn = getConnection();
-		String sql = "UPDATE responsavel set nome_respon = ? where id_respon = ?";
-		PreparedStatement ptst;
+	
+	public void remover_func(FuncionarioVO vo) {
 		try {
-			ptst = conn.prepareStatement(sql);
-			ptst.setString(1, vo.getNome());
-			ptst.setLong(2,vo.getId());
+			super.remover(vo);
+			String sql = "DELETE FROM cliente where pessoa_id_pes = ?";
+			PreparedStatement ptst;
+			ptst = getConnection().prepareStatement(sql);
+			ptst.setLong(1, vo.getId());
 			ptst.executeUpdate();
-			return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return false;
+		}
+	}
+	
+	public ResultSet listar_func(FuncionarioVO vo) {
+		ResultSet rs = null;
+		try {
+			super.inserir(vo);
+			String sql = "select * from responsavel where pessoa_id_pes=?";
+			PreparedStatement ptst;
+			
+			ptst = getConnection().prepareStatement(sql);
+			ptst.setLong(1, vo.getId());
+			System.out.println(ptst);
+			rs = ptst.executeQuery(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return rs;
+		
+	}
+	public void alterar_func(FuncionarioVO vo) {
+		try {
+			String sql = "UPDATE responsavel set nome_respon = ? where pessoa_id_pes = ?";
+			PreparedStatement ptst;
+			ptst = getConnection().prepareStatement(sql);
+			ptst.setString(1, vo.getNome());
+			ptst.setLong(2,vo.getId());
+			ptst.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 }	
