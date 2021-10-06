@@ -4,8 +4,8 @@ import java.util.List;
 
 public class ClienteDAOtest {
   public static void main(String[] args)  {
-    //inserir_clien();
-	  //listar_clien();
+    inserir_clien();
+	  listar_clien();
     //remover_clien();
     //alterar_clien();
 	}
@@ -23,25 +23,17 @@ public class ClienteDAOtest {
     vo.setEndereco("Hogwarts");
     vo.setCPF(01723);
 		
-		if(dao.inserir_clien(vo)) {
-			System.out.println("Salvo com sucesso");
-		}
-		else {
-			System.out.println("Erro ao salvar");
-				
-		}
+		dao.inserir_clien(vo);
+		System.out.println("Salvo com sucesso");
+		
   }
   private static void remover_clien(){
     ClienteVO vo = new ClienteVO();
     ClienteDAO dao = new ClienteDAO();
     vo.setId(new Long (2));
-		if(dao.remover_clien(vo)) {
-			System.out.println("Salvo com sucesso");
-		}
-		else {
-			System.out.println("Erro ao salvar");
-				
-		}
+		dao.remover_clien(vo);
+		System.out.println("Salvo com sucesso");
+
   }
   private static void alterar_clien(){
     ClienteVO vo = new ClienteVO();
@@ -49,12 +41,7 @@ public class ClienteDAOtest {
     vo.setNome("Hermione");
     vo.setCPF(934);
     vo.setId(new Long (1));
-		if(dao.alterar_clien(vo)) {
-			System.out.println("Salvo com sucesso");
-		}
-		else {
-			System.out.println("Erro ao salvar");
-				
-		}
+		dao.alterar_clien(vo);
+		System.out.println("Salvo com sucesso");
   }
 }

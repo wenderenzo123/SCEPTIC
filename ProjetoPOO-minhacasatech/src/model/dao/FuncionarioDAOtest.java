@@ -4,7 +4,7 @@ import java.util.List;
 public class FuncionarioDAOtest {
   public static void main(String[] args)  {
     //inserir_func();
-	  //listar_func();
+	  listar_func();
     //remover_func();
     //alterar_func();
 	}
@@ -12,7 +12,7 @@ public class FuncionarioDAOtest {
     FuncionarioDAO dao = new FuncionarioDAO();
     List<FuncionarioVO> list= dao.listar_func();
 	  for (FuncionarioVO vo_0: list) {
-		System.out.println("Id: "+vo_0.getId()+ ", Nome: "+vo_0.getNome()+", Email: "+vo_0.getEmail());
+		System.out.println("Id: "+vo_0.getId());
 	}
   }
   private static void inserir_func(){
@@ -20,7 +20,7 @@ public class FuncionarioDAOtest {
 		FuncionarioDAO dao = new FuncionarioDAO();
     vo.setNome("Robin");
     vo.setEndereco("Superman N - 120");
-    vo.setTelefone(99999999);
+    vo.setTelefone(999);
     vo.setEmail("tech@gmail.com");
     vo.setSenha("tech123");
     vo.setTipo(0);

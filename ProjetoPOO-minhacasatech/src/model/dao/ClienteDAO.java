@@ -4,8 +4,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 
 import model.vo.ClienteVO;
 
@@ -50,16 +48,20 @@ public class ClienteDAO extends PessoaDAO<ClienteVO>{
 	}
 	
 	public ResultSet listar_clien(ClienteVO vo){
+		String sql = "select * from cliente";
 		ResultSet rs = null;
-		try {
-			super.inserir(vo);
-			String sql = "select * from cliente where id_cli=?";
-			PreparedStatement ptst;
-			
-			ptst = getConnection().prepareStatement(sql);
-			ptst.setLong(1, vo.getId());
-			System.out.println(ptst);
-			rs = ptst.executeQuery(sql);
+		Statement st;
+		List<ClienteVO> list = new ArrayList<ClienteVO>();
+		try {	
+			st = getConnection().createStatement();
+			System.out.println(st);
+			rs = st.executeQuery(sql);
+			while(rs.next()) {
+				ClienteVO vo = new ClienteVO();
+				vo.setId(rs.getLong("id_cli"));
+				vo.setNome(rs.getString("nome_cli"));
+				list.add(vo);
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -13,31 +13,25 @@ import model.vo.FuncionarioVO;
 
 public class FuncionarioDAO extends PessoaDAO<FuncionarioVO>{
 	
-public void inserir_func(FuncionarioVO vo) {
+public boolean inserir_func(FuncionarioVO vo) {
 
 		try {
-			super.inserir(vo);
-			String sql = "INSERT INTO responsavel (tel_respon,email,senha,tipo) values (?,?,?,?)";
+			String sql = "INSERT INTO responsavel (email,senha,tipo) values (?,?,?),INSERT INTO pessoa (nome,endereco,tele) values (?,?,?) ";
 			PreparedStatement ptst;
-			ptst = getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-			ptst.setInt(1, vo.getTelefone());
-			ptst.setString(2, vo.getEmail());
-			ptst.setString(3, vo.getSenha());
-			ptst.setInt(4, vo.getTipo());
-			int affectedRows = ptst.executeUpdate();
-			if(affectedRows == 0) {
-				throw new SQLException("A inserção falhou. Nenhuma linha foi alterada.");
-			}
-			ResultSet generatedKeys = ptst.getGeneratedKeys();
-			if(generatedKeys.next()) {
-				vo.setId(generatedKeys.getLong(1));
-			}
-			else {
-				throw new SQLException("A inserção falhou. Nenhuma linha foi alterada.");
-			}
+			ptst = getConnection().prepareStatement(sql);
+			
+			ptst.setString(1, vo.getEmail());
+			ptst.setString(2, vo.getSenha());
+			ptst.setInt(3, vo.getTipo());
+			ptst.setInt(6, vo.getTelefone());
+			ptst.setString(4, vo.getNome());
+			ptst.setString(5, vo.getEndereco());
+			ptst.execute();
+			return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return false;
 		}
 		
 		
@@ -57,17 +51,22 @@ public void inserir_func(FuncionarioVO vo) {
 		}
 	}
 	
-	public ResultSet listar_func(FuncionarioVO vo) {
+	public ResultSet listar_func() {
+		String sql = "select * from responsavel";
 		ResultSet rs = null;
+		Statement st;
+
+		List<FuncionarioVO> list = new ArrayList<FuncionarioVO>();
 		try {
-			super.inserir(vo);
-			String sql = "select * from responsavel where pessoa_id_pes=?";
-			PreparedStatement ptst;
-			
-			ptst = getConnection().prepareStatement(sql);
-			ptst.setLong(1, vo.getId());
-			System.out.println(ptst);
-			rs = ptst.executeQuery(sql);
+			st = getConnection().createStatement();
+			System.out.println(st);
+			rs=st.executeQuery(sql);
+			while(rs.next()) {
+				FuncionarioVO vo = new FuncionarioVO();
+				vo.setId(rs.getLong("id_resp"));
+				vo.setNome(rs.getString("email"));
+				list.add(vo);
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

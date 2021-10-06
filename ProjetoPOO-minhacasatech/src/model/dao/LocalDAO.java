@@ -12,11 +12,10 @@ import java.util.List;
 public class LocalDAO extends BaseDAO{
 	
 	public boolean inserir_local(LocalVO vo) {
-		conn = getConnection();
 		String sql = "INSERT INTO locais (nome_loc,nome_comp_loc) VALUES (?,?)";
 		PreparedStatement ptst;
 		try {
-			ptst = conn.prepareStatement(sql);
+			ptst = getConnection().prepareStatement(sql);
 			ptst.setString(1,vo.getNome());
 			ptst.setString(2, vo.getCompartimento());
 			ptst.execute();
@@ -30,11 +29,10 @@ public class LocalDAO extends BaseDAO{
 		
 	}
 	public boolean remover_local(LocalVO vo) {
-		conn = getConnection();
 		String sql = "DELETE FROM Locais WHERE id_loc = ?";
 		PreparedStatement ptst;
 		try {
-			ptst = conn.prepareStatement(sql);
+			ptst = getConnection().prepareStatement(sql);
 			ptst.setLong(1,vo.getId());
 			ptst.execute();
 			return true;
@@ -45,7 +43,7 @@ public class LocalDAO extends BaseDAO{
 		}
 	}
 	public List<LocalVO> listar_local() {
-		conn = getConnection();
+
 		String sql = "SELECT * FROM locais";
 		Statement st;
 		ResultSet rs;
@@ -53,7 +51,7 @@ public class LocalDAO extends BaseDAO{
 		
 		
 		try {
-			st = conn.createStatement();
+			st = getConnection().createStatement();
 			rs=st.executeQuery(sql);
 			while(rs.next()) {
 				LocalVO vo = new LocalVO();
@@ -69,11 +67,10 @@ public class LocalDAO extends BaseDAO{
 		return list;
 	}
 	public boolean alterar_local(LocalVO vo) {
-		conn = getConnection();
 		String sql = "UPDATE locais SET nome_loc = ?, nome_comp_loc = ? where id_loc = ?";
 		PreparedStatement ptst;
 		try {
-			ptst = conn.prepareStatement(sql);
+			ptst = getConnection().prepareStatement(sql);
 			ptst.setString(1,vo.getNome());
 			ptst.setString(2,vo.getCompartimento());
 			ptst.setLong(3,vo.getId());
