@@ -6,7 +6,7 @@ import java.util.List;
 
 public class EquipamentoDAOtest {
   public static void main(String[] args)  {
-    //inserir_eq();
+    inserir_eq();
 	  //listar_eq();
     //remover_eq();
     //alterar_eq();
@@ -32,13 +32,7 @@ public class EquipamentoDAOtest {
     vo.setResponsavel(fu);
     lo.setId(new Long (5));
     vo.setLocal(lo);
-		if(dao.inserir_eq(vo,lo,fu)) {
-			System.out.println("Salvo com sucesso");
-		}
-		else {
-			System.out.println("Erro ao salvar");
-				
-		}
+		dao.inserir(vo);
   }
   private static void remover_eq(){
     EquipamentoVO vo = new EquipamentoVO();

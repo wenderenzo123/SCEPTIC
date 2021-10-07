@@ -9,82 +9,99 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LocalDAO extends BaseDAO{
+public class LocalDAO extends BaseDAO<LocalVO> {
 	
-	public boolean inserir_local(LocalVO vo) {
-		conn = getConnection();
+	@Override
+	public void inserir(LocalVO lo)throws SQLException {
 		String sql = "INSERT INTO locais (nome_loc,nome_comp_loc) VALUES (?,?)";
 		PreparedStatement ptst;
 		try {
-			ptst = conn.prepareStatement(sql);
-			ptst.setString(1,vo.getNome());
-			ptst.setString(2, vo.getCompartimento());
+			ptst = getConnection().prepareStatement(sql);
+			ptst.setString(1,lo.getNome());
+			ptst.setString(2, lo.getCompartimento());
 			ptst.execute();
-			return true;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return false;
+			System.out.println("Cadastro falhou");
 		}
-
-		
 	}
-	public boolean remover_local(LocalVO vo) {
-		conn = getConnection();
+	@Override
+	public void remover(LocalVO lo) throws SQLException{
 		String sql = "DELETE FROM Locais WHERE id_loc = ?";
 		PreparedStatement ptst;
 		try {
-			ptst = conn.prepareStatement(sql);
-			ptst.setLong(1,vo.getId());
+			ptst = getConnection().prepareStatement(sql);
+			ptst.setLong(1,lo.getId());
 			ptst.execute();
-			return true;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return false;
 		}
 	}
-	public List<LocalVO> listar_local() {
-		conn = getConnection();
+	@Override
+	public ResultSet listar() throws SQLException {
 		String sql = "SELECT * FROM locais";
 		Statement st;
-		ResultSet rs;
-		List<LocalVO> list = new ArrayList<LocalVO>();
-		
-		
+		ResultSet rs = null;
 		try {
-			st = conn.createStatement();
+			st = getConnection().createStatement();
 			rs=st.executeQuery(sql);
 			while(rs.next()) {
-				LocalVO vo = new LocalVO();
-				vo.setId(rs.getLong("id_loc"));
-				vo.setNome(rs.getString("nome_loc"));
-				vo.setCompartimento(rs.getString("nome_comp_loc"));
-				list.add(vo);
+				System.out.println("Id: "+rs.getInt("id_loc")+" Nome: "+rs.getString("nome_loc")
+				+" Compartimento: "+rs.getString("nome_comp_loc"));
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return list;
+		return rs;
 	}
-	public boolean alterar_local(LocalVO vo) {
-		conn = getConnection();
+	@Override
+	public void alterar(LocalVO lo) throws SQLException{
 		String sql = "UPDATE locais SET nome_loc = ?, nome_comp_loc = ? where id_loc = ?";
 		PreparedStatement ptst;
 		try {
-			ptst = conn.prepareStatement(sql);
-			ptst.setString(1,vo.getNome());
-			ptst.setString(2,vo.getCompartimento());
-			ptst.setLong(3,vo.getId());
+			ptst = getConnection().prepareStatement(sql);
+			ptst.setString(1,lo.getNome());
+			ptst.setString(2,lo.getCompartimento());
+			ptst.setLong(3,lo.getId());
 			ptst.execute();
-			return true;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return false;
 		}
 	}
-	
-		
+	@Override
+	public ResultSet listarPorId(Long id) throws SQLException {
+		PreparedStatement st;
+		ResultSet rs = null;
+		String sql = "select * from locais where id_loc = ?";
+		try {
+			st = getConnection().prepareStatement(sql);
+			st.setLong(1,id);
+			rs=st.executeQuery();
+			while(rs.next()) {
+				System.out.println("Id: "+rs.getInt("id_loc")+" Nome: "+rs.getString("nome_loc")
+				+" Compartimento: "+rs.getString("nome_comp_loc"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return rs;
+	}
+	@Override
+	public ResultSet listarPorNome(String nome) throws SQLException {
+		PreparedStatement st;
+		ResultSet rs = null;
+		String sql = "SELECT * FROM locais WHERE nome_loc LIKE ?";
+		try {
+			st = getConnection().prepareStatement(sql);
+			st.setString(1,"%"+nome+"%");
+			rs=st.executeQuery();
+			while(rs.next()) {
+				System.out.println("Id: "+rs.getInt("id_loc")+" Nome: "+rs.getString("nome_loc")
+				+" Compartimento: "+rs.getString("nome_comp_loc"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return rs;
+	}
 }

@@ -1,20 +1,39 @@
 package model.vo;
-
 public abstract class PessoaVO {
-	protected String nome;
-	private String endereco;
 	private Long Id;
+	private String nome;
+	private String endereco;
+	private String telefone;
 	
-	public String getNome() {
+	public PessoaVO(String nome, String endereco, String telefone){
+		setNome(nome);
+		setEndereco(endereco);
+		setTelefone(telefone);
+	}
+	public PessoaVO() {
+  }
+  public String getNome() {
 		return nome;
+	}
+	public String getTelefone() {
+		return telefone;
+	}
+	public void setTelefone(String telefone) {
+		if(telefone==null) {
+		}
+		else {
+			if(telefone.equals("")) {		
+			}
+			else {
+			this.telefone = telefone;
+			}
+		}
 	}
 	public void setNome(String nome) {
 		if(nome==null) {
-			
 		}
 		else {
 			if(nome.equals("")) {
-				
 			}
 			else {
 				this.nome = nome;
@@ -26,7 +45,6 @@ public abstract class PessoaVO {
 	}
 	public void setEndereco(String endereco) {
 		if(endereco==null) {
-			
 		}
 		else {
 			if(endereco.equals("")) {
@@ -43,5 +61,4 @@ public abstract class PessoaVO {
 	public void setId(Long id) {
 		Id = id;
 	}
-	
 }
