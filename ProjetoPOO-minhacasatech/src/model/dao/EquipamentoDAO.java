@@ -13,7 +13,7 @@ import model.vo.LocalVO;
 
 public class EquipamentoDAO extends BaseDAO {
 
-	public boolean inserir_eq(EquipamentoVO vo,LocalVO lo, FuncionarioVO fu) {
+	public void inserir(EquipamentoVO vo) {
 		String sql = "INSERT INTO equipamentos (nome_eq,peso_eq,num_serie_eq,preco_eq,quant_eq,responsavel_id_respon,locais_id_loc) VALUES (?,?,?,?,?,?,?)";
 		PreparedStatement ptst;
 		try {
@@ -23,14 +23,11 @@ public class EquipamentoDAO extends BaseDAO {
 			ptst.setInt(3,vo.getNumeroDeSerie());
 			ptst.setDouble(4,vo.getPreco());
 			ptst.setInt(5,vo.getQuantidade());
-			ptst.setLong(6,fu.getId());
-			ptst.setLong(7,lo.getId());
+			ptst.setLong(6,vo.getResponsavel().getId());
+			ptst.setLong(7, vo.getLocal().getId());
 			ptst.execute();
-			return true;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return false;
 		}
 
 		
@@ -95,6 +92,36 @@ public class EquipamentoDAO extends BaseDAO {
 			e.printStackTrace();
 			return false;
 		}
+	}
+	@Override
+	public void inserir(Object vo) throws SQLException {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void alterar(Object vo) throws SQLException {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void remover(Object vo) throws SQLException {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public ResultSet listar() throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public ResultSet listarPorId(Long id) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public ResultSet listarPorNome(String nome) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -1,58 +1,52 @@
 package model.dao;
 import model.vo.LocalVO;
-import java.util.List;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 public class LocalDAOtest{
-	public static void main(String[] args)  {
+	private static ResultSet listarPorId;
+  private static ResultSet listarPorNome;
+  public static void main(String[] args) throws SQLException  {
     //inserir_local();
 		//listar_local();
     //remover_local();
     //alterar_local();
+    //listar_local_id();
+    //listar_local_nome();
 	}
-  private static void listar_local(){
+  private static void listar_local() throws SQLException{
     LocalDAO dao = new LocalDAO();
-    List<LocalVO> list= dao.listar_local();
-	  for (LocalVO vo_0: list) {
-		System.out.println("Id: "+vo_0.getId()+ ", Nome: "+vo_0.getNome()+", Compartimento: "+vo_0.getCompartimento());
-	}
+    dao.listar();
+	//   for (ResultSet vo_0) {
+	// 	System.out.println("Id: "+vo_0.getId()+ ", Nome: "+vo_0.getNome()+", Compartimento: "+vo_0.getCompartimento());
+	// }
   }
-  private static void inserir_local(){
+  private static void inserir_local() throws SQLException{
     LocalVO vo = new LocalVO();
 		LocalDAO dao = new LocalDAO();
     vo.setNome("Robin");
     vo.setCompartimento("Batcaverna");
-		
-		if(dao.inserir_local(vo)) {
-			System.out.println("Salvo com sucesso");
-		}
-		else {
-			System.out.println("Erro ao salvar");
-				
-		}
+		dao.inserir(vo);
   }
-  private static void remover_local(){
+  private static void remover_local() throws SQLException{
     LocalVO vo = new LocalVO();
 		LocalDAO dao = new LocalDAO();
-    vo.setId(new Long (9));
-		if(dao.remover_local(vo)) {
-			System.out.println("Salvo com sucesso");
-		}
-		else {
-			System.out.println("Erro ao salvar");
-				
-		}
+    vo.setId(new Long (2));
+	  dao.remover(vo);
   }
-  private static void alterar_local(){
+  private static void alterar_local() throws SQLException{
     LocalVO vo = new LocalVO();
 		LocalDAO dao = new LocalDAO();
-    vo.setNome("Robin");
+    vo.setNome("Alfred");
     vo.setCompartimento("teen titans");
-    vo.setId(new Long (7));
-		if(dao.alterar_local(vo)) {
-			System.out.println("Salvo com sucesso");
-		}
-		else {
-			System.out.println("Erro ao salvar");
-				
-		}
+    vo.setId(new Long (1));
+		dao.alterar(vo);
+  }
+  private static void listar_local_id() throws SQLException{
+    LocalDAO dao = new LocalDAO();
+    listarPorId = dao.listarPorId((long) 1);
+  }
+  private static void listar_local_nome() throws SQLException{
+    LocalDAO dao = new LocalDAO();
+    listarPorNome = dao.listarPorNome(new String("fre"));
   }
 }

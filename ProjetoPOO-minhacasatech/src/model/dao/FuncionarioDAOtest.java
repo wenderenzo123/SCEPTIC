@@ -1,37 +1,34 @@
 package model.dao;
 import model.vo.FuncionarioVO;
+import model.vo.PessoaVO;
+
+import java.sql.SQLException;
 import java.util.List;
 public class FuncionarioDAOtest {
-  public static void main(String[] args)  {
-    //inserir_func();
-	  listar_func();
+  public static void main(String[] args) throws SQLException  {
+    inserir_func();
+	  //listar_func();
     //remover_func();
     //alterar_func();
 	}
   private static void listar_func(){
     FuncionarioDAO dao = new FuncionarioDAO();
-    List<FuncionarioVO> list= dao.listar_func();
+    List<FuncionarioVO> list= dao.listar();
 	  for (FuncionarioVO vo_0: list) {
 		System.out.println("Id: "+vo_0.getId());
 	}
   }
-  private static void inserir_func(){
+  private static void inserir_func() throws SQLException{
     FuncionarioVO vo = new FuncionarioVO();
+    PessoaVO vo2 = new PessoaVO();
 		FuncionarioDAO dao = new FuncionarioDAO();
     vo.setNome("Robin");
     vo.setEndereco("Superman N - 120");
-    vo.setTelefone(999);
+    vo2.setTelefone(999);
     vo.setEmail("tech@gmail.com");
     vo.setSenha("tech123");
     vo.setTipo(0);
-		
-		if(dao.inserir_func(vo)) {
-			System.out.println("Salvo com sucesso");
-		}
-		else {
-			System.out.println("Erro ao salvar");
-				
-		}
+		dao.inserir(vo);
   }
   private static void remover_func(){
     FuncionarioVO vo = new FuncionarioVO();

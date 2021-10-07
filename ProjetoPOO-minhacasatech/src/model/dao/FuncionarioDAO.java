@@ -11,33 +11,26 @@ import java.util.List;
 import model.vo.FuncionarioVO;
 
 
-public class FuncionarioDAO extends PessoaDAO<FuncionarioVO>{
+public class FuncionarioDAO<VO extends FuncionarioVO> extends PessoaDAO<VO>{
 	
-public boolean inserir_func(FuncionarioVO vo) {
-
+public void inserir(VO vo) throws SQLException {
+		super.inserir(vo);
 		try {
-			String sql = "INSERT INTO responsavel (email,senha,tipo) values (?,?,?),INSERT INTO pessoa (nome,endereco,tele) values (?,?,?) ";
+			String sql = "INSERT INTO responsavel (pessoa_id_pes,email,senha,tipo) values (?,?,?,?)";
 			PreparedStatement ptst;
-			ptst = getConnection().prepareStatement(sql);
+		  ptst = getConnection().prepareStatement(sql);
+			ptst.setLong(1, vo.getId());
+			ptst.setString(2, vo.getEmail());
+			ptst.setString(3, vo.getSenha());
+			ptst.setInt(4, vo.getTipo());
 			
-			ptst.setString(1, vo.getEmail());
-			ptst.setString(2, vo.getSenha());
-			ptst.setInt(3, vo.getTipo());
-			ptst.setInt(6, vo.getTelefone());
-			ptst.setString(4, vo.getNome());
-			ptst.setString(5, vo.getEndereco());
+
 			ptst.execute();
-			return true;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return false;
 		}
-		
-		
 	}
-	
-	public void remover_func(FuncionarioVO vo) {
+public void remover_func(FuncionarioVO vo) {
 		try {
 			super.remover(vo);
 			String sql = "DELETE FROM cliente where pessoa_id_pes = ?";
@@ -46,16 +39,13 @@ public boolean inserir_func(FuncionarioVO vo) {
 			ptst.setLong(1, vo.getId());
 			ptst.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-	
-	public ResultSet listar_func() {
+public ResultSet listar() {
 		String sql = "select * from responsavel";
 		ResultSet rs = null;
 		Statement st;
-
 		List<FuncionarioVO> list = new ArrayList<FuncionarioVO>();
 		try {
 			st = getConnection().createStatement();

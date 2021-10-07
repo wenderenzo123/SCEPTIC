@@ -1,24 +1,24 @@
 package model.vo;
 
 public class FuncionarioVO extends PessoaVO{
-	private int telefone;
+	
 	private Long Id;
 	private String email;
 	private String senha;
 	private int tipo;
 
-	public int getTelefone() {
-		return telefone;
+	public FuncionarioVO() {
+		super();
 	}
-	public void setTelefone(int telefone) {
-		if(telefone>0) {
-			this.telefone = telefone;
-		}
-		else {
-			
-		}
+	public FuncionarioVO(String nome, String endereco, String telefone) {
+		super(nome, endereco, telefone);
 	}
-	
+	public FuncionarioVO(String nome, String endereco, String telefone, String email,String senha,int tipo) {
+		super(nome, endereco, telefone);
+		setEmail(email);
+		setSenha(senha);
+		setTipo(tipo);
+	}
 	public String getEmail() {
 		return email;
 	}
@@ -45,14 +45,12 @@ public class FuncionarioVO extends PessoaVO{
 		}
 		else {
 			if(senha.equals("")) {
-				
 			}
 			else {
 				this.senha = senha;
 			}
 		}
 	}
-	
 	public int getTipo() {
 		return tipo;
 	}
@@ -60,16 +58,11 @@ public class FuncionarioVO extends PessoaVO{
 		if(tipo==0 || tipo==1) {
 			this.tipo = tipo;
 		}
-		else {
-			
-		}
 	}
-	
 	public Long getId() {
 		return Id;
 	}
 	public void setId(Long id) {
 		Id = id;
 	}
-		
 }
