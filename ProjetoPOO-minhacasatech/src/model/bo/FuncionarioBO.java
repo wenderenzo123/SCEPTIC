@@ -19,32 +19,28 @@ import model.vo.LocalVO;
 
 public class FuncionarioBO<VO extends FuncionarioVO> implements BaseInterBO<VO>{
     static private FuncionarioDAO dao0 = new FuncionarioDAO();
-    public boolean inserir(VO funcionario) throws InsertException {
+    public void inserir(VO funcionario) throws InsertException {
       try {
-            ResultSet rs = dao0.listar_func();
+            ResultSet rs = dao0.listar();
             if (rs.next()){
               throw new InsertException("Não será possivel");
-              return false;
             }
             else{
-              dao0.inserir_func(funcionario);
-              return true;
+              dao0.inserir(funcionario);
             }
       }
       catch (SQLException e){
         throw new InsertException(e.getMessage());
       }
     }
-    public boolean excluir_funcionario(VO funcionario) throws InsertException{
+    public void remover(VO funcionario) throws InsertException{
       try {
-        ResultSet rs = dao0.listar_func();
+        ResultSet rs = dao0.listar();
         if (rs.next()){
           throw new InsertException("Não será possivel");
-          return false;
         }
         else{
-          dao0.remover_func(funcionario);
-          return true;
+          dao0.remover(funcionario);
         }
         }
         catch (SQLException e){
@@ -52,7 +48,7 @@ public class FuncionarioBO<VO extends FuncionarioVO> implements BaseInterBO<VO>{
         }
     }
     public ResultSet listar(){
-      ResultSet rs = dao0.listar_func();
+      ResultSet rs = dao0.listar();
       List<FuncionarioVO> list = new ArrayList<FuncionarioVO>();
       try{
         while(rs.next()) {
@@ -63,24 +59,30 @@ public class FuncionarioBO<VO extends FuncionarioVO> implements BaseInterBO<VO>{
         }
     }
     catch (SQLException e) {
-      // TODO Auto-generated catch block
       e.printStackTrace();
     }
-    return list;
+    return rs;
 }
-    public boolean alterar_funcionario(VO funcionario) throws InsertException{
-      ResultSet rs = dao0.listar_func();
+    public void alterar(VO funcionario) throws InsertException{
+      ResultSet rs = dao0.listar();
       try {
         if (rs.next()) {
           throw new InsertException("Não será possivel");
         }
         else{
-          dao0.alterar_func(funcionario);
-          return true;
+          dao0.alterar(funcionario);
         }
         }
         catch (SQLException e){
           throw new InsertException(e.getMessage());
         }
+    }
+    @Override
+    public ResultSet listarPorId(VO entity) throws SQLException {
+      return null;
+    }
+    @Override
+    public ResultSet listarPorNome(VO entity) throws SQLException {
+      return null;
     }
 }

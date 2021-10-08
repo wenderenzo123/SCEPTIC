@@ -7,11 +7,11 @@ public class LocalDAOtest{
   private static ResultSet listarPorNome;
   public static void main(String[] args) throws SQLException  {
     //inserir_local();
-		//listar_local();
+		listar_local();
     //remover_local();
     //alterar_local();
-    //listar_local_id();
-    //listar_local_nome();
+    listar_local_id();
+    listar_local_nome();
 	}
   private static void listar_local() throws SQLException{
     LocalDAO dao = new LocalDAO();
@@ -42,11 +42,15 @@ public class LocalDAOtest{
 		dao.alterar(vo);
   }
   private static void listar_local_id() throws SQLException{
+    LocalVO vo = new LocalVO();
     LocalDAO dao = new LocalDAO();
-    listarPorId = dao.listarPorId((long) 1);
+    vo.setId((long) 1);
+    listarPorId = dao.listarPorId(vo);
   }
   private static void listar_local_nome() throws SQLException{
+    LocalVO vo = new LocalVO();
     LocalDAO dao = new LocalDAO();
-    listarPorNome = dao.listarPorNome(new String("fre"));
+    vo.setNome("o");
+    listarPorNome = dao.listarPorNome(vo);
   }
 }

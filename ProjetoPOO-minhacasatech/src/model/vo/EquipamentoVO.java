@@ -76,15 +76,10 @@ public class EquipamentoVO {
 	}
 	public void setResponsavel(FuncionarioVO responsavel) {
 		if(Responsavel==null) {
-			
+			System.out.println("Nulo");
 		}
 		else {
-			if(Responsavel.getNome().equals("")) {
-				
-			}
-			else {
 				this.Responsavel = responsavel;
-			}
 		}
 	}
 	public LocalVO getLocal() {
@@ -92,15 +87,10 @@ public class EquipamentoVO {
 	}
 	public void setLocal(LocalVO local) {
 		if(Local==null) {
-			
+			System.out.println("Nulo");
 		}
 		else {
-			if(Local.getNome().equals("")) {
-				
-			}
-			else {
 				this.Local = local;
-			}
 		}
 	}
 	public Long getId() {

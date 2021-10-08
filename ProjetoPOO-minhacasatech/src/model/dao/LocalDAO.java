@@ -69,13 +69,13 @@ public class LocalDAO extends BaseDAO<LocalVO> {
 		}
 	}
 	@Override
-	public ResultSet listarPorId(Long id) throws SQLException {
+	public ResultSet listarPorId(LocalVO vo) throws SQLException {
 		PreparedStatement st;
 		ResultSet rs = null;
 		String sql = "select * from locais where id_loc = ?";
 		try {
 			st = getConnection().prepareStatement(sql);
-			st.setLong(1,id);
+			st.setLong(1,vo.getId());
 			rs=st.executeQuery();
 			while(rs.next()) {
 				System.out.println("Id: "+rs.getInt("id_loc")+" Nome: "+rs.getString("nome_loc")
@@ -87,13 +87,13 @@ public class LocalDAO extends BaseDAO<LocalVO> {
 		return rs;
 	}
 	@Override
-	public ResultSet listarPorNome(String nome) throws SQLException {
+	public ResultSet listarPorNome(LocalVO vo) throws SQLException {
 		PreparedStatement st;
 		ResultSet rs = null;
 		String sql = "SELECT * FROM locais WHERE nome_loc LIKE ?";
 		try {
 			st = getConnection().prepareStatement(sql);
-			st.setString(1,"%"+nome+"%");
+			st.setString(1,"%"+vo.getNome()+"%");
 			rs=st.executeQuery();
 			while(rs.next()) {
 				System.out.println("Id: "+rs.getInt("id_loc")+" Nome: "+rs.getString("nome_loc")

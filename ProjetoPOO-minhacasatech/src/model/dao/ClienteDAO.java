@@ -7,14 +7,15 @@ import java.sql.Statement;
 
 import model.vo.ClienteVO;
 
-public class ClienteDAO extends PessoaDAO<ClienteVO>{
-	public void inserir_clien(ClienteVO vo) {
+public class ClienteDAO<VO extends ClienteVO> extends PessoaDAO<ClienteVO>{
+	public void inserir(ClienteVO vo) throws SQLException {
 		try {
 			super.inserir(vo);
-			String sql = "INSERT INTO  cliente (cpf_cli, id_cli) values (?,?)";
+			String sql = "INSERT INTO  clientes (pessoa_id_pes,cpf_cli) values (?,?)";
 			PreparedStatement ptst;
 			ptst = getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-			ptst.setInt(1, vo.getCPF());
+			ptst.setLong(1, vo.getId());
+			ptst.setLong(2, vo.getCPF());
 			int affectedRows = ptst.executeUpdate();
 			if(affectedRows == 0) {
 				throw new SQLException("A inser��o falhou. Nenhuma linha foi alterada.");
@@ -27,59 +28,53 @@ public class ClienteDAO extends PessoaDAO<ClienteVO>{
 				throw new SQLException("A inser��o falhou. Nenhuma linha foi alterada.");
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 	}
 	
-	public void remover_clien(ClienteVO vo) {
+	public void remover(ClienteVO vo) {
 		try {
 			super.remover(vo);
-			String sql = "DELETE FROM cliente where id_cli = ?";
+			String sql = "DELETE FROM clientes where id_cli = ?";
 			PreparedStatement ptst;
 			ptst = getConnection().prepareStatement(sql);
 			ptst.setLong(1, vo.getId());
 			ptst.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-	
-	public ResultSet listar_clien(ClienteVO vo){
-		String sql = "select * from cliente";
+	public void alterar(ClienteVO vo) {
+		try {
+			String sql = "UPDATE clientes set cpf_cli = ? where id_cli = ?";
+		  	PreparedStatement ptst;
+			ptst = getConnection().prepareStatement(sql);
+			ptst.setLong(1, vo.getCPF());
+			ptst.setLong(2, vo.getId());
+			ptst.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	public ResultSet listar(){
+		String sql = "select * from clientes";
 		ResultSet rs = null;
 		Statement st;
-		List<ClienteVO> list = new ArrayList<ClienteVO>();
+		// List<ClienteVO> list = new ArrayList<ClienteVO>();
 		try {	
 			st = getConnection().createStatement();
 			System.out.println(st);
 			rs = st.executeQuery(sql);
 			while(rs.next()) {
-				ClienteVO vo = new ClienteVO();
-				vo.setId(rs.getLong("id_cli"));
-				vo.setNome(rs.getString("nome_cli"));
-				list.add(vo);
+				// vo.setId(rs.getLong("id_cli"));
+				// vo.setNome(rs.getString("nome_cli"));
+				// list.add(vo);
+				System.out.println("Id: "+rs.getInt("id_cli")+" CPF: "+rs.getInt("cpf_cli")+" Cadastro: "+rs.getString("dt_cadastro"));
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return rs;
-	}
-	
-	public void alterar(ClienteVO vo) {
-		try {
-			String sql = "UPDATE cliente set nome = ? where id_cli = ?";
-		  	PreparedStatement ptst;
-			ptst = getConnection().prepareStatement(sql);
-			ptst.setString(1, vo.getNome());
-			ptst.setLong(2, vo.getId());
-			ptst.executeUpdate();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 }
