@@ -5,20 +5,21 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import model.vo.FuncionarioVO;
 import model.vo.PessoaVO;
 
-public class PessoaDAO extends BaseDAO<PessoaVO>{
+public class PessoaDAO<VO extends PessoaVO> extends BaseDAO<VO>{
 	
 	public void inserir(PessoaVO vo) throws SQLException {
 		String sql = "INSERT INTO pessoa (nome,endereco,tele) values (?,?,?)";
 		PreparedStatement ptst;
 		try {
-			ptst = getConnection().prepareStatement(sql);
+			ptst = getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			ptst.setString(1, vo.getNome());
 			ptst.setString(2, vo.getEndereco());
 			ptst.setString(3, vo.getTelefone());
-			ptst.executeUpdate();
-			/*int affectedRows = ptst.executeUpdate();
+			// ptst.executeUpdate();
+			int affectedRows = ptst.executeUpdate();
 			if(affectedRows == 0) {
 				throw new SQLException("A inserção falhou. Nenhuma linha foi alterada.");
 			}
@@ -28,7 +29,7 @@ public class PessoaDAO extends BaseDAO<PessoaVO>{
 			}
 			else {
 				throw new SQLException("A inserção falhou. Nenhuma linha foi alterada.");
-			}*/
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -85,20 +86,18 @@ public class PessoaDAO extends BaseDAO<PessoaVO>{
 			ptst = getConnection().prepareStatement(sql);
 			rs = ptst.executeQuery(sql);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		// TODO Auto-generated method stub
 		return rs;
 	}
 	@Override
-	public ResultSet listarPorId(Long id) throws SQLException {
+	public ResultSet listarPorId(VO vo) throws SQLException {
 		PreparedStatement st;
 		ResultSet rs = null;
 		String sql = "select * from pessoa where id_pes = ?";
 		try {
 			st = getConnection().prepareStatement(sql);
-			st.setLong(1,id);
+			st.setLong(1,vo.getId());
 			rs=st.executeQuery();
 			while(rs.next()) {
 				System.out.println("Id: "+rs.getInt("id_pes")+" Nome: "+rs.getString("nome")
@@ -110,13 +109,13 @@ public class PessoaDAO extends BaseDAO<PessoaVO>{
 		return rs;
 	}
 	@Override
-	public ResultSet listarPorNome(String nome) throws SQLException {
+	public ResultSet listarPorNome(VO vo) throws SQLException {
 		PreparedStatement st;
 		ResultSet rs = null;
 		String sql = "SELECT * FROM pessoa WHERE nome LIKE ?";
 		try {
 			st = getConnection().prepareStatement(sql);
-			st.setString(1,"%"+nome+"%");
+			st.setString(1,"%"+vo.getNome()+"%");
 			rs=st.executeQuery();
 			while(rs.next()) {
 				System.out.println("Id: "+rs.getInt("id_pes")+" Nome: "+rs.getString("nome")

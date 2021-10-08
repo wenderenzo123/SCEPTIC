@@ -11,10 +11,11 @@ import model.vo.EquipamentoVO;
 import model.vo.FuncionarioVO;
 import model.vo.LocalVO;
 
-public class EquipamentoDAO extends BaseDAO {
+public class EquipamentoDAO extends BaseDAO<EquipamentoVO> {
 
-	public void inserir(EquipamentoVO vo) {
-		String sql = "INSERT INTO equipamentos (nome_eq,peso_eq,num_serie_eq,preco_eq,quant_eq,responsavel_id_respon,locais_id_loc) VALUES (?,?,?,?,?,?,?)";
+	@Override
+	public void inserir(EquipamentoVO vo) throws SQLException {
+		String sql = "INSERT INTO equipamentos (nome_eq,peso_eq,num_serie_eq,preco_eq,quant_eq,locais_id_loc,responsavel_id_res) VALUES (?,?,?,?,?,?,?)";
 		PreparedStatement ptst;
 		try {
 			ptst = getConnection().prepareStatement(sql);
@@ -23,61 +24,43 @@ public class EquipamentoDAO extends BaseDAO {
 			ptst.setInt(3,vo.getNumeroDeSerie());
 			ptst.setDouble(4,vo.getPreco());
 			ptst.setInt(5,vo.getQuantidade());
-			ptst.setLong(6,vo.getResponsavel().getId());
-			ptst.setLong(7, vo.getLocal().getId());
-			ptst.execute();
+			ptst.setLong(6,vo.getLocal().getId());
+			ptst.setLong(7,vo.getResponsavel().getId());
+			int affectedRows = ptst.executeUpdate();
+			if(affectedRows ==0) {
+				throw new SQLException("Cadastro falhou");
+			}
+			ResultSet key = ptst.getGeneratedKeys();
+			if(key.next()) {
+				vo.setId(key.getLong("id"));
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
-		
 	}
-	public boolean remover_eq(EquipamentoVO vo) {
-
-		String sql = "DELETE FROM equipamentos WHERE id_eq = ?";
-		PreparedStatement ptst;
-		try {
-			ptst = getConnection().prepareStatement(sql);
-			ptst.setLong(1, vo.getId());
-			ptst.execute();
-			return true;
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return false;
-		}
-	}
-	public List<EquipamentoVO> listar_eq() {
+	@Override
+	public ResultSet listar() throws SQLException {
 		String sql = "SELECT * FROM equipamentos";
 		Statement st;
-		ResultSet rs;
-		List<EquipamentoVO> list = new ArrayList<EquipamentoVO>();
-		
-		
+		ResultSet rs = null;
+		// List<EquipamentoVO> list = new ArrayList<EquipamentoVO>();
 		try {
 			st = getConnection().createStatement();
 			rs=st.executeQuery(sql);
+			st = getConnection().createStatement();
+			System.out.println(st);
+			rs=st.executeQuery(sql);
 			while(rs.next()) {
-				EquipamentoVO vo = new EquipamentoVO();
-				FuncionarioVO fu = new FuncionarioVO();
-				LocalVO  lo = new LocalVO();
-				vo.setId(rs.getLong("id_eq"));
-				vo.setNome(rs.getString("nome_eq"));
-				vo.setPeso(rs.getDouble("peso_eq"));
-				vo.setNumeroDeSerie(rs.getInt("num_serie_eq"));
-				vo.setPreco(rs.getDouble("preco_eq"));
-				vo.setQuantidade(rs.getInt("quant_eq"));
-				fu.setId(rs.getLong("responsavel_id_respon"));
-				lo.setId(rs.getLong("locais_id_loc"));
-				list.add(vo);
+				System.out.println("Id: "+rs.getInt("id_eq")+" Nome: "+rs.getString("email")
+				+" Tipo: "+rs.getString("tipo"));
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return list;
+		return rs;
 	}
-	public boolean alterar_eq(EquipamentoVO vo) {
+	@Override
+	public void alterar(EquipamentoVO vo) throws SQLException {
 		String sql = "UPDATE equipamentos SET nome_eq = ?, preco_eq = ? where id_eq = ?";
 		PreparedStatement ptst;
 		try {
@@ -86,42 +69,32 @@ public class EquipamentoDAO extends BaseDAO {
 			ptst.setDouble(2,vo.getPreco());
 			ptst.setLong(3,vo.getId());
 			ptst.execute();
-			return true;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return false;
 		}
 	}
 	@Override
-	public void inserir(Object vo) throws SQLException {
-		// TODO Auto-generated method stub
-		
+	public void remover(EquipamentoVO vo) throws SQLException {
+		String sql = "DELETE FROM equipamentos WHERE id_eq = ?";
+		PreparedStatement ptst;
+		try {
+			ptst = getConnection().prepareStatement(sql);
+			ptst.setLong(1, vo.getId());
+			ptst.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	@Override
-	public void alterar(Object vo) throws SQLException {
-		// TODO Auto-generated method stub
+	public ResultSet listarPorId(EquipamentoVO vo) throws SQLException {
 		
-	}
-	@Override
-	public void remover(Object vo) throws SQLException {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public ResultSet listar() throws SQLException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	@Override
-	public ResultSet listarPorId(Long id) throws SQLException {
-		// TODO Auto-generated method stub
+	public ResultSet listarPorNome(EquipamentoVO vo) throws SQLException {
+		
 		return null;
 	}
-	@Override
-	public ResultSet listarPorNome(String nome) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 }

@@ -43,12 +43,12 @@ public class PessoaDAOtest {
     PessoaVO vo = new FuncionarioVO();
     PessoaDAO dao = new PessoaDAO();
     vo.setId((long) 1);
-    listarPorId = dao.listarPorId((long) 1);
+    listarPorId = dao.listarPorId(vo);
   }
   private static void listar_pes_Nome() throws SQLException{
     PessoaVO vo = new FuncionarioVO();
     PessoaDAO dao = new PessoaDAO();
     vo.setNome((String) "r");
-    listarPorId = dao.listarPorNome(vo.getNome());
+    listarPorId = dao.listarPorNome(vo);
   }
 }

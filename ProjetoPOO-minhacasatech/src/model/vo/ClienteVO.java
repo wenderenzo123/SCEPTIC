@@ -2,13 +2,13 @@ package model.vo;
 
 public class ClienteVO extends PessoaVO{
 
-	private int CPF;
+	private Long CPF;
 	private Long Id;
 	
-	public int getCPF() {
+	public Long getCPF() {
 		return CPF;
 	}
-	public void setCPF(int cPF) {
+	public void setCPF(Long cPF) {
 		if(cPF>0)
 		{
 			this.CPF = cPF;

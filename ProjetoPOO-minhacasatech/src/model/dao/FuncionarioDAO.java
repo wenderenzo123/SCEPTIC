@@ -11,69 +11,72 @@ import java.util.List;
 import model.vo.FuncionarioVO;
 
 
-public class FuncionarioDAO<VO extends FuncionarioVO> extends PessoaDAO<VO>{
+public class FuncionarioDAO<VO extends FuncionarioVO> extends PessoaDAO<FuncionarioVO>{
 	
-public void inserir(VO vo) throws SQLException {
+public void inserir(FuncionarioVO vo) throws SQLException {
 		super.inserir(vo);
 		try {
-			String sql = "INSERT INTO responsavel (pessoa_id_pes,email,senha,tipo) values (?,?,?,?)";
+			String sql = "INSERT INTO responsaveis (pessoa_id_pes,email,senha,tipo) values (?,?,?,?)";
 			PreparedStatement ptst;
-		  ptst = getConnection().prepareStatement(sql);
+		  ptst = getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			ptst.setLong(1, vo.getId());
 			ptst.setString(2, vo.getEmail());
 			ptst.setString(3, vo.getSenha());
 			ptst.setInt(4, vo.getTipo());
-			
-
-			ptst.execute();
+			int affectedRows = ptst.executeUpdate();
+			if(affectedRows == 0) {
+				throw new SQLException("A inserção falhou. Nenhuma linha foi alterada.");
+			}
+			ResultSet generatedKeys = ptst.getGeneratedKeys();
+			if(generatedKeys.next()) {
+				vo.setId(generatedKeys.getLong(1));
+			}
+			else {
+				throw new SQLException("A inserção falhou. Nenhuma linha foi alterada.");
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
-public void remover_func(FuncionarioVO vo) {
+public void remover(FuncionarioVO vo) {
 		try {
-			super.remover(vo);
-			String sql = "DELETE FROM cliente where pessoa_id_pes = ?";
+			String sql = "DELETE FROM responsaveis where id_res = ?";
 			PreparedStatement ptst;
 			ptst = getConnection().prepareStatement(sql);
 			ptst.setLong(1, vo.getId());
+			super.remover(vo);
 			ptst.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 public ResultSet listar() {
-		String sql = "select * from responsavel";
+		String sql = "select * from responsaveis";
 		ResultSet rs = null;
 		Statement st;
-		List<FuncionarioVO> list = new ArrayList<FuncionarioVO>();
+		// List<FuncionarioVO> list = new ArrayList<FuncionarioVO>();
 		try {
 			st = getConnection().createStatement();
 			System.out.println(st);
 			rs=st.executeQuery(sql);
 			while(rs.next()) {
-				FuncionarioVO vo = new FuncionarioVO();
-				vo.setId(rs.getLong("id_resp"));
-				vo.setNome(rs.getString("email"));
-				list.add(vo);
+				System.out.println("Id: "+rs.getInt("id_res")+" Email: "+rs.getString("email")
+				+" Tipo: "+rs.getString("tipo"));
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return rs;
-		
 	}
-	public void alterar_func(FuncionarioVO vo) {
+	public void alterar(FuncionarioVO vo) {
 		try {
-			String sql = "UPDATE responsavel set nome_respon = ? where pessoa_id_pes = ?";
+			String sql = "UPDATE responsaveis set tipo = ? where id_res = ?";
 			PreparedStatement ptst;
 			ptst = getConnection().prepareStatement(sql);
-			ptst.setString(1, vo.getNome());
+			ptst.setInt(1, vo.getTipo());
 			ptst.setLong(2,vo.getId());
 			ptst.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

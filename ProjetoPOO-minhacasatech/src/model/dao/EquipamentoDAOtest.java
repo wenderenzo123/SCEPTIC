@@ -2,10 +2,12 @@ package model.dao;
 import model.vo.EquipamentoVO;
 import model.vo.FuncionarioVO;
 import model.vo.LocalVO;
+
+import java.sql.SQLException;
 import java.util.List;
 
 public class EquipamentoDAOtest {
-  public static void main(String[] args)  {
+  public static void main(String[] args) throws SQLException  {
     inserir_eq();
 	  //listar_eq();
     //remover_eq();
@@ -18,7 +20,7 @@ public class EquipamentoDAOtest {
 		System.out.println("Id: "+vo_0.getId()+ ", Nome: "+vo_0.getNome()+" , Preço: "+vo_0.getPreco());
 	}
   }
-  private static void inserir_eq(){
+  private static void inserir_eq() throws SQLException{
     EquipamentoVO vo = new EquipamentoVO();
 		EquipamentoDAO dao = new EquipamentoDAO();
     FuncionarioVO fu = new FuncionarioVO();
@@ -28,10 +30,10 @@ public class EquipamentoDAOtest {
     vo.setNumeroDeSerie(1233412);
     vo.setPreco(989);
 		vo.setQuantidade(13);
-    fu.setId(new Long (1));
-    vo.setResponsavel(fu);
-    lo.setId(new Long (5));
+    lo.setId((long) 3);
     vo.setLocal(lo);
+    fu.setId((long) 1);
+    vo.setResponsavel(fu);
 		dao.inserir(vo);
   }
   private static void remover_eq(){

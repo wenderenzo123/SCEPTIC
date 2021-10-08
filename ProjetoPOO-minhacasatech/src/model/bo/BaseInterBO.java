@@ -9,5 +9,5 @@ public interface BaseInterBO<VO>{
 	public void remover(VO entity) throws SQLException;
 	public ResultSet listarPorId(VO entity) throws SQLException;
 	public ResultSet listarPorNome(VO entity) throws SQLException;
-	public List<VO> listar() throws SQLException;
+	public ResultSet listar() throws SQLException;
 }

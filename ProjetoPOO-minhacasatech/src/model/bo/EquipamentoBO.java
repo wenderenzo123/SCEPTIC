@@ -19,15 +19,15 @@ import model.vo.LocalVO;
 import model.vo.EquipamentoVO;
 
 public class EquipamentoBO implements BaseInterBO<EquipamentoVO> {
-  public void inserir(EquipamentoVO equipamento,FuncionarioVO funcionario,LocalVO local) {
+  public void inserir(EquipamentoVO equipamento) throws SQLException {
 		EquipamentoDAO dao = new EquipamentoDAO();
-    dao.inserir_eq(equipamento, local, funcionario);
+    dao.inserir(equipamento);
   }
-  public void remover(EquipamentoVO equipamento){
+  public void remover(EquipamentoVO equipamento) throws SQLException{
     EquipamentoDAO dao = new EquipamentoDAO();
-    dao.remover_eq(equipamento);
+    dao.remover(equipamento);
   }
-  public List<EquipamentoVO> listar(){
+  public ResultSet listar() throws SQLException{
     EquipamentoDAO dao = new EquipamentoDAO();
 		ResultSet rs = dao.listar();
 		List<EquipamentoVO> list = new ArrayList<EquipamentoVO>();
@@ -50,10 +50,20 @@ public class EquipamentoBO implements BaseInterBO<EquipamentoVO> {
     catch(SQLException e) {
 			e.printStackTrace();
 		}
-    return list;
+    return rs;
   }
-  public void alterar(EquipamentoVO equipamento){
+  public void alterar(EquipamentoVO equipamento) throws SQLException{
     EquipamentoDAO dao = new EquipamentoDAO();  
-    dao.alterar_eq(equipamento);
+    dao.alterar(equipamento);
+  }
+  @Override
+  public ResultSet listarPorId(EquipamentoVO entity) throws SQLException {
+    // TODO Auto-generated method stub
+    return null;
+  }
+  @Override
+  public ResultSet listarPorNome(EquipamentoVO entity) throws SQLException {
+    // TODO Auto-generated method stub
+    return null;
   }
 }

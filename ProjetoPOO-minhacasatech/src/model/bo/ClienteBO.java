@@ -12,33 +12,28 @@ import model.vo.ClienteVO;
 public class ClienteBO<VO extends ClienteVO> implements BaseInterBO<ClienteVO> {
 	static private ClienteDAO dao0 = new ClienteDAO();
 	
-	public boolean cadastrar_cliente(VO Cliente) throws InsertException {
+	public void inserir(ClienteVO Cliente) throws SQLException {
 		try {
-            ResultSet rs = dao0.listar_clien();
+            ResultSet rs = dao0.listar();
             if (rs.next()){
               throw new InsertException("Não será possivel");
-              return false;
             }
             else{
               dao0.inserir_clien(Cliente);
-              return true;
             }
       }
       catch (SQLException e){
         throw new InsertException(e.getMessage());
       }
 	}
-	
-	 public boolean excluir_cliente(VO cliente) throws InsertException{
+	public void remover(ClienteVO cliente) throws SQLException{
 	      try {
-	        ResultSet rs = dao0.listar_clien();
+	        ResultSet rs = dao0.listar();
 	        if (rs.next()){
 	          throw new InsertException("Não será possivel");
-	          return false;
 	        }
 	        else{
 	          dao0.remover_clien(cliente);
-	          return true;
 	        }
 	        }
 	        catch (SQLException e){
@@ -46,8 +41,9 @@ public class ClienteBO<VO extends ClienteVO> implements BaseInterBO<ClienteVO> {
 	        }
 	    }
 	 
-	 public ResultSet Listar(){
-		 ResultSet rs = dao0.listar_clien();
+		@Override
+		public ResultSet listar() throws SQLException {
+		 ResultSet rs = dao0.listar();
 		 List<ClienteVO> list = new ArrayList<ClienteVO>();
 		 try {
 			 while(rs.next()) {
@@ -58,25 +54,32 @@ public class ClienteBO<VO extends ClienteVO> implements BaseInterBO<ClienteVO> {
 			 }
 		 }
 		 catch (SQLException e) {
-			 // TODO Auto-generated catch block
 			 e.printStackTrace();
 		 }
-		 return list;
+		 return rs;
 	 }
-	 public boolean alterar_cliente(VO cliente) throws InsertException{
-		 ResultSet rs = dao0.listar_clien();
+	public void alterar(ClienteVO cliente) throws SQLException{
+	ResultSet rs = dao0.listar();
 		 try {
-		        if (rs.next()) {
-		          throw new InsertException("Não será possivel");
-		        }
-		        else{
-		          dao0.alterar(cliente);
-		          return true;
-		        }
-		        }
-		        catch (SQLException e){
-		          throw new InsertException(e.getMessage());
-		        }
-		    }
-	 }
+		    if (rs.next()) {
+		       throw new InsertException("Não será possivel");
+		     }
+		    else{
+		       dao0.alterar(cliente);
+		     }
+		     }
+		    catch (SQLException e){
+		      throw new InsertException(e.getMessage());
+		  	}
+		}
+	@Override
+	public ResultSet listarPorId(ClienteVO entity) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public ResultSet listarPorNome(ClienteVO entity) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
