@@ -7,8 +7,8 @@ public class EquipamentoVO {
 	private int numeroDeSerie;
 	private double preco;
 	private int quantidade;
-	private FuncionarioVO Responsavel;
-	private LocalVO Local;
+	private FuncionarioVO responsavel;
+	private LocalVO local;
 	
 	public String getNome() {
 		return nome;
@@ -72,25 +72,25 @@ public class EquipamentoVO {
 		}
 	}
 	public FuncionarioVO getResponsavel() {
-		return Responsavel;
+		return responsavel;
 	}
 	public void setResponsavel(FuncionarioVO responsavel) {
-		if(Responsavel==null) {
+		if(responsavel==null) {
 			System.out.println("Nulo");
 		}
 		else {
-				this.Responsavel = responsavel;
+				this.responsavel = responsavel;
 		}
 	}
 	public LocalVO getLocal() {
-		return Local;
+		return local;
 	}
 	public void setLocal(LocalVO local) {
-		if(Local==null) {
+		if(local==null) {
 			System.out.println("Nulo");
 		}
 		else {
-				this.Local = local;
+				this.local = local;
 		}
 	}
 	public Long getId() {

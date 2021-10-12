@@ -5,21 +5,20 @@ import java.util.List;
 import java.sql.ResultSet;
 
 import model.InsertException;
-
-import model.dao.ClienteDAO;
+import modelDAO.ClienteDAO;
+import modelDAO.PessoaDAO;
 import model.vo.ClienteVO;
 
-public class ClienteBO<VO extends ClienteVO> implements BaseInterBO<ClienteVO> {
-	static private ClienteDAO dao0 = new ClienteDAO();
-	
+public class ClienteBO implements BaseInterBO<ClienteVO> {
+	PessoaDAO dao0 = new ClienteDAO();
 	public void inserir(ClienteVO Cliente) throws SQLException {
 		try {
-            ResultSet rs = dao0.listar();
+            ResultSet rs = dao0.listar(Cliente);
             if (rs.next()){
               throw new InsertException("Não será possivel");
             }
             else{
-              dao0.inserir_clien(Cliente);
+              dao0.inserir(Cliente);
             }
       }
       catch (SQLException e){
@@ -28,12 +27,12 @@ public class ClienteBO<VO extends ClienteVO> implements BaseInterBO<ClienteVO> {
 	}
 	public void remover(ClienteVO cliente) throws SQLException{
 	      try {
-	        ResultSet rs = dao0.listar();
+	        ResultSet rs = dao0.listar(cliente);
 	        if (rs.next()){
 	          throw new InsertException("Não será possivel");
 	        }
 	        else{
-	          dao0.remover_clien(cliente);
+	          dao0.remover(cliente);
 	        }
 	        }
 	        catch (SQLException e){
@@ -42,25 +41,26 @@ public class ClienteBO<VO extends ClienteVO> implements BaseInterBO<ClienteVO> {
 	    }
 	 
 		@Override
-		public ResultSet listar() throws SQLException {
-		 ResultSet rs = dao0.listar();
+	public List<ClienteVO> listar(ClienteVO cliente) throws SQLException {
 		 List<ClienteVO> list = new ArrayList<ClienteVO>();
 		 try {
+			 ResultSet rs = dao0.listar(cliente);
 			 while(rs.next()) {
-				 ClienteVO vo = new ClienteVO();
-				 vo.setId(rs.getLong("id_cli"));
-				 vo.setNome(rs.getString("nome_cli"));
-				 list.add(vo);
+				 ClienteVO vo2 = new ClienteVO();
+				 cliente.setId(rs.getLong("id_cli"));
+				 cliente.setNome(rs.getString("nome"));
+				//add as demais coisas a serem exibidas(num de series, preco, quant...) (olhar no BD)
+				 list.add(vo2);
 			 }
 		 }
 		 catch (SQLException e) {
 			 e.printStackTrace();
 		 }
-		 return rs;
+		 return list;
 	 }
 	public void alterar(ClienteVO cliente) throws SQLException{
-	ResultSet rs = dao0.listar();
 		 try {
+			 ResultSet rs = dao0.listar(cliente);
 		    if (rs.next()) {
 		       throw new InsertException("Não será possivel");
 		     }
@@ -73,13 +73,36 @@ public class ClienteBO<VO extends ClienteVO> implements BaseInterBO<ClienteVO> {
 		  	}
 		}
 	@Override
-	public ResultSet listarPorId(ClienteVO entity) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+	public List<ClienteVO> listarPorId(ClienteVO cliente) throws SQLException {
+		List<ClienteVO> list = new ArrayList<ClienteVO>();
+		 try {
+			 ResultSet rs = dao0.listar(cliente);
+			 while(rs.next()) {
+				 ClienteVO vo2 = new ClienteVO();
+				 cliente.setId(rs.getLong("id_cli"));
+				 list.add(vo2);
+			 }
+		 }
+		 catch (SQLException e) {
+			 e.printStackTrace();
+		 }
+		 return list;
 	}
 	@Override
-	public ResultSet listarPorNome(ClienteVO entity) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+	public List<ClienteVO> listarPorNome(ClienteVO cliente) throws SQLException {
+		List<ClienteVO> list = new ArrayList<ClienteVO>();
+		 try {
+			 ResultSet rs = dao0.listar(cliente);
+			 while(rs.next()) {
+				 ClienteVO vo2 = new ClienteVO();
+				 cliente.setNome(rs.getString("nome"));
+				 list.add(vo2);
+			 }
+		 }
+		 catch (SQLException e) {
+			 e.printStackTrace();
+		 }
+		 return list;
 	}
+	
 }
