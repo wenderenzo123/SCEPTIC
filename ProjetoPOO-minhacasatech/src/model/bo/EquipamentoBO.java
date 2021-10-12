@@ -7,11 +7,11 @@ import model.InsertException;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.dao.FuncionarioDAO;
-import model.dao.PessoaDAO;
-import model.dao.ClienteDAO;
-import model.dao.EquipamentoDAO;
-import model.dao.LocalDAO;
+import modelDAO.FuncionarioDAO;
+import modelDAO.PessoaDAO;
+import modelDAO.ClienteDAO;
+import modelDAO.EquipamentoDAO;
+import modelDAO.LocalDAO;
 import model.vo.FuncionarioVO;
 import model.vo.PessoaVO;
 import model.vo.ClienteVO;
@@ -19,51 +19,114 @@ import model.vo.LocalVO;
 import model.vo.EquipamentoVO;
 
 public class EquipamentoBO implements BaseInterBO<EquipamentoVO> {
-  public void inserir(EquipamentoVO equipamento) throws SQLException {
-		EquipamentoDAO dao = new EquipamentoDAO();
-    dao.inserir(equipamento);
-  }
-  public void remover(EquipamentoVO equipamento) throws SQLException{
-    EquipamentoDAO dao = new EquipamentoDAO();
-    dao.remover(equipamento);
-  }
-  public ResultSet listar() throws SQLException{
-    EquipamentoDAO dao = new EquipamentoDAO();
-		ResultSet rs = dao.listar();
-		List<EquipamentoVO> list = new ArrayList<EquipamentoVO>();
+	EquipamentoDAO dao1 = new EquipamentoDAO();
+	public void inserir(EquipamentoVO equipamento) throws SQLException {
 		try {
-			while(rs.next()) {
-        EquipamentoVO vo = new EquipamentoVO();
-        FuncionarioVO fu = new FuncionarioVO();
+			ResultSet rs = dao1.listar(equipamento);
+			if(rs.next()) {
+				throw new InsertException("Não será possivel");
+			}
+			else{
+	         dao1.inserir(equipamento);
+				}
+			}
+			catch (SQLException e){
+		        throw new InsertException(e.getMessage());
+		    }
+		}
+	public void remover(EquipamentoVO equipamento) throws SQLException{
+		try {
+	        ResultSet rs = dao1.listar(equipamento);
+	        if (rs.next()){
+	          throw new InsertException("Não será possivel");
+	        }
+	        else{
+	          dao1.remover(equipamento);
+	        }
+	        }
+	        catch (SQLException e){
+	          throw new InsertException(e.getMessage());
+	        }
+  }
+	public List<EquipamentoVO> listar(EquipamentoVO equipamento) throws SQLException {
+		 List<EquipamentoVO> list = new ArrayList<EquipamentoVO>();
+		 try {
+			 ResultSet rs = dao1.listarPorId(equipamento);
+			 while(rs.next()) {
+				 EquipamentoVO vo2 = new EquipamentoVO();
+				 equipamento.setId(rs.getLong("id_eq"));
+				 equipamento.setNome(rs.getString("nome_eq"));
+			
+				//add as demais coisas a serem exibidas(num de series, preco, quant...) (olhar no BD)
+				 /*
+				FuncionarioVO fu = new FuncionarioVO();
 				LocalVO  lo = new LocalVO();
-        vo.setId(rs.getLong("id_eq"));
-				vo.setNome(rs.getString("nome_eq"));
-				vo.setPeso(rs.getDouble("peso_eq"));
-				vo.setNumeroDeSerie(rs.getInt("num_serie_eq"));
-				vo.setPreco(rs.getDouble("preco_eq"));
-				vo.setQuantidade(rs.getInt("quant_eq"));
+				equipamento.setId(rs.getLong("id_eq"));
+				equipamento.setNome(rs.getString("nome_eq"));
+				equipamento.setPeso(rs.getDouble("peso_eq"));
+				equipamento.setNumeroDeSerie(rs.getInt("num_serie_eq"));
+				equipamento.setPreco(rs.getDouble("preco_eq"));
+				equipamento.setQuantidade(rs.getInt("quant_eq"));
 				fu.setId(rs.getLong("responsavel_id_respon"));
 				lo.setId(rs.getLong("locais_id_loc"));
-				list.add(vo);
-      }
-    }
-    catch(SQLException e) {
-			e.printStackTrace();
-		}
-    return rs;
-  }
-  public void alterar(EquipamentoVO equipamento) throws SQLException{
-    EquipamentoDAO dao = new EquipamentoDAO();  
-    dao.alterar(equipamento);
+				*/
+				list.add(vo2);
+			 }
+		 }
+		 catch (SQLException e) {
+			 e.printStackTrace();
+		 }
+		 return list;
+	 }
+	public void alterar(EquipamentoVO equipamento) throws SQLException{
+		 try {
+			 ResultSet rs = dao1.listar(equipamento);
+		    if (rs.next()) {
+		       throw new InsertException("Não será possivel");
+		     }
+		    else{
+		       dao1.alterar(equipamento);
+		     }
+		     }
+		    catch (SQLException e){
+		      throw new InsertException(e.getMessage());
+		  	}
   }
   @Override
-  public ResultSet listarPorId(EquipamentoVO entity) throws SQLException {
-    // TODO Auto-generated method stub
-    return null;
-  }
+  public List<EquipamentoVO> listarPorId(EquipamentoVO equipamento) throws SQLException {
+		List<EquipamentoVO> list = new ArrayList<EquipamentoVO>();
+		 try {
+			 ResultSet rs = dao1.listar(equipamento);
+			 while(rs.next()) {
+				 EquipamentoVO vo2 = new EquipamentoVO();
+				 equipamento.setId(rs.getLong("id_eq"));
+				 list.add(vo2);
+			 }
+		 }
+		 catch (SQLException e) {
+			 e.printStackTrace();
+		 }
+		 return list;
+	}
   @Override
-  public ResultSet listarPorNome(EquipamentoVO entity) throws SQLException {
-    // TODO Auto-generated method stub
-    return null;
-  }
+  public List<EquipamentoVO> listarPorNome(EquipamentoVO equipamento) throws SQLException {
+		List<EquipamentoVO> list = new ArrayList<EquipamentoVO>();
+		 try {
+			 ResultSet rs = dao1.listar(equipamento);
+			 while(rs.next()) {
+				 EquipamentoVO vo2 = new EquipamentoVO();
+				 equipamento.setNome(rs.getString("nome_eq"));
+				 list.add(vo2);
+			 }
+		 }
+		 catch (SQLException e) {
+			 e.printStackTrace();
+		 }
+		 return list;
+	}
+@Override
+public List<EquipamentoVO> listar(ClienteVO vo) throws SQLException {
+	// TODO Auto-generated method stub
+	return null;
+}
 }
