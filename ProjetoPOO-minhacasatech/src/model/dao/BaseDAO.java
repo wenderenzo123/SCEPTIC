@@ -21,7 +21,6 @@ public abstract class BaseDAO<VO> implements BaseInterDAO<VO>{
 			}
 			return conn;
 		}
-		
 		else return conn;	
 	}
 	public static void closeConnection() {
@@ -39,7 +38,6 @@ public abstract class BaseDAO<VO> implements BaseInterDAO<VO>{
 	public abstract ResultSet listar() throws SQLException;
 	public abstract ResultSet listarPorId(VO vo) throws SQLException;
 	public abstract ResultSet listarPorNome(VO vo) throws SQLException;
-
 }
 
 

@@ -4,7 +4,7 @@ import model.vo.PessoaVO;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
+
 public class FuncionarioDAOtest {
   public static void main(String[] args) throws SQLException  {
     //inserir_func();

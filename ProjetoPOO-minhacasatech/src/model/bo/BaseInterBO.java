@@ -12,6 +12,6 @@ public interface BaseInterBO<VO>{
 	public void remover(VO entity) throws SQLException;
 	public List<VO> listarPorId(VO entity) throws SQLException;
 	public List<VO> listarPorNome(VO entity) throws SQLException;
-	public List<VO> listar(ClienteVO vo) throws SQLException;
+	public List<VO> listar() throws SQLException;
 	
 }

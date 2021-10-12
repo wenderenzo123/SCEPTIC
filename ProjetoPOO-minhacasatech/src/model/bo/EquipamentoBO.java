@@ -1,17 +1,14 @@
 package model.bo;
 import java.sql.SQLException;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import model.InsertException;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import modelDAO.FuncionarioDAO;
-import modelDAO.PessoaDAO;
-import modelDAO.ClienteDAO;
-import modelDAO.EquipamentoDAO;
-import modelDAO.LocalDAO;
+
+import model.dao.EquipamentoDAO;
+import model.dao.LocalDAO;
 import model.vo.FuncionarioVO;
 import model.vo.PessoaVO;
 import model.vo.ClienteVO;
@@ -22,7 +19,7 @@ public class EquipamentoBO implements BaseInterBO<EquipamentoVO> {
 	EquipamentoDAO dao1 = new EquipamentoDAO();
 	public void inserir(EquipamentoVO equipamento) throws SQLException {
 		try {
-			ResultSet rs = dao1.listar(equipamento);
+			ResultSet rs = dao1.listar();
 			if(rs.next()) {
 				throw new InsertException("Não será possivel");
 			}
@@ -36,7 +33,7 @@ public class EquipamentoBO implements BaseInterBO<EquipamentoVO> {
 		}
 	public void remover(EquipamentoVO equipamento) throws SQLException{
 		try {
-	        ResultSet rs = dao1.listar(equipamento);
+	        ResultSet rs = dao1.listar();
 	        if (rs.next()){
 	          throw new InsertException("Não será possivel");
 	        }
@@ -48,14 +45,15 @@ public class EquipamentoBO implements BaseInterBO<EquipamentoVO> {
 	          throw new InsertException(e.getMessage());
 	        }
   }
-	public List<EquipamentoVO> listar(EquipamentoVO equipamento) throws SQLException {
+	public List<EquipamentoVO> listar() throws SQLException {
 		 List<EquipamentoVO> list = new ArrayList<EquipamentoVO>();
+		 EquipamentoVO vo2 = new EquipamentoVO();
 		 try {
-			 ResultSet rs = dao1.listarPorId(equipamento);
+			 ResultSet rs = dao1.listar();
 			 while(rs.next()) {
-				 EquipamentoVO vo2 = new EquipamentoVO();
-				 equipamento.setId(rs.getLong("id_eq"));
-				 equipamento.setNome(rs.getString("nome_eq"));
+				 
+				 vo2.setId(rs.getLong("id_eq"));
+				 vo2.setNome(rs.getString("nome_eq"));
 			
 				//add as demais coisas a serem exibidas(num de series, preco, quant...) (olhar no BD)
 				 /*
@@ -80,7 +78,7 @@ public class EquipamentoBO implements BaseInterBO<EquipamentoVO> {
 	 }
 	public void alterar(EquipamentoVO equipamento) throws SQLException{
 		 try {
-			 ResultSet rs = dao1.listar(equipamento);
+			 ResultSet rs = dao1.listar();
 		    if (rs.next()) {
 		       throw new InsertException("Não será possivel");
 		     }
@@ -96,7 +94,7 @@ public class EquipamentoBO implements BaseInterBO<EquipamentoVO> {
   public List<EquipamentoVO> listarPorId(EquipamentoVO equipamento) throws SQLException {
 		List<EquipamentoVO> list = new ArrayList<EquipamentoVO>();
 		 try {
-			 ResultSet rs = dao1.listar(equipamento);
+			 ResultSet rs = dao1.listarPorId(equipamento);
 			 while(rs.next()) {
 				 EquipamentoVO vo2 = new EquipamentoVO();
 				 equipamento.setId(rs.getLong("id_eq"));
@@ -112,7 +110,7 @@ public class EquipamentoBO implements BaseInterBO<EquipamentoVO> {
   public List<EquipamentoVO> listarPorNome(EquipamentoVO equipamento) throws SQLException {
 		List<EquipamentoVO> list = new ArrayList<EquipamentoVO>();
 		 try {
-			 ResultSet rs = dao1.listar(equipamento);
+			 ResultSet rs = dao1.listarPorNome(equipamento);
 			 while(rs.next()) {
 				 EquipamentoVO vo2 = new EquipamentoVO();
 				 equipamento.setNome(rs.getString("nome_eq"));
@@ -124,9 +122,4 @@ public class EquipamentoBO implements BaseInterBO<EquipamentoVO> {
 		 }
 		 return list;
 	}
-@Override
-public List<EquipamentoVO> listar(ClienteVO vo) throws SQLException {
-	// TODO Auto-generated method stub
-	return null;
-}
 }

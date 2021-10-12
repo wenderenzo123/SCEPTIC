@@ -11,18 +11,18 @@ import java.util.List;
 import model.vo.FuncionarioVO;
 
 
-public class FuncionarioDAO<VO extends FuncionarioVO> extends PessoaDAO<FuncionarioVO>{
+public class FuncionarioDAO<VO extends FuncionarioVO> extends PessoaDAO{
 	
 public void inserir(FuncionarioVO vo) throws SQLException {
 		super.inserir(vo);
 		try {
-			String sql = "INSERT INTO responsaveis (pessoa_id_pes,email,senha,tipo) values (?,?,?,?)";
+			String sql = "INSERT INTO responsaveis (email,senha,tipo,pessoa_id_pes) values (?,?,?,?)";
 			PreparedStatement ptst;
 		  ptst = getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-			ptst.setLong(1, vo.getId());
-			ptst.setString(2, vo.getEmail());
-			ptst.setString(3, vo.getSenha());
-			ptst.setInt(4, vo.getTipo());
+			ptst.setString(1, vo.getEmail());
+			ptst.setString(2, vo.getSenha());
+			ptst.setInt(3, vo.getTipo());
+			ptst.setLong(4, vo.getId());
 			int affectedRows = ptst.executeUpdate();
 			if(affectedRows == 0) {
 				throw new SQLException("A inserção falhou. Nenhuma linha foi alterada.");
