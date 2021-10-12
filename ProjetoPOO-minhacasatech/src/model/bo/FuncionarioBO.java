@@ -7,10 +7,10 @@ import model.InsertException;
 import java.util.ArrayList;
 import java.util.List;
 
-import modelDAO.FuncionarioDAO;
-import modelDAO.PessoaDAO;
-import modelDAO.ClienteDAO;
-import modelDAO.LocalDAO;
+import model.dao.FuncionarioDAO;
+import model.dao.PessoaDAO;
+import model.dao.ClienteDAO;
+import model.dao.LocalDAO;
 import model.vo.FuncionarioVO;
 import model.vo.PessoaVO;
 import model.vo.ClienteVO;
@@ -21,7 +21,7 @@ public class FuncionarioBO implements BaseInterBO<FuncionarioVO>{
 	PessoaDAO dao3 = new FuncionarioDAO();
     public void inserir(FuncionarioVO funcionario) throws InsertException {
       try {
-            ResultSet rs = dao3.listar(funcionario);
+            ResultSet rs = dao3.listar();
             if (rs.next()){
               throw new InsertException("Não será possivel");
             }
@@ -35,7 +35,7 @@ public class FuncionarioBO implements BaseInterBO<FuncionarioVO>{
     }
     public void remover(FuncionarioVO funcionario) throws InsertException{
       try {
-        ResultSet rs = dao3.listar(funcionario);
+        ResultSet rs = dao3.listar();
         if (rs.next()){
           throw new InsertException("Não será possivel");
         }
@@ -47,14 +47,15 @@ public class FuncionarioBO implements BaseInterBO<FuncionarioVO>{
           throw new InsertException(e.getMessage());
         }
     }
-    public List<FuncionarioVO> listar(FuncionarioVO funcionario) throws SQLException {
+    public List<FuncionarioVO> listar() throws SQLException {
 		 List<FuncionarioVO> list = new ArrayList<FuncionarioVO>();
 		 try {
-			 ResultSet rs = dao3.listar(funcionario);
+			 ResultSet rs = dao3.listar();
+			 FuncionarioVO vo2 = new FuncionarioVO();
 			 while(rs.next()) {
-				 FuncionarioVO vo2 = new FuncionarioVO();
-				 funcionario.setId(rs.getLong("id_res"));
-				 funcionario.setNome(rs.getString("nome"));
+				 
+				vo2.setId(rs.getLong("id_res"));
+				vo2.setNome(rs.getString("nome"));
 				//add as demais coisas a serem exibidas(num de series, preco, quant...) (olhar no BD)
 				 list.add(vo2);
 			 }
@@ -66,7 +67,7 @@ public class FuncionarioBO implements BaseInterBO<FuncionarioVO>{
 	 }
     public void alterar(FuncionarioVO funcionario) throws InsertException{
     	 try {
-			 ResultSet rs = dao3.listar(funcionario);
+			 ResultSet rs = dao3.listar();
 		    if (rs.next()) {
 		       throw new InsertException("Não será possivel");
 		     }
@@ -82,7 +83,7 @@ public class FuncionarioBO implements BaseInterBO<FuncionarioVO>{
     public List<FuncionarioVO> listarPorId(FuncionarioVO funcionario) throws SQLException {
 		List<FuncionarioVO> list = new ArrayList<FuncionarioVO>();
 		 try {
-			 ResultSet rs = dao3.listar(funcionario);
+			 ResultSet rs = dao3.listarPorId(funcionario);
 			 while(rs.next()) {
 				 FuncionarioVO vo2 = new FuncionarioVO();
 				 funcionario.setId(rs.getLong("id_res"));
@@ -98,7 +99,7 @@ public class FuncionarioBO implements BaseInterBO<FuncionarioVO>{
     public List<FuncionarioVO> listarPorNome(FuncionarioVO funcionario) throws SQLException {
 		List<FuncionarioVO> list = new ArrayList<FuncionarioVO>();
 		 try {
-			 ResultSet rs = dao3.listar(funcionario);
+			 ResultSet rs = dao3.listarPorNome(funcionario);
 			 while(rs.next()) {
 				 FuncionarioVO vo2 = new FuncionarioVO();
 				 funcionario.setNome(rs.getString("nome"));
@@ -109,10 +110,5 @@ public class FuncionarioBO implements BaseInterBO<FuncionarioVO>{
 			 e.printStackTrace();
 		 }
 		 return list;
-	}
-	@Override
-	public List<FuncionarioVO> listar(ClienteVO vo) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
 	}
 }

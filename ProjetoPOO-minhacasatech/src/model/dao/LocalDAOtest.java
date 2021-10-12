@@ -7,11 +7,11 @@ public class LocalDAOtest{
   private static ResultSet listarPorNome;
   public static void main(String[] args) throws SQLException  {
     //inserir_local();
-		listar_local();
     //remover_local();
     //alterar_local();
-    listar_local_id();
-    listar_local_nome();
+    //listar_local_id();
+    //listar_local_nome();
+    //listar_local();
 	}
   private static void listar_local() throws SQLException{
     LocalDAO dao = new LocalDAO();
@@ -30,7 +30,7 @@ public class LocalDAOtest{
   private static void remover_local() throws SQLException{
     LocalVO vo = new LocalVO();
 		LocalDAO dao = new LocalDAO();
-    vo.setId(new Long (2));
+    vo.setId((long) 2);
 	  dao.remover(vo);
   }
   private static void alterar_local() throws SQLException{
@@ -38,7 +38,7 @@ public class LocalDAOtest{
 		LocalDAO dao = new LocalDAO();
     vo.setNome("Alfred");
     vo.setCompartimento("teen titans");
-    vo.setId(new Long (1));
+    vo.setId((long) 1);
 		dao.alterar(vo);
   }
   private static void listar_local_id() throws SQLException{
@@ -50,7 +50,7 @@ public class LocalDAOtest{
   private static void listar_local_nome() throws SQLException{
     LocalVO vo = new LocalVO();
     LocalDAO dao = new LocalDAO();
-    vo.setNome("o");
+    vo.setNome("Al");
     listarPorNome = dao.listarPorNome(vo);
   }
 }

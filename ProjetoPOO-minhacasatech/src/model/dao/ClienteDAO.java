@@ -7,15 +7,15 @@ import java.sql.Statement;
 
 import model.vo.ClienteVO;
 
-public class ClienteDAO<VO extends ClienteVO> extends PessoaDAO<ClienteVO>{
+public class ClienteDAO<VO extends ClienteVO> extends PessoaDAO{
 	public void inserir(ClienteVO vo) throws SQLException {
 		try {
 			super.inserir(vo);
-			String sql = "INSERT INTO  clientes (pessoa_id_pes,cpf_cli) values (?,?)";
+			String sql = "INSERT INTO  clientes (cpf_cli,pessoa_id_pes) values (?,?)";
 			PreparedStatement ptst;
 			ptst = getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-			ptst.setLong(1, vo.getId());
-			ptst.setLong(2, vo.getCPF());
+			ptst.setLong(1, vo.getCPF());
+			ptst.setLong(2, vo.getId());
 			int affectedRows = ptst.executeUpdate();
 			if(affectedRows == 0) {
 				throw new SQLException("A inser��o falhou. Nenhuma linha foi alterada.");

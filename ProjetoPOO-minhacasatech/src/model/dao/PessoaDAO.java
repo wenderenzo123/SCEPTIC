@@ -1,5 +1,4 @@
 package model.dao;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -8,7 +7,7 @@ import java.sql.Statement;
 import model.vo.FuncionarioVO;
 import model.vo.PessoaVO;
 
-public class PessoaDAO<VO extends PessoaVO> extends BaseDAO<VO>{
+public class PessoaDAO extends BaseDAO<PessoaVO>{
 	
 	public void inserir(PessoaVO vo) throws SQLException {
 		String sql = "INSERT INTO pessoa (nome,endereco,tele) values (?,?,?)";
@@ -60,7 +59,7 @@ public class PessoaDAO<VO extends PessoaVO> extends BaseDAO<VO>{
 		}
 	}
 	@Override
-	public ResultSet listar() {
+	public ResultSet listar() throws SQLException {
 		String sql = "select * from pessoa";
 		Statement st;
 		ResultSet rs = null;
@@ -91,7 +90,7 @@ public class PessoaDAO<VO extends PessoaVO> extends BaseDAO<VO>{
 		return rs;
 	}
 	@Override
-	public ResultSet listarPorId(VO vo) throws SQLException {
+	public ResultSet listarPorId(PessoaVO vo) throws SQLException {
 		PreparedStatement st;
 		ResultSet rs = null;
 		String sql = "select * from pessoa where id_pes = ?";
@@ -109,7 +108,7 @@ public class PessoaDAO<VO extends PessoaVO> extends BaseDAO<VO>{
 		return rs;
 	}
 	@Override
-	public ResultSet listarPorNome(VO vo) throws SQLException {
+	public ResultSet listarPorNome(PessoaVO vo) throws SQLException {
 		PreparedStatement st;
 		ResultSet rs = null;
 		String sql = "SELECT * FROM pessoa WHERE nome LIKE ?";
@@ -126,4 +125,5 @@ public class PessoaDAO<VO extends PessoaVO> extends BaseDAO<VO>{
 		}
 		return rs;
 	}
+
 }
