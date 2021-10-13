@@ -11,7 +11,12 @@ public class EquipamentoDAOtest {
     //inserirEq();
     //removerEq();
     //alterarEq();
-	 //listarEq();
+	  //listarEq();
+    //listarPorId();
+    //listarPorNome();
+    //listarPorNumeroSerie();
+    //listarPorResponsavel();
+    //listarPorLocal();
 	}
   private static void listarEq() throws SQLException{
     EquipamentoDAO dao = new EquipamentoDAO();
@@ -20,14 +25,14 @@ public class EquipamentoDAOtest {
 
   private static void inserirEq() throws SQLException{
     EquipamentoVO vo = new EquipamentoVO();
-	EquipamentoDAO dao = new EquipamentoDAO();
+	  EquipamentoDAO dao = new EquipamentoDAO();
     FuncionarioVO fu = new FuncionarioVO();
     LocalVO  lo = new LocalVO();
     vo.setNome("Mouse");
     vo.setPeso(2.5);
-    vo.setNumeroDeSerie(123423);
+    vo.setNumeroDeSerie((long)123423);
     vo.setPreco(22.5);
-	vo.setQuantidade(25);
+	  vo.setQuantidade(25);
     lo.setId((long) 1);
     vo.setLocal(lo);
     fu.setId((long) 2);
@@ -48,4 +53,38 @@ public class EquipamentoDAOtest {
 		vo.setId((long) 7);
 		dao.alterar(vo);
 	}
+  private static void listarPorId() throws SQLException{
+    EquipamentoVO vo = new EquipamentoVO();
+    EquipamentoDAO dao = new EquipamentoDAO();
+    vo.setId((long) 1);
+    ResultSet list= dao.listarPorId(vo);
+  }
+  private static void listarPorNome() throws SQLException{
+    EquipamentoVO vo = new EquipamentoVO();
+    EquipamentoDAO dao = new EquipamentoDAO();
+    vo.setNome("M");
+    ResultSet list= dao.listarPorNome(vo);
+  }
+  private static void listarPorNumeroSerie() throws SQLException{
+    EquipamentoVO vo = new EquipamentoVO();
+    EquipamentoDAO dao = new EquipamentoDAO();
+    vo.setNumeroDeSerie((long)123423);
+    ResultSet list= dao.listarPorNumeroSerie(vo);
+  }
+  private static void listarPorResponsavel() throws SQLException{
+    EquipamentoVO vo = new EquipamentoVO();
+    FuncionarioVO vo2 = new FuncionarioVO();
+    EquipamentoDAO dao = new EquipamentoDAO();
+    vo2.setId((long)2);
+    vo.setResponsavel(vo2);
+    ResultSet list= dao.listarPorResponsavel(vo);
+  }
+  private static void listarPorLocal() throws SQLException{
+    EquipamentoVO vo = new EquipamentoVO();
+    LocalVO vo2 = new LocalVO();
+    EquipamentoDAO dao = new EquipamentoDAO();
+    vo2.setId((long)1);
+    vo.setLocal(vo2);
+    ResultSet list= dao.listarPorLocal(vo);
+  }
 }

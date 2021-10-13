@@ -1,6 +1,5 @@
 package model.dao;
 import model.vo.FuncionarioVO;
-import model.vo.PessoaVO;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

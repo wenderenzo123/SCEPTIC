@@ -1,17 +1,13 @@
 package model.dao;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 
 import model.vo.EquipamentoVO;
-import model.vo.FuncionarioVO;
-import model.vo.LocalVO;
 
 public class EquipamentoDAO extends BaseDAO<EquipamentoVO> {
-
 	@Override
 	public void inserir(EquipamentoVO vo) throws SQLException {
 		String sql = "INSERT INTO equipamentos (nome_eq,peso_eq,num_serie_eq,preco_eq,quant_eq,responsaveis_id_res,locais_id_loc) VALUES (?,?,?,?,?,?,?)";
@@ -20,7 +16,7 @@ public class EquipamentoDAO extends BaseDAO<EquipamentoVO> {
 			ptst = getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			ptst.setString(1,vo.getNome());
 			ptst.setDouble(2,vo.getPeso());
-			ptst.setInt(3,vo.getNumeroDeSerie());
+			ptst.setLong(3,vo.getNumeroDeSerie());
 			ptst.setDouble(4,vo.getPreco());
 			ptst.setInt(5,vo.getQuantidade());
 			ptst.setLong(6,vo.getResponsavel().getId());
@@ -88,12 +84,92 @@ public class EquipamentoDAO extends BaseDAO<EquipamentoVO> {
 	@Override
 	public ResultSet listarPorId(EquipamentoVO vo) throws SQLException {
 		
-		return null;
+		PreparedStatement st;
+		ResultSet rs = null;
+		String sql = "select * from equipamentos where id_eq = ?";
+		try {
+			st = getConnection().prepareStatement(sql);
+			st.setLong(1,vo.getId());
+			rs=st.executeQuery();
+			while(rs.next()) {
+				System.out.println("Id: "+rs.getInt("id_eq") + " Nome: "+rs.getString("nome_eq") +
+				 " Peso: "+rs.getInt("peso_eq") +" Preço: "+rs.getInt("preco_eq"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return rs;
+	}
+	public ResultSet listarPorNumeroSerie(EquipamentoVO vo) throws SQLException {
+		PreparedStatement st;
+		ResultSet rs = null;
+		String sql = "SELECT * FROM equipamentos WHERE num_serie_eq LIKE ?";
+		try {
+			st = getConnection().prepareStatement(sql);
+			st.setLong(1,vo.getNumeroDeSerie());
+			rs=st.executeQuery();
+			while(rs.next()) {
+				System.out.println("Id: "+rs.getInt("id_eq") + " Nome: "+rs.getString("nome_eq") +
+				 " Numero de Serie: "+rs.getInt("num_serie_eq") +" Preço: "+rs.getInt("preco_eq"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return rs;
 	}
 	@Override
 	public ResultSet listarPorNome(EquipamentoVO vo) throws SQLException {
-		
-		return null;
+		PreparedStatement st;
+		ResultSet rs = null;
+		String sql = "SELECT * FROM equipamentos WHERE nome_eq LIKE ?";
+		try {
+			st = getConnection().prepareStatement(sql);
+			st.setString(1,"%"+vo.getNome()+"%");
+			rs=st.executeQuery();
+			while(rs.next()) {
+				System.out.println("Id: "+rs.getInt("id_eq") + " Nome: "+rs.getString("nome_eq") +
+				 " Peso: "+rs.getInt("peso_eq") +" Preço: "+rs.getInt("preco_eq"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return rs;
 	}
-
+	public ResultSet listarPorResponsavel(EquipamentoVO vo) throws SQLException {
+		PreparedStatement st;
+		ResultSet rs = null;
+		String sql = "SELECT * "
+		+"FROM equipamentos INNER JOIN responsaveis ON ? = id_res"
+		+" INNER JOIN pessoa ON id_pes = pessoa_id_pes;";
+		try {
+			st = getConnection().prepareStatement(sql);
+			st.setLong(1,vo.getResponsavel().getId());
+			rs=st.executeQuery();
+			while(rs.next()) {
+				System.out.println("Id: "+rs.getInt("id_eq") + " Nome: "+rs.getString("nome_eq") +
+			  " Preço: "+rs.getInt("preco_eq")+" Nome do Responsavel: "+rs.getString("nome"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return rs;
+	}
+	public ResultSet listarPorLocal(EquipamentoVO vo) throws SQLException {
+		PreparedStatement st;
+		ResultSet rs = null;
+		String sql = "SELECT * "+
+		"FROM equipamentos INNER JOIN locais ON ? =  locais.id_loc;";
+		try {
+			st = getConnection().prepareStatement(sql);
+			st.setLong(1,vo.getLocal().getId());
+			rs=st.executeQuery();
+			while(rs.next()) {
+				System.out.println("Id: "+rs.getInt("id_eq") + " Nome: "+rs.getString("nome_eq") +
+			  " Preço: "+rs.getInt("preco_eq")+" Nome do Local: "+rs.getString("nome_loc"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return rs;
+	}
 }
