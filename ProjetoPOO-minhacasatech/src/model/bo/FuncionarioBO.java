@@ -19,6 +19,13 @@ import model.vo.LocalVO;
 
 public class FuncionarioBO implements BaseInterBO<FuncionarioVO>{
 	PessoaDAO dao3 = new FuncionarioDAO();
+
+	public FuncionarioVO autenticar (FuncionarioVO vo) throws Exception{
+		
+		return vo;
+
+	}
+
     public void inserir(FuncionarioVO funcionario) throws InsertException {
       try {
             ResultSet rs = dao3.listar();
