@@ -1,10 +1,7 @@
 package model.bo;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-
-import model.vo.ClienteVO;
 
 public interface BaseInterBO<VO>{
   public void inserir(VO entity) throws SQLException;

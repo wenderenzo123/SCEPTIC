@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 public class EquipamentoDAOtest {
   public static void main(String[] args) throws SQLException  {
-    //inserirEq();
+    inserirEq();
     //removerEq();
     //alterarEq();
 	  //listarEq();
@@ -35,7 +35,7 @@ public class EquipamentoDAOtest {
 	  vo.setQuantidade(25);
     lo.setId((long) 1);
     vo.setLocal(lo);
-    fu.setId((long) 2);
+    fu.setId((long) 1);
     vo.setResponsavel(fu);
 	dao.inserir(vo);
   }

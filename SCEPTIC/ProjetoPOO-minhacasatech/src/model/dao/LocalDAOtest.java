@@ -6,7 +6,7 @@ public class LocalDAOtest{
 	private static ResultSet listarPorId;
   private static ResultSet listarPorNome;
   public static void main(String[] args) throws SQLException  {
-    //inserir_local();
+    inserir_local();
     //remover_local();
     //alterar_local();
     //listar_local_id();
