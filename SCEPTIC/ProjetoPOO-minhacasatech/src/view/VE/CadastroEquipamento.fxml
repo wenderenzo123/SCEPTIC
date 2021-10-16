@@ -20,17 +20,19 @@
             </Pane>
             <Label layoutX="234.0" layoutY="168.0" prefHeight="17.0" prefWidth="92.0" text="Quanti. Estoque:" />
             <TextArea fx:id="quantestoquecadasequi" layoutX="326.0" layoutY="160.0" prefHeight="33.0" prefWidth="154.0" />
-            <Button fx:id="enviarcadastroequi" layoutX="221.0" layoutY="286.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: #00D03A;" text="ENVIAR" />
+            <Button fx:id="enviarcadastroequi" layoutX="375.0" layoutY="242.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="77.0" style="-fx-background-color: #00D03A;" text="ENVIAR" />
             <Label layoutX="14.0" layoutY="119.0" text="Nome:" />
             <TextField fx:id="nomecadasequi" layoutX="58.0" layoutY="111.0" prefHeight="33.0" prefWidth="154.0" />
             <TextField fx:id="precocadasequi" layoutX="324.0" layoutY="111.0" prefHeight="33.0" prefWidth="154.0" />
             <Label layoutX="275.0" layoutY="119.0" text="Preço:" />
             <TextField fx:id="pesocadasequi" layoutX="58.0" layoutY="160.0" prefHeight="33.0" prefWidth="154.0" />
             <Label layoutX="14.0" layoutY="168.0" text="Peso:" />
-            <Label layoutX="80.0" layoutY="210.0" text="Num. de Série:" />
-            <TextField fx:id="numseriecadasequi" layoutX="168.0" layoutY="202.0" prefHeight="33.0" prefWidth="221.0" />
-            <TextArea fx:id="identiresponcadasequi" layoutX="168.0" layoutY="246.0" prefHeight="33.0" prefWidth="221.0" />
-            <Label layoutX="80.0" layoutY="254.0" prefHeight="17.0" prefWidth="92.0" text="Identi. Respon:" />
+            <Label layoutX="14.0" layoutY="210.0" text="Num. de Série:" />
+            <TextField fx:id="numseriecadasequi" layoutX="102.0" layoutY="202.0" prefHeight="33.0" prefWidth="221.0" />
+            <TextArea fx:id="identiresponcadasequi" layoutX="102.0" layoutY="246.0" prefHeight="33.0" prefWidth="221.0" />
+            <Label layoutX="14.0" layoutY="254.0" prefHeight="17.0" prefWidth="92.0" text="Identi. Respon:" />
+            <TextField fx:id="localcadasequi" layoutX="102.0" layoutY="290.0" prefHeight="33.0" prefWidth="221.0" />
+            <Label layoutX="14.0" layoutY="298.0" text="Local:" />
          </children></Pane>
    </children>
 </Pane>

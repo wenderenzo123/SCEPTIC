@@ -11,20 +11,18 @@
          <children>
             <Pane prefHeight="81.0" prefWidth="512.0" style="-fx-background-color: #000000;">
                <children>
-                  <Label layoutX="69.0" layoutY="14.0" text="CADASTRO DE CLIENTE" textFill="WHITE">
+                  <Label layoutX="89.0" layoutY="14.0" text="ATUALIZAR LOCAIS" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="36.0" />
                      </font>
                   </Label>
                </children>
             </Pane>
-            <Label layoutX="14.0" layoutY="127.0" text="Nome:" />
-            <Label layoutX="14.0" layoutY="172.0" text="Endereço:" />
-            <Label layoutX="14.0" layoutY="216.0" prefHeight="17.0" prefWidth="29.0" text="CPF:" />
-            <TextField fx:id="nomecadascli" layoutX="106.0" layoutY="123.0" prefHeight="25.0" prefWidth="386.0" />
-            <TextField fx:id="cpfcadascli" layoutX="106.0" layoutY="212.0" prefHeight="25.0" prefWidth="386.0" />
-            <TextArea fx:id="enderecocadascli" layoutX="106.0" layoutY="168.0" prefHeight="25.0" prefWidth="386.0" />
-            <Button fx:id="enviarcadastrocli" layoutX="219.0" layoutY="263.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="75.0" style="-fx-background-color: #00D03A;" text="ENVIAR" />
+            <Label layoutX="14.0" layoutY="155.0" text="Local:" />
+            <Label layoutX="14.0" layoutY="200.0" prefHeight="17.0" prefWidth="92.0" text="Compartimento:" />
+            <TextArea fx:id="localatualoc" layoutX="106.0" layoutY="147.0" prefHeight="33.0" prefWidth="386.0" />
+            <TextArea fx:id="compartimentoatualoc" layoutX="106.0" layoutY="192.0" prefHeight="33.0" prefWidth="386.0" />
+            <Button fx:id="enviarcadastroloc" layoutX="210.0" layoutY="261.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="92.0" style="-fx-background-color: #00D03A;" text="CONFIRMAR" />
          </children></Pane>
    </children>
 </Pane>

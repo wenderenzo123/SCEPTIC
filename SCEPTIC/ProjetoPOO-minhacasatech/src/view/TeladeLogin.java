@@ -19,7 +19,7 @@ public class TeladeLogin extends Application{
 		
 		Scene cena = new Scene(root);
 		
-		primaryStage.setTitle("Projeto SCEPTIC");
+		primaryStage.setTitle("Login");
 		primaryStage.setScene(cena);
 		primaryStage.show();
 	}
