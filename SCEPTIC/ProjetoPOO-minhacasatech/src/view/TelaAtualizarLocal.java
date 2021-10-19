@@ -6,19 +6,20 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class TelaCadastroCliente extends Application{
-
-    public static void main(String[] args) throws Exception{
-        launch();
-    }
+public class TelaAtualizarLocal extends Application{
+public static void main(String[] args) throws Exception{
+    launch();
+}
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root2 = FXMLLoader.load(getClass().getResource("VE/CadastroCliente.fxml"));
+        Parent root2 = FXMLLoader.load(getClass().getResource("VE/AtualizarLocal.fxml"));
 
        Scene cena2 = new Scene(root2);
 
-       primaryStage.setTitle("Cadastro");
+       primaryStage.setTitle("Atualizar");
        primaryStage.setScene(cena2);
        primaryStage.show();
+        
     }
+    
 }

@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class FuncionarioDAOtest {
   public static void main(String[] args) throws SQLException  {
-    //inserir_func();
+    inserir_func();
     //remover_func();
     //alterar_func();
     //listar_func();

@@ -16,11 +16,11 @@ public class TelaCadastroLocal extends Application{
     public void start(Stage primaryStage) throws Exception {
         Parent root2 = FXMLLoader.load(getClass().getResource("VE/CadastroLocal.fxml"));
 
-       Scene cena2 = new Scene(root2);
+        Scene cena2 = new Scene(root2);
 
-       primaryStage.setTitle("Cadastro");
-       primaryStage.setScene(cena2);
-       primaryStage.show();
+        primaryStage.setTitle("Cadastro");
+        primaryStage.setScene(cena2);
+        primaryStage.show();
         
     }
     

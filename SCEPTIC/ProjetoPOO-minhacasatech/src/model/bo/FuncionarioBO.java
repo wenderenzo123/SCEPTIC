@@ -1,7 +1,6 @@
 package model.bo;
 import java.sql.SQLException;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import model.InsertException;
 
 import java.util.ArrayList;
@@ -26,7 +25,7 @@ public class FuncionarioBO implements BaseInterBO<FuncionarioVO>{
 
 	}
 
-    public void inserir(FuncionarioVO funcionario) throws InsertException {
+  public void inserir(FuncionarioVO funcionario) throws InsertException {
       try {
             ResultSet rs = dao3.listar();
             if (rs.next()){
@@ -73,7 +72,7 @@ public class FuncionarioBO implements BaseInterBO<FuncionarioVO>{
 		 return list;
 	 }
     public void alterar(FuncionarioVO funcionario) throws InsertException{
-    	 try {
+    	try {
 			 ResultSet rs = dao3.listar();
 		    if (rs.next()) {
 		       throw new InsertException("Não será possivel");

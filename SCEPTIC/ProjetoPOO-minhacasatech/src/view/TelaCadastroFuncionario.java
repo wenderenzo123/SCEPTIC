@@ -11,7 +11,6 @@ public class TelaCadastroFuncionario extends Application{
     public static void main(String[] args) throws Exception{
         launch();
     }
-
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root2 = FXMLLoader.load(getClass().getResource("VE/CadastroResponsavel.fxml"));
@@ -21,7 +20,6 @@ public class TelaCadastroFuncionario extends Application{
        primaryStage.setTitle("Cadastro");
        primaryStage.setScene(cena2);
        primaryStage.show();
-        
     }
     
 }
