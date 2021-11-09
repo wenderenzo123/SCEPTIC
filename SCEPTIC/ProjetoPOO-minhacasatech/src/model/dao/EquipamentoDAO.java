@@ -16,7 +16,7 @@ public class EquipamentoDAO extends BaseDAO<EquipamentoVO> {
 			ptst = getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			ptst.setString(1,vo.getNome());
 			ptst.setDouble(2,vo.getPeso());
-			ptst.setLong(3,vo.getNumeroDeSerie());
+			ptst.setString(3,vo.getNumeroDeSerie());
 			ptst.setDouble(4,vo.getPreco());
 			ptst.setInt(5,vo.getQuantidade());
 			ptst.setLong(6,vo.getResponsavel().getId());
@@ -43,12 +43,11 @@ public class EquipamentoDAO extends BaseDAO<EquipamentoVO> {
 		try {
 			st = getConnection().createStatement();
 			rs=st.executeQuery(sql);
-			st = getConnection().createStatement();
 			System.out.println(st);
 			rs=st.executeQuery(sql);
 			while(rs.next()) {
 				System.out.println("Id: "+rs.getInt("id_eq") + " Nome: "+rs.getString("nome_eq") +
-				 " Peso: "+rs.getInt("peso_eq") +" Preço: "+rs.getInt("preco_eq"));
+				 " Peso: "+rs.getInt("peso_eq") +" Preço: "+rs.getInt("preco_eq")+" quantidade: "+rs.getInt("quant_eq"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -77,10 +76,21 @@ public class EquipamentoDAO extends BaseDAO<EquipamentoVO> {
 			ptst = getConnection().prepareStatement(sql);
 			ptst.setLong(1, vo.getId());
 			ptst.execute();
-		} catch (SQLException e) {
-			e.printStackTrace();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
-	}
+	public void Compra(EquipamentoVO vo) throws SQLException {
+			String sql = "UPDATE equipamentos SET equipamentos.quant_eq=equipamentos.quant_eq - 1 WHERE id_eq = ?;";
+			PreparedStatement ptst;
+			try {
+				ptst = getConnection().prepareStatement(sql);
+				ptst.setLong(1, vo.getId());
+				ptst.execute();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}	
 	@Override
 	public ResultSet listarPorId(EquipamentoVO vo) throws SQLException {
 		
@@ -106,7 +116,7 @@ public class EquipamentoDAO extends BaseDAO<EquipamentoVO> {
 		String sql = "SELECT * FROM equipamentos WHERE num_serie_eq LIKE ?";
 		try {
 			st = getConnection().prepareStatement(sql);
-			st.setLong(1,vo.getNumeroDeSerie());
+			st.setString(1,vo.getNumeroDeSerie());
 			rs=st.executeQuery();
 			while(rs.next()) {
 				System.out.println("Id: "+rs.getInt("id_eq") + " Nome: "+rs.getString("nome_eq") +

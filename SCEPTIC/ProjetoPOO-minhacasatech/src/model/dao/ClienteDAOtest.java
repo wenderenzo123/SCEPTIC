@@ -3,7 +3,6 @@ import model.vo.ClienteVO;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 
 public class ClienteDAOtest {
   public static void main(String[] args) throws SQLException  {
@@ -25,7 +24,7 @@ public class ClienteDAOtest {
     vo.setNome("Harry");
     vo.setEndereco("Hogwarts");
     vo.setTelefone("987245232");
-    vo.setCPF((long)01723000123);
+    vo.setCPF("01723000123");
 		dao.inserir(vo);
 		System.out.println("Salvo com sucesso");
 		
@@ -42,7 +41,7 @@ public class ClienteDAOtest {
     ClienteVO vo = new ClienteVO();
 		ClienteDAO dao = new ClienteDAO();
     vo.setNome("Hermione");
-    vo.setCPF((long)93897754);
+    vo.setCPF("93897754");
     vo.setId((long)1);
 		dao.alterar(vo);
 		System.out.println("Salvo com sucesso");

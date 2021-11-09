@@ -1,0 +1,14 @@
+{
+  "java.project.referencedLibraries": [
+    "lib/**/*.jar",
+    "SCEPTIC/ProjetoPOO-minhacasatech/lib/mariadb-java-client-2.7.4.jar",
+    "SCEPTIC/ProjetoPOO-minhacasatech/lib/javafx-sdk-17.0.0.1/lib/javafx.base.jar",
+    "SCEPTIC/ProjetoPOO-minhacasatech/lib/javafx-sdk-17.0.0.1/lib/javafx.controls.jar",
+    "SCEPTIC/ProjetoPOO-minhacasatech/lib/javafx-sdk-17.0.0.1/lib/javafx.fxml.jar",
+    "SCEPTIC/ProjetoPOO-minhacasatech/lib/javafx-sdk-17.0.0.1/lib/javafx.graphics.jar",
+    "SCEPTIC/ProjetoPOO-minhacasatech/lib/javafx-sdk-17.0.0.1/lib/javafx.media.jar",
+    "SCEPTIC/ProjetoPOO-minhacasatech/lib/javafx-sdk-17.0.0.1/lib/javafx.swing.jar",
+    "SCEPTIC/ProjetoPOO-minhacasatech/lib/javafx-sdk-17.0.0.1/lib/javafx.web.jar",
+    "SCEPTIC/ProjetoPOO-minhacasatech/lib/javafx-sdk-17.0.0.1/lib/javafx-swt.jar"
+  ]
+}

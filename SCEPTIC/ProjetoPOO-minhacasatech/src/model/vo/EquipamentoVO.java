@@ -4,7 +4,7 @@ public class EquipamentoVO {
 	private Long Id;
 	private String nome;
 	private double peso;
-	private Long numeroDeSerie;
+	private String numeroDeSerie;
 	private double preco;
 	private int quantidade;
 	private FuncionarioVO responsavel;
@@ -38,16 +38,11 @@ public class EquipamentoVO {
 			
 		}
 	}
-	public Long getNumeroDeSerie() {
+	public String getNumeroDeSerie() {
 		return numeroDeSerie;
 	}
-	public void setNumeroDeSerie(Long numeroDeSerie) {
-		if(numeroDeSerie>0) {
-			this.numeroDeSerie = numeroDeSerie;
-		}
-		else {
-			
-		}
+	public void setNumeroDeSerie(String numeroDeSerie) {
+		this.numeroDeSerie = numeroDeSerie;
 	}
 	public double getPreco() {
 		return preco;

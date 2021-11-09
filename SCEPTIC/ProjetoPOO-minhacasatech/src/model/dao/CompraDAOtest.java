@@ -26,8 +26,10 @@ public class CompraDAOtest {
 
     cli.setId((long) 1);
     vo.setCliente(cli);
-    eq.setId((long) 6);
+    eq.setId((long) 1);
     vo.setEquipamento(eq);
+    vo.setQuantidade((long) 52);
+    vo.setPreco(23.54);
 	  dao.inserir(vo);
   }
   private static void listarCompId() throws SQLException{

@@ -11,14 +11,15 @@ import model.vo.ClienteVO;
 
 public class ClienteBO implements BaseInterBO<ClienteVO> {
 	PessoaDAO dao0 = new ClienteDAO();
+	ClienteDAO dao = new ClienteDAO();
 	public void inserir(ClienteVO Cliente) throws SQLException {
 		try {
-            ResultSet rs = dao0.listar();
+            ResultSet rs = dao.listar();
             if (rs.next()){
               throw new InsertException("Não será possivel");
             }
             else{
-              dao0.inserir(Cliente);
+              dao.inserir(Cliente);
             }
       }
       catch (SQLException e){

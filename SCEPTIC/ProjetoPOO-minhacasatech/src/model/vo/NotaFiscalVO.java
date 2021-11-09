@@ -173,11 +173,11 @@ public class NotaFiscalVO {
 		return CPF;
 	}
 	public void setCPF(ClienteVO CPF) {
-		if(CPF.getCPF()>0) {
-			this.CPF = CPF;
+		if(CPF.getCPF().equals("")) {
+			
 		}
 		else {
-			
+			this.CPF = CPF;
 			}
 		}
 	

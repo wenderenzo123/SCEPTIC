@@ -4,9 +4,33 @@ public class CompraVO {
   private EquipamentoVO equipamento;
   private ClienteVO cliente;
   private String dataCompra;
+  private Long quantidade;
+  private Double preco;
   
   public EquipamentoVO getEquipamento() {
     return equipamento;
+  }
+  public Double getPreco() {
+    return preco;
+  }
+  public void setPreco(Double preco) {
+    if(preco==null) {
+			System.out.println("Nulo");
+		}
+		else {
+				this.preco = preco;
+		}
+  }
+  public Long getQuantidade() {
+    return quantidade;
+  }
+  public void setQuantidade(Long quantidade) {
+    if(quantidade==null) {
+			System.out.println("Nulo");
+		}
+		else {
+				this.quantidade = quantidade;
+		}
   }
   public String getDataCompra() {
     return dataCompra;

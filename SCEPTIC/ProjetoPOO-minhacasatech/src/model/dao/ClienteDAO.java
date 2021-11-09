@@ -14,7 +14,7 @@ public class ClienteDAO<VO extends ClienteVO> extends PessoaDAO{
 			String sql = "INSERT INTO  clientes (cpf_cli,pessoa_id_pes) values (?,?)";
 			PreparedStatement ptst;
 			ptst = getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-			ptst.setLong(1, vo.getCPF());
+			ptst.setString(1, vo.getCPF());
 			ptst.setLong(2, vo.getId());
 			int affectedRows = ptst.executeUpdate();
 			if(affectedRows == 0) {
@@ -50,7 +50,7 @@ public class ClienteDAO<VO extends ClienteVO> extends PessoaDAO{
 			String sql = "UPDATE clientes set cpf_cli = ? where id_cli = ?";
 		  	PreparedStatement ptst;
 			ptst = getConnection().prepareStatement(sql);
-			ptst.setLong(1, vo.getCPF());
+			ptst.setString(1, vo.getCPF());
 			ptst.setLong(2, vo.getId());
 			ptst.executeUpdate();
 		} catch (SQLException e) {

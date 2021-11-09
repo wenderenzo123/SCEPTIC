@@ -6,16 +6,20 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import model.vo.CompraVO;
+
 public class CompraDAO extends BaseDAO<CompraVO> {
 
   @Override
   public void inserir(CompraVO vo) throws SQLException {
-    String sql = "INSERT INTO equipamentos_has_clientes (equipamentos_id_eq,clientes_id_cli) VALUES (?,?)";
+    String sql = "INSERT INTO equipamentos_has_clientes (equipamentos_id_eq,clientes_id_cli,qtd_produto,preco_eq) VALUES (?,?,?,?)";
 		PreparedStatement ptst;
 		try {
 			ptst = getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			ptst.setLong(1,vo.getEquipamento().getId());
 			ptst.setLong(2,vo.getCliente().getId());
+			ptst.setLong(3,vo.getQuantidade());
+			ptst.setDouble(4,vo.getPreco());
+			System.out.println(ptst);
 			int affectedRows = ptst.executeUpdate();
 			if(affectedRows ==0) {
 				throw new SQLException("Cadastro falhou");

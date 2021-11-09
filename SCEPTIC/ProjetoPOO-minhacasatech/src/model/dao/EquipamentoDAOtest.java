@@ -8,15 +8,16 @@ import java.sql.SQLException;
 
 public class EquipamentoDAOtest {
   public static void main(String[] args) throws SQLException  {
-    inserirEq();
+    //inserirEq();
     //removerEq();
     //alterarEq();
-	  //listarEq();
     //listarPorId();
     //listarPorNome();
+    //CompraEq();
     //listarPorNumeroSerie();
     //listarPorResponsavel();
     //listarPorLocal();
+    listarEq();
 	}
   private static void listarEq() throws SQLException{
     EquipamentoDAO dao = new EquipamentoDAO();
@@ -30,7 +31,7 @@ public class EquipamentoDAOtest {
     LocalVO  lo = new LocalVO();
     vo.setNome("Mouse");
     vo.setPeso(2.5);
-    vo.setNumeroDeSerie((long)123423);
+    vo.setNumeroDeSerie("123423");
     vo.setPreco(22.5);
 	  vo.setQuantidade(25);
     lo.setId((long) 1);
@@ -68,7 +69,7 @@ public class EquipamentoDAOtest {
   private static void listarPorNumeroSerie() throws SQLException{
     EquipamentoVO vo = new EquipamentoVO();
     EquipamentoDAO dao = new EquipamentoDAO();
-    vo.setNumeroDeSerie((long)123423);
+    vo.setNumeroDeSerie("123423");
     ResultSet list= dao.listarPorNumeroSerie(vo);
   }
   private static void listarPorResponsavel() throws SQLException{
@@ -86,5 +87,11 @@ public class EquipamentoDAOtest {
     vo2.setId((long)1);
     vo.setLocal(vo2);
     ResultSet list= dao.listarPorLocal(vo);
+  }
+  private static void CompraEq() throws SQLException{
+  EquipamentoVO vo = new EquipamentoVO();
+  EquipamentoDAO dao = new EquipamentoDAO();
+  vo.setId((long) (1));
+  dao.Compra(vo);	
   }
 }

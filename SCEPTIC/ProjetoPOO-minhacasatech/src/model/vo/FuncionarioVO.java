@@ -13,11 +13,9 @@ public class FuncionarioVO extends PessoaVO{
 	public FuncionarioVO(String nome, String endereco, String telefone) {
 		super(nome, endereco, telefone);
 	}
-	public FuncionarioVO(String nome, String endereco, String telefone, String email,String senha,int tipo) {
-		super(nome, endereco, telefone);
-		setEmail(email);
-		setSenha(senha);
-		setTipo(tipo);
+	@Override
+	public String toString() {
+		return (this.email+", "+this.senha+", "+this.tipo);
 	}
 	public String getEmail() {
 		return email;

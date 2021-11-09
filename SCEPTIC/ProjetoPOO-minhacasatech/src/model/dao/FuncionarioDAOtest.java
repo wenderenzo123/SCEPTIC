@@ -10,17 +10,19 @@ public class FuncionarioDAOtest {
     //remover_func();
     //alterar_func();
     //listar_func();
+    //listar_funcEmail();
+    //listar_funcId();
 	}
   
   private static void inserir_func() throws SQLException{
     FuncionarioVO vo = new FuncionarioVO();
 		FuncionarioDAO dao = new FuncionarioDAO();
-    vo.setNome("Robin");
-    vo.setEndereco("Superman N - 120");
-    vo.setTelefone("99999999");
-    vo.setEmail("tech@gmail.com");
-    vo.setSenha("tech123");
-    vo.setTipo(1);
+    vo.setNome("Batman");
+    vo.setEndereco("Batcaverna N - 121");
+    vo.setTelefone("888888888");
+    vo.setEmail("wayne@gmail.com");
+    vo.setSenha("morcego123");
+    vo.setTipo(0);
 		dao.inserir(vo);
   }
   private static void remover_func(){
@@ -39,9 +41,19 @@ public class FuncionarioDAOtest {
   private static void listar_func(){
     FuncionarioDAO dao = new FuncionarioDAO();
     ResultSet list = dao.listar();
-	//   for (FuncionarioVO vo_0: list) {
-	// 	System.out.println("Id: "+vo_0.getId());
-	// }
+  }
+  private static void listar_funcEmail(){
+    FuncionarioVO vo = new FuncionarioVO();
+    FuncionarioDAO dao = new FuncionarioDAO();
+    vo.setEmail("wayne@gmail.com");
+    vo.setSenha("morcego123");
+    ResultSet list = dao.listarLogin(vo);
+  }
+  private static void listar_funcId() throws SQLException{
+    FuncionarioVO vo = new FuncionarioVO();
+    FuncionarioDAO dao = new FuncionarioDAO();
+    vo.setId((long) 1);
+    ResultSet list = dao.listarPorId(vo);
   }
 }
 
