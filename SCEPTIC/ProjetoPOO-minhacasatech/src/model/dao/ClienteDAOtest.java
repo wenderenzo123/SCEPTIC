@@ -6,10 +6,10 @@ import java.sql.SQLException;
 
 public class ClienteDAOtest {
   public static void main(String[] args) throws SQLException  {
-    inserir_clien();
+    //inserir_clien();
     //remover_clien();
     //alterar_clien();
-    //listar_clien();
+    listar_clien();
 	}
   private static void listar_clien(){
     ClienteDAO dao = new ClienteDAO();
@@ -29,7 +29,7 @@ public class ClienteDAOtest {
 		System.out.println("Salvo com sucesso");
 		
   }
-  private static void remover_clien(){
+  private static void remover_clien() throws SQLException{
     ClienteVO vo = new ClienteVO();
     ClienteDAO dao = new ClienteDAO();
     vo.setId((long) 2);

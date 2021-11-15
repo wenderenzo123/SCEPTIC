@@ -46,13 +46,12 @@ public class PessoaDAO extends BaseDAO<PessoaVO>{
 			e.printStackTrace();
 		}
 	}
-	@Override
-	public void remover(PessoaVO vo) throws SQLException {
+	public void remover(Long vo) throws SQLException {
 		String sql = "DELETE FROM pessoa where id_pes = ?";
 		PreparedStatement ptst;
 		try {
 			ptst = getConnection().prepareStatement(sql);
-			ptst.setLong(1, vo.getId());
+			ptst.setLong(1, vo);
 			ptst.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -124,6 +123,11 @@ public class PessoaDAO extends BaseDAO<PessoaVO>{
 			e.printStackTrace();
 		}
 		return rs;
+	}
+	@Override
+	public void remover(PessoaVO vo) throws SQLException {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

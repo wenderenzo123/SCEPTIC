@@ -19,6 +19,7 @@ import model.vo.ClienteVO;
 import model.vo.EquipamentoVO;
 import model.vo.FuncionarioVO;
 import model.vo.LocalVO;
+import view.Telas;
 
 public class FrontControllerCadastro{
   public int valor = 2;
@@ -130,4 +131,13 @@ public class FrontControllerCadastro{
     Cli.setTelefone(telefonecli.getText());
     Cbo.inserir(Cli);
   }
+  public void sair(ActionEvent Event) throws Exception {
+    Telas.telaLogin();
+}
+public void inicio(ActionEvent Event) throws Exception {
+  Telas.telaInicio();
+}
+public void voltarlocal(ActionEvent Event) throws Exception {
+  Telas.telaListarLocal();
+}
 }

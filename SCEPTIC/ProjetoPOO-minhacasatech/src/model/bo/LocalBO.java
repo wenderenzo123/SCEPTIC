@@ -13,18 +13,7 @@ public class LocalBO implements BaseInterBO<LocalVO>{
   LocalDAO dao = new LocalDAO(); 
   @Override
   public void inserir(LocalVO local) throws SQLException {
-    try {
-      ResultSet rs = dao.listar();
-      if (rs.next()){
-        throw new InsertException("Não será possivel");
-      }
-      else{
         dao.inserir(local);
-      }
-      }
-      catch (SQLException e){
-        throw new InsertException(e.getMessage());
-      }
 }
 
   @Override
@@ -42,22 +31,12 @@ public class LocalBO implements BaseInterBO<LocalVO>{
          throw new InsertException(e.getMessage());
        }
   }
-
+  public void remover(Long local) throws SQLException {
+    dao.remover(local);    
+}
   @Override
   public void remover(LocalVO local) throws SQLException {
-    try {
-      ResultSet rs = dao.listar();
-      if (rs.next()){
-        throw new InsertException("Não será possivel");
-      }
-      else{
-        dao.remover(local);
-      }
-      }
-      catch (SQLException e){
-        throw new InsertException(e.getMessage());
-      }
-    
+        dao.remover(local);    
   }
 
   @Override
@@ -98,11 +77,12 @@ public class LocalBO implements BaseInterBO<LocalVO>{
     List<LocalVO> list = new ArrayList<LocalVO>();
 		 try {
 			 ResultSet rs = dao.listar();
-			 LocalVO vo = new LocalVO();
+			 
 			 while(rs.next()) {
-				 
+				 LocalVO vo = new LocalVO();
 				vo.setId(rs.getLong("id_loc"));
 				vo.setNome(rs.getString("nome_loc"));
+        vo.setCompartimento(rs.getString("nome_comp_loc"));
 				 list.add(vo);
 			 }
 		 }

@@ -25,5 +25,9 @@ public class ClienteVO extends PessoaVO{
 	public void setId(Long id) {
 		Id = id;
 	}
-	
+	@Override
+	public String toString() {
+		return getNome();
+
+	}
 }

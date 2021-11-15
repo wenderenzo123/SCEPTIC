@@ -24,6 +24,18 @@ public class LocalDAO extends BaseDAO<LocalVO> {
 			System.out.println("Cadastro falhou");
 		}
 	}
+	public void remover(Long lo) throws SQLException{
+		String sql = "DELETE FROM Locais WHERE id_loc = ?";
+		PreparedStatement ptst;
+		try {
+			ptst = getConnection().prepareStatement(sql);
+			ptst.setLong(1,lo);
+			ptst.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	@Override
 	public void remover(LocalVO lo) throws SQLException{
 		String sql = "DELETE FROM Locais WHERE id_loc = ?";
@@ -44,10 +56,6 @@ public class LocalDAO extends BaseDAO<LocalVO> {
 		try {
 			st = getConnection().createStatement();
 			rs=st.executeQuery(sql);
-			while(rs.next()) {
-				System.out.println("Id: "+rs.getInt("id_loc")+" Nome: "+rs.getString("nome_loc")
-				+" Compartimento: "+rs.getString("nome_comp_loc"));
-			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

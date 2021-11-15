@@ -33,13 +33,13 @@ public class ClienteDAO<VO extends ClienteVO> extends PessoaDAO{
 		
 	}
 	
-	public void remover(ClienteVO vo) {
+	public void remover(Long vo) {
 		try {
 			super.remover(vo);
 			String sql = "DELETE FROM clientes where id_cli = ?";
 			PreparedStatement ptst;
 			ptst = getConnection().prepareStatement(sql);
-			ptst.setLong(1, vo.getId());
+			ptst.setLong(1, vo);
 			ptst.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -58,20 +58,13 @@ public class ClienteDAO<VO extends ClienteVO> extends PessoaDAO{
 		}
 	}
 	public ResultSet listar(){
-		String sql = "select * from clientes";
+		String sql = "SELECT * FROM clientes JOIN pessoa ON pessoa_id_pes = id_pes";
 		ResultSet rs = null;
 		Statement st;
-		// List<ClienteVO> list = new ArrayList<ClienteVO>();
 		try {	
 			st = getConnection().createStatement();
 			System.out.println(st);
 			rs = st.executeQuery(sql);
-			while(rs.next()) {
-				// vo.setId(rs.getLong("id_cli"));
-				// vo.setNome(rs.getString("nome_cli"));
-				// list.add(vo);
-				System.out.println("Id: "+rs.getInt("id_cli")+" CPF: "+rs.getInt("cpf_cli")+" Cadastro: "+rs.getString("dt_cadastro"));
-			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

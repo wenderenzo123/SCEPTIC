@@ -29,15 +29,6 @@ public class FrontController {
     private TextField login;
     @FXML
     private TextField senha;
-    
-    @FXML
-    private TableView<EquipamentoVO> tabela;
-    @FXML
-    private TableColumn<EquipamentoVO, String> nome;
-    @FXML
-    private TableColumn<EquipamentoVO, Long> serie;
-    @FXML
-    private TableColumn<EquipamentoVO, String> responsavel;
     public void autenticar(ActionEvent event) throws Exception {
         FuncionarioBO<FuncionarioVO> funBO = new FuncionarioBO<FuncionarioVO>();
         if (login.getText().equals("") | senha.getText().equals("")) {
@@ -67,12 +58,23 @@ public class FrontController {
             }
         }
     }
-    public void initialize(URL url, ResourceBundle rb) throws SQLException {
-		iniciarTabela();
-	}
-    private void iniciarTabela() throws SQLException {
-        nome.setCellValueFactory(new PropertyValueFactory<>("nome_eq"));
-        EquipamentoBO eq = new EquipamentoBO();
-        tabela.setItems(FXCollections.observableArrayList(eq.listar()));
+    public void ListarClientes(ActionEvent Event) throws Exception {
+        Telas.telaListarCliente();
     }
+    public void ListarEquipamentos(ActionEvent Event) throws Exception {
+        Telas.telaListarEquipamento();
+    }
+    public void Sair(ActionEvent Event) throws Exception {
+        Telas.telaLogin();
+    }
+    public void locais(ActionEvent Event) throws Exception {
+        Telas.telaListarLocal();
+    }
+    public void notafiscal(ActionEvent Event) throws Exception {
+        Telas.telaListarCompra();
+    }
+    public void relatorio(ActionEvent event) throws Exception {
+        Telas.telaRelatorio();
+    }
+    
 }

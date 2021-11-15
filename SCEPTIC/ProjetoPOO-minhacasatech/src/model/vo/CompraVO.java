@@ -6,9 +6,16 @@ public class CompraVO {
   private String dataCompra;
   private Long quantidade;
   private Double preco;
+  private String descricao;
   
   public EquipamentoVO getEquipamento() {
     return equipamento;
+  }
+  public String getDescricao() {
+    return descricao;
+  }
+  public void setDescricao(String descricao) {
+    this.descricao = descricao;
   }
   public Double getPreco() {
     return preco;
@@ -61,5 +68,10 @@ public class CompraVO {
 		else {
 				this.equipamento = equipamento;
 		}
+  }
+  @Override
+  public String toString(){
+    return cliente.getCPF();
+
   }
 }

@@ -1,4 +1,5 @@
 package model.bo;
+
 import java.sql.SQLException;
 import java.sql.ResultSet;
 import model.InsertException;
@@ -6,120 +7,100 @@ import model.InsertException;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import model.dao.EquipamentoDAO;
-import model.dao.LocalDAO;
-import model.vo.FuncionarioVO;
-import model.vo.PessoaVO;
-import model.vo.ClienteVO;
-import model.vo.LocalVO;
 import model.vo.EquipamentoVO;
+import model.vo.FuncionarioVO;
+import model.vo.LocalVO;
 
 public class EquipamentoBO implements BaseInterBO<EquipamentoVO> {
 	EquipamentoDAO dao1 = new EquipamentoDAO();
+
 	public void inserir(EquipamentoVO equipamento) throws SQLException {
+		EquipamentoDAO dao = new EquipamentoDAO();
+		dao.inserir(equipamento);
+	}
+
+	public void remover(Long equipamento) throws SQLException {
+				dao1.remover(equipamento);
+	}
+	@Override
+	public List<EquipamentoVO> listar() throws SQLException{
+		EquipamentoDAO dao = new EquipamentoDAO();
+		ResultSet rs = dao.listar();
+		List<EquipamentoVO> list = new ArrayList<EquipamentoVO>();
+		try {
+			while (rs.next()) {
+				EquipamentoVO vo2 = new EquipamentoVO();
+				FuncionarioVO vo3 = new FuncionarioVO();
+				LocalVO vo4 = new LocalVO();
+				vo2.setId(rs.getLong("id_eq"));
+				vo2.setNome(rs.getString("nome_eq"));
+				vo2.setNumeroDeSerie(rs.getString("num_serie_eq"));
+				vo3.setNome(rs.getString("nome"));
+				vo2.setResponsavel(vo3);
+				vo2.setPeso(rs.getDouble("peso_eq"));
+				vo2.setPreco(rs.getDouble("preco_eq"));
+				vo2.setQuantidade(rs.getInt("quant_eq"));
+				vo4.setNome(rs.getString("nome_loc"));
+				vo2.setLocal(vo4);
+				list.add(vo2);
+				System.out.println("Id: "+rs.getInt("id_eq") + " Nome: "+rs.getString("nome_eq") +
+				" Peso: "+rs.getInt("peso_eq") +" Preço: "+rs.getInt("preco_eq")+" responsavel: "+rs.getString("nome")+" local: "+rs.getString("nome_loc"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	public void alterar(EquipamentoVO equipamento) throws SQLException {
 		try {
 			ResultSet rs = dao1.listar();
-			if(rs.next()) {
+			if (rs.next()) {
 				throw new InsertException("Não será possivel");
+			} else {
+				dao1.alterar(equipamento);
 			}
-			else{
-	         dao1.inserir(equipamento);
-				}
-			}
-			catch (SQLException e){
-		        throw new InsertException(e.getMessage());
-		    }
+		} catch (SQLException e) {
+			throw new InsertException(e.getMessage());
 		}
-	public void remover(EquipamentoVO equipamento) throws SQLException{
-		try {
-	        ResultSet rs = dao1.listar();
-	        if (rs.next()){
-	          throw new InsertException("Não será possivel");
-	        }
-	        else{
-	          dao1.remover(equipamento);
-	        }
-	        }
-	        catch (SQLException e){
-	          throw new InsertException(e.getMessage());
-	        }
-  }
-	public List<EquipamentoVO> listar() throws SQLException {
-		 List<EquipamentoVO> list = new ArrayList<EquipamentoVO>();
-		 EquipamentoVO vo2 = new EquipamentoVO();
-		 try {
-			 ResultSet rs = dao1.listar();
-			 while(rs.next()) {
-				 
-				 vo2.setId(rs.getLong("id_eq"));
-				 vo2.setNome(rs.getString("nome_eq"));
-			
-				//add as demais coisas a serem exibidas(num de series, preco, quant...) (olhar no BD)
-				 /*
-				FuncionarioVO fu = new FuncionarioVO();
-				LocalVO  lo = new LocalVO();
-				equipamento.setId(rs.getLong("id_eq"));
-				equipamento.setNome(rs.getString("nome_eq"));
-				equipamento.setPeso(rs.getDouble("peso_eq"));
-				equipamento.setNumeroDeSerie(rs.getInt("num_serie_eq"));
-				equipamento.setPreco(rs.getDouble("preco_eq"));
-				equipamento.setQuantidade(rs.getInt("quant_eq"));
-				fu.setId(rs.getLong("responsavel_id_respon"));
-				lo.setId(rs.getLong("locais_id_loc"));
-				*/
-				list.add(vo2);
-			 }
-		 }
-		 catch (SQLException e) {
-			 e.printStackTrace();
-		 }
-		 return list;
-	 }
-	public void alterar(EquipamentoVO equipamento) throws SQLException{
-		 try {
-			 ResultSet rs = dao1.listar();
-		    if (rs.next()) {
-		       throw new InsertException("Não será possivel");
-		     }
-		    else{
-		       dao1.alterar(equipamento);
-		     }
-		     }
-		    catch (SQLException e){
-		      throw new InsertException(e.getMessage());
-		  	}
-  }
-  @Override
-  public List<EquipamentoVO> listarPorId(EquipamentoVO equipamento) throws SQLException {
-		List<EquipamentoVO> list = new ArrayList<EquipamentoVO>();
-		 try {
-			 ResultSet rs = dao1.listarPorId(equipamento);
-			 while(rs.next()) {
-				 EquipamentoVO vo2 = new EquipamentoVO();
-				 equipamento.setId(rs.getLong("id_eq"));
-				 list.add(vo2);
-			 }
-		 }
-		 catch (SQLException e) {
-			 e.printStackTrace();
-		 }
-		 return list;
 	}
-  @Override
-  public List<EquipamentoVO> listarPorNome(EquipamentoVO equipamento) throws SQLException {
+
+	@Override
+	public List<EquipamentoVO> listarPorId(EquipamentoVO equipamento) throws SQLException {
 		List<EquipamentoVO> list = new ArrayList<EquipamentoVO>();
-		 try {
-			 ResultSet rs = dao1.listarPorNome(equipamento);
-			 while(rs.next()) {
-				 EquipamentoVO vo2 = new EquipamentoVO();
-				 equipamento.setNome(rs.getString("nome_eq"));
-				 list.add(vo2);
-			 }
-		 }
-		 catch (SQLException e) {
-			 e.printStackTrace();
-		 }
-		 return list;
+		try {
+			ResultSet rs = dao1.listarPorId(equipamento);
+			while (rs.next()) {
+				EquipamentoVO vo2 = new EquipamentoVO();
+				equipamento.setId(rs.getLong("id_eq"));
+				list.add(vo2);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	@Override
+	public List<EquipamentoVO> listarPorNome(EquipamentoVO equipamento) throws SQLException {
+		List<EquipamentoVO> list = new ArrayList<EquipamentoVO>();
+		try {
+			ResultSet rs = dao1.listarPorNome(equipamento);
+			while (rs.next()) {
+				EquipamentoVO vo2 = new EquipamentoVO();
+				equipamento.setNome(rs.getString("nome_eq"));
+				list.add(vo2);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	@Override
+	public void remover(EquipamentoVO equipamento) throws SQLException {
+		dao1.remover(equipamento);
+		
 	}
 }

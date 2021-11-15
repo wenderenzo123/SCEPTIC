@@ -14,18 +14,7 @@ public class CompraBO implements BaseInterBO<CompraVO>{
 
   @Override
   public void inserir(CompraVO compra) throws SQLException {
-    try {
-			ResultSet rs = dao.listar();
-			if(rs.next()) {
-				throw new InsertException("Não será possivel");
-			}
-			else{
-	         dao.inserir(compra);
-				}
-			}
-			catch (SQLException e){
-		        throw new InsertException(e.getMessage());
-		    }
+    dao.inserir(compra);
   }
 
   @Override

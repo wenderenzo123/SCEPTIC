@@ -17,12 +17,9 @@ public class EquipamentoDAOtest {
     //listarPorNumeroSerie();
     //listarPorResponsavel();
     //listarPorLocal();
-    listarEq();
+    //listarEq();
 	}
-  private static void listarEq() throws SQLException{
-    EquipamentoDAO dao = new EquipamentoDAO();
-    ResultSet list= dao.listar();
-  }
+
 
   private static void inserirEq() throws SQLException{
     EquipamentoVO vo = new EquipamentoVO();
@@ -87,6 +84,10 @@ public class EquipamentoDAOtest {
     vo2.setId((long)1);
     vo.setLocal(vo2);
     ResultSet list= dao.listarPorLocal(vo);
+  }
+  private static void listarEq() throws SQLException{
+    EquipamentoDAO dao = new EquipamentoDAO();
+    ResultSet list= dao.listar();
   }
   private static void CompraEq() throws SQLException{
   EquipamentoVO vo = new EquipamentoVO();

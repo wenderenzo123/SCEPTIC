@@ -34,21 +34,16 @@ public class EquipamentoDAO extends BaseDAO<EquipamentoVO> {
 			e.printStackTrace();
 		}
 	}
-	@Override
-	public ResultSet listar() throws SQLException {
-		String sql = "SELECT * FROM equipamentos";
-		Statement st;
+	public ResultSet listar(){
+		//String sql = "SELECT id_eq,nome_eq,peso_eq,num_serie_eq,preco_eq,quant_eq,nome_loc,nome_comp_loc,email,tipo,nome FROM equipamentos LEFT JOIN locais ON locais_id_loc = locais.id_loc INNER JOIN responsaveis ON responsaveis_id_res = responsaveis.id_res INNER JOIN pessoa ON pessoa.id_pes = responsaveis.pessoa_id_pes";
+	  String sql = "SELECT * FROM equipamentos LEFT JOIN locais ON locais_id_loc = locais.id_loc INNER JOIN responsaveis ON responsaveis_id_res = responsaveis.id_res INNER JOIN pessoa ON pessoa.id_pes = responsaveis.pessoa_id_pes";
 		ResultSet rs = null;
-		// List<EquipamentoVO> list = new ArrayList<EquipamentoVO>();
-		try {
+		Statement st;
+		try {	
 			st = getConnection().createStatement();
-			rs=st.executeQuery(sql);
 			System.out.println(st);
-			rs=st.executeQuery(sql);
-			while(rs.next()) {
-				System.out.println("Id: "+rs.getInt("id_eq") + " Nome: "+rs.getString("nome_eq") +
-				 " Peso: "+rs.getInt("peso_eq") +" Preço: "+rs.getInt("preco_eq")+" quantidade: "+rs.getInt("quant_eq"));
-			}
+			rs = st.executeQuery(sql);
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -68,13 +63,12 @@ public class EquipamentoDAO extends BaseDAO<EquipamentoVO> {
 			e.printStackTrace();
 		}
 	}
-	@Override
-	public void remover(EquipamentoVO vo) throws SQLException {
+	public void remover(Long vo) throws SQLException {
 		String sql = "DELETE FROM equipamentos WHERE id_eq = ?";
 		PreparedStatement ptst;
 		try {
 			ptst = getConnection().prepareStatement(sql);
-			ptst.setLong(1, vo.getId());
+			ptst.setLong(1, vo);
 			ptst.execute();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -181,5 +175,17 @@ public class EquipamentoDAO extends BaseDAO<EquipamentoVO> {
 			e.printStackTrace();
 		}
 		return rs;
+	}
+	@Override
+	public void remover(EquipamentoVO vo) throws SQLException {
+		String sql = "DELETE FROM equipamentos WHERE id_eq = ?";
+		PreparedStatement ptst;
+		try {
+			ptst = getConnection().prepareStatement(sql);
+			ptst.setLong(1, vo.getId());
+			ptst.execute();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 	}
 }

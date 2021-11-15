@@ -77,6 +77,12 @@ public class EquipamentoVO {
 				this.responsavel = responsavel;
 		}
 	}
+	public String getNomeResponsavel() {
+		return responsavel.getNome();
+	}
+	public String getNomeLocal() {
+		return local.getNome();
+	}
 	public LocalVO getLocal() {
 		return local;
 	}
@@ -93,6 +99,10 @@ public class EquipamentoVO {
 	}
 	public void setId(Long id) {
 		Id = id;
+	}
+	@Override
+	public String toString() {
+				return getNome();
 	}
 	
 	

@@ -11,7 +11,7 @@ public class CompraDAO extends BaseDAO<CompraVO> {
 
   @Override
   public void inserir(CompraVO vo) throws SQLException {
-    String sql = "INSERT INTO equipamentos_has_clientes (equipamentos_id_eq,clientes_id_cli,qtd_produto,preco_eq) VALUES (?,?,?,?)";
+    String sql = "INSERT INTO equipamentos_has_clientes (equipamentos_id_eq,clientes_id_cli,qtd_produto,preco_eq,comentario) VALUES (?,?,?,?,?)";
 		PreparedStatement ptst;
 		try {
 			ptst = getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -19,6 +19,7 @@ public class CompraDAO extends BaseDAO<CompraVO> {
 			ptst.setLong(2,vo.getCliente().getId());
 			ptst.setLong(3,vo.getQuantidade());
 			ptst.setDouble(4,vo.getPreco());
+			ptst.setString(5,vo.getDescricao());
 			System.out.println(ptst);
 			int affectedRows = ptst.executeUpdate();
 			if(affectedRows ==0) {
