@@ -59,7 +59,7 @@ public class FrontControllerListarClientes implements Initializable{
     Telas.telaCadastroCliente();
 }
 public void editar(ActionEvent Event) throws Exception {
-  Telas.telaCadastroCliente();
+  Telas.telaAtualizarCliente();
 }
 public void  excluir(ActionEvent Event) throws Exception {
   ReadOnlyObjectProperty<ClienteVO> cli = tblclientes.getSelectionModel().selectedItemProperty();

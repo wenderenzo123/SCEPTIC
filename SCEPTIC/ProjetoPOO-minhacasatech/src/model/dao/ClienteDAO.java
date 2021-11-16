@@ -47,11 +47,12 @@ public class ClienteDAO<VO extends ClienteVO> extends PessoaDAO{
 	}
 	public void alterar(ClienteVO vo) {
 		try {
-			String sql = "UPDATE clientes set cpf_cli = ? where id_cli = ?";
+			String sql = "UPDATE clientes INNER JOIN pessoa ON pessoa_id_pes = id_pes SET nome = ?,endereco = ? WHERE id_cli= ?";
 		  	PreparedStatement ptst;
 			ptst = getConnection().prepareStatement(sql);
-			ptst.setString(1, vo.getCPF());
-			ptst.setLong(2, vo.getId());
+			ptst.setString(1, vo.getNome());
+			ptst.setString(2, vo.getEndereco());
+			ptst.setLong(3, vo.getId());
 			ptst.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

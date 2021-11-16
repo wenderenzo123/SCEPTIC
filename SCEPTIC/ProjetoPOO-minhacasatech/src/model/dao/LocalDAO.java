@@ -67,7 +67,7 @@ public class LocalDAO extends BaseDAO<LocalVO> {
 		PreparedStatement ptst;
 		try {
 			ptst = getConnection().prepareStatement(sql);
-			ptst.setString(1,lo.getNome());
+			ptst.setString(1, lo.getNome());
 			ptst.setString(2,lo.getCompartimento());
 			ptst.setLong(3,lo.getId());
 			ptst.execute();

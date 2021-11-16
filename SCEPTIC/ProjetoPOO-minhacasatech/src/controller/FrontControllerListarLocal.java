@@ -54,7 +54,7 @@ public class FrontControllerListarLocal implements Initializable{
     Telas.telaCadastroLocal();
 }
 public void editar(ActionEvent Event) throws Exception {
-  Telas.telaCadastroLocal();
+  Telas.atualizarLocal();
 }
 public void  excluir(ActionEvent Event) throws Exception {
   ReadOnlyObjectProperty<LocalVO> loc = tblocais.getSelectionModel().selectedItemProperty();

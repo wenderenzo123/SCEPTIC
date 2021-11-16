@@ -1,184 +1,184 @@
 {
-  // Use o IntelliSense para saber mais sobre os atributos possíveis.
-  // Focalizar para exibir as descrições dos atributos existentes.
-  // Para obter mais informações, acesse: https://go.microsoft.com/fwlink/?linkid=830387
-  "version": "0.2.0",
-  "configurations": [
-    {
-      "type": "java",
-      "name": "Launch Current File",
-      "request": "launch",
-      "mainClass": "${file}"
-    },
-    {
-      "type": "java",
-      "name": "Launch ClienteDAOtest",
-      "request": "launch",
-      "mainClass": "model.dao.ClienteDAOtest",
-      "projectName": "projeto poo_2887a3df"
-    },
-    {
-      "type": "java",
-      "name": "Launch CompraDAOtest",
-      "request": "launch",
-      "mainClass": "model.dao.CompraDAOtest",
-      "projectName": "projeto poo_2887a3df"
-    },
-    {
-      "type": "java",
-      "name": "Launch EquipamentoDAOtest",
-      "request": "launch",
-      "mainClass": "model.dao.EquipamentoDAOtest",
-      "projectName": "projeto poo_2887a3df"
-    },
-    {
-      "type": "java",
-      "name": "Launch FuncionarioDAOtest",
-      "request": "launch",
-      "mainClass": "model.dao.FuncionarioDAOtest",
-      "projectName": "projeto poo_2887a3df"
-    },
-    {
-      "type": "java",
-      "name": "Launch LocalDAOtest",
-      "request": "launch",
-      "mainClass": "model.dao.LocalDAOtest",
-      "projectName": "projeto poo_2887a3df"
-    },
-    {
-      "type": "java",
-      "name": "Launch PessoaDAOtest",
-      "request": "launch",
-      "mainClass": "model.dao.PessoaDAOtest",
-      "projectName": "projeto poo_2887a3df"
-    },
-    {
-      "type": "java",
-      "name": "Launch TelaAtualizarCliente",
-      "request": "launch",
-      "mainClass": "view.TelaAtualizarCliente",
-      "projectName": "projeto poo_2887a3df",
-      "vmArgs": "--module-path \"C:/Users/Galvatron/projeto poo/SCEPTIC/ProjetoPOO-minhacasatech/lib/javafx-sdk-17.0.0.1/lib\" --add-modules javafx.controls,javafx.fxml"
-    },
-    {
-      "type": "java",
-      "name": "Launch TelaAtualizarEquipamento",
-      "request": "launch",
-      "mainClass": "view.TelaAtualizarEquipamento",
-      "projectName": "projeto poo_2887a3df",
-      "vmArgs": "--module-path \"C:/Users/Galvatron/projeto poo/SCEPTIC/ProjetoPOO-minhacasatech/lib/javafx-sdk-17.0.0.1/lib\" --add-modules javafx.controls,javafx.fxml"
-    },
-    {
-      "type": "java",
-      "name": "Launch TelaAtualizarFuncionario",
-      "request": "launch",
-      "mainClass": "view.TelaAtualizarFuncionario",
-      "projectName": "projeto poo_2887a3df",
-      "vmArgs": "--module-path \"C:/Users/Galvatron/projeto poo/SCEPTIC/ProjetoPOO-minhacasatech/lib/javafx-sdk-17.0.0.1/lib\" --add-modules javafx.controls,javafx.fxml"
-    },
-    {
-      "type": "java",
-      "name": "Launch TelaAtualizarLocal",
-      "request": "launch",
-      "mainClass": "view.TelaAtualizarLocal",
-      "projectName": "projeto poo_2887a3df",
-      "vmArgs": "--module-path \"C:/Users/Galvatron/projeto poo/SCEPTIC/ProjetoPOO-minhacasatech/lib/javafx-sdk-17.0.0.1/lib\" --add-modules javafx.controls,javafx.fxml"
-    },
-    {
-      "type": "java",
-      "name": "Launch TelaCadastroCliente",
-      "request": "launch",
-      "mainClass": "view.TelaCadastroCliente",
-      "projectName": "projeto poo_2887a3df",
-      "vmArgs": "--module-path \"C:/Users/Galvatron/projeto poo/SCEPTIC/ProjetoPOO-minhacasatech/lib/javafx-sdk-17.0.0.1/lib\" --add-modules javafx.controls,javafx.fxml"
-    },
-    {
-      "type": "java",
-      "name": "Launch TelaCadastroEquipamento",
-      "request": "launch",
-      "mainClass": "view.TelaCadastroEquipamento",
-      "projectName": "projeto poo_2887a3df",
-      "vmArgs": "--module-path \"C:/Users/Galvatron/projeto poo/SCEPTIC/ProjetoPOO-minhacasatech/lib/javafx-sdk-17.0.0.1/lib\" --add-modules javafx.controls,javafx.fxml"
-    },
-    {
-      "type": "java",
-      "name": "Launch TelaCadastroFuncionario",
-      "request": "launch",
-      "mainClass": "view.TelaCadastroFuncionario",
-      "projectName": "projeto poo_2887a3df",
-      "vmArgs": "--module-path \"C:/Users/Galvatron/projeto poo/SCEPTIC/ProjetoPOO-minhacasatech/lib/javafx-sdk-17.0.0.1/lib\" --add-modules javafx.controls,javafx.fxml"
-    },
-    {
-      "type": "java",
-      "name": "Launch TelaCadastroLocal",
-      "request": "launch",
-      "mainClass": "view.TelaCadastroLocal",
-      "projectName": "projeto poo_2887a3df",
-      "vmArgs": "--module-path \"C:/Users/Galvatron/projeto poo/SCEPTIC/ProjetoPOO-minhacasatech/lib/javafx-sdk-17.0.0.1/lib\" --add-modules javafx.controls,javafx.fxml"
-    },
-    {
-      "type": "java",
-      "name": "Launch TelaCliente",
-      "request": "launch",
-      "mainClass": "view.TelaCliente",
-      "projectName": "projeto poo_2887a3df",
-      "vmArgs": "--module-path \"C:/Users/Galvatron/projeto poo/SCEPTIC/ProjetoPOO-minhacasatech/lib/javafx-sdk-17.0.0.1/lib\" --add-modules javafx.controls,javafx.fxml"
-    },
-    {
-      "type": "java",
-      "name": "Launch TelaCompra",
-      "request": "launch",
-      "mainClass": "view.TelaCompra",
-      "projectName": "projeto poo_2887a3df",
-      "vmArgs": "--module-path \"C:/Users/Galvatron/projeto poo/SCEPTIC/ProjetoPOO-minhacasatech/lib/javafx-sdk-17.0.0.1/lib\" --add-modules javafx.controls,javafx.fxml"
-    },
-    {
-      "type": "java",
-      "name": "Launch TelaEquipamento",
-      "request": "launch",
-      "mainClass": "view.TelaEquipamento",
-      "projectName": "projeto poo_2887a3df",
-      "vmArgs": "--module-path \"C:/Users/Galvatron/projeto poo/SCEPTIC/ProjetoPOO-minhacasatech/lib/javafx-sdk-17.0.0.1/lib\" --add-modules javafx.controls,javafx.fxml"
-    },
-    {
-      "type": "java",
-      "name": "Launch TelaInicio",
-      "request": "launch",
-      "mainClass": "view.TelaInicio",
-      "projectName": "projeto poo_2887a3df",
-      "vmArgs": "--module-path \"C:/Users/Galvatron/projeto poo/SCEPTIC/ProjetoPOO-minhacasatech/lib/javafx-sdk-17.0.0.1/lib\" --add-modules javafx.controls,javafx.fxml"
-    },
-    {
-      "type": "java",
-      "name": "Launch TelaLocal",
-      "request": "launch",
-      "mainClass": "view.TelaLocal",
-      "projectName": "projeto poo_2887a3df",
-      "vmArgs": "--module-path \"C:/Users/Galvatron/projeto poo/SCEPTIC/ProjetoPOO-minhacasatech/lib/javafx-sdk-17.0.0.1/lib\" --add-modules javafx.controls,javafx.fxml"
-    },
-    {
-      "type": "java",
-      "name": "Launch TelaRelatorioVendas",
-      "request": "launch",
-      "mainClass": "view.TelaRelatorioVendas",
-      "projectName": "projeto poo_2887a3df",
-      "vmArgs": "--module-path \"C:/Users/Galvatron/projeto poo/SCEPTIC/ProjetoPOO-minhacasatech/lib/javafx-sdk-17.0.0.1/lib\" --add-modules javafx.controls,javafx.fxml"
-    },
-    {
-      "type": "java",
-      "name": "Launch TeladeLogin",
-      "request": "launch",
-      "mainClass": "view.TeladeLogin",
-      "projectName": "projeto poo_2887a3df",
-      "vmArgs": "--module-path \"C:/Users/Galvatron/projeto poo/SCEPTIC/ProjetoPOO-minhacasatech/lib/javafx-sdk-17.0.0.1/lib\" --add-modules javafx.controls,javafx.fxml"
-    },
-    {
-      "type": "java",
-      "name": "Launch Telas",
-      "request": "launch",
-      "mainClass": "view.Telas",
-      "projectName": "projeto poo_2887a3df",
-      "vmArgs": "--module-path \"C:/Users/Galvatron/projeto poo/SCEPTIC/ProjetoPOO-minhacasatech/lib/javafx-sdk-17.0.0.1/lib\" --add-modules javafx.controls,javafx.fxml"
-    }
-  ]
+    // Use o IntelliSense para saber mais sobre os atributos possíveis.
+    // Focalizar para exibir as descrições dos atributos existentes.
+    // Para obter mais informações, acesse: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Launch ClienteDAOtest",
+            "request": "launch",
+            "mainClass": "model.dao.ClienteDAOtest",
+            "projectName": "SCEPTIC_a66bfb1f"
+        },
+        {
+            "type": "java",
+            "name": "Launch CompraDAOtest",
+            "request": "launch",
+            "mainClass": "model.dao.CompraDAOtest",
+            "projectName": "SCEPTIC_a66bfb1f"
+        },
+        {
+            "type": "java",
+            "name": "Launch EquipamentoDAOtest",
+            "request": "launch",
+            "mainClass": "model.dao.EquipamentoDAOtest",
+            "projectName": "SCEPTIC_a66bfb1f"
+        },
+        {
+            "type": "java",
+            "name": "Launch FuncionarioDAOtest",
+            "request": "launch",
+            "mainClass": "model.dao.FuncionarioDAOtest",
+            "projectName": "SCEPTIC_a66bfb1f"
+        },
+        {
+            "type": "java",
+            "name": "Launch LocalDAOtest",
+            "request": "launch",
+            "mainClass": "model.dao.LocalDAOtest",
+            "projectName": "SCEPTIC_a66bfb1f"
+        },
+        {
+            "type": "java",
+            "name": "Launch PessoaDAOtest",
+            "request": "launch",
+            "mainClass": "model.dao.PessoaDAOtest",
+            "projectName": "SCEPTIC_a66bfb1f"
+        },
+        {
+            "type": "java",
+            "name": "Launch TelaAtualizarCliente",
+            "request": "launch",
+            "mainClass": "view.TelaAtualizarCliente",
+            "projectName": "SCEPTIC_a66bfb1f",
+            "vmArgs": "--module-path \"C:/Users/Joao-/SCEPTIC/SCEPTIC/ProjetoPOO-minhacasatech/lib/javafx-sdk-17.0.0.1/lib\" --add-modules javafx.controls,javafx.fxml"
+        },
+        {
+            "type": "java",
+            "name": "Launch TelaAtualizarEquipamento",
+            "request": "launch",
+            "mainClass": "view.TelaAtualizarEquipamento",
+            "projectName": "SCEPTIC_a66bfb1f",
+            "vmArgs": "--module-path \"C:/Users/Joao-/SCEPTIC/SCEPTIC/ProjetoPOO-minhacasatech/lib/javafx-sdk-17.0.0.1/lib\" --add-modules javafx.controls,javafx.fxml"
+        },
+        {
+            "type": "java",
+            "name": "Launch TelaAtualizarFuncionario",
+            "request": "launch",
+            "mainClass": "view.TelaAtualizarFuncionario",
+            "projectName": "SCEPTIC_a66bfb1f",
+            "vmArgs": "--module-path \"C:/Users/Joao-/SCEPTIC/SCEPTIC/ProjetoPOO-minhacasatech/lib/javafx-sdk-17.0.0.1/lib\" --add-modules javafx.controls,javafx.fxml"
+        },
+        {
+            "type": "java",
+            "name": "Launch TelaAtualizarLocal",
+            "request": "launch",
+            "mainClass": "view.TelaAtualizarLocal",
+            "projectName": "SCEPTIC_a66bfb1f",
+            "vmArgs": "--module-path \"C:/Users/Joao-/SCEPTIC/SCEPTIC/ProjetoPOO-minhacasatech/lib/javafx-sdk-17.0.0.1/lib\" --add-modules javafx.controls,javafx.fxml"
+        },
+        {
+            "type": "java",
+            "name": "Launch TelaCadastroCliente",
+            "request": "launch",
+            "mainClass": "view.TelaCadastroCliente",
+            "projectName": "SCEPTIC_a66bfb1f",
+            "vmArgs": "--module-path \"C:/Users/Joao-/SCEPTIC/SCEPTIC/ProjetoPOO-minhacasatech/lib/javafx-sdk-17.0.0.1/lib\" --add-modules javafx.controls,javafx.fxml"
+        },
+        {
+            "type": "java",
+            "name": "Launch TelaCadastroEquipamento",
+            "request": "launch",
+            "mainClass": "view.TelaCadastroEquipamento",
+            "projectName": "SCEPTIC_a66bfb1f",
+            "vmArgs": "--module-path \"C:/Users/Joao-/SCEPTIC/SCEPTIC/ProjetoPOO-minhacasatech/lib/javafx-sdk-17.0.0.1/lib\" --add-modules javafx.controls,javafx.fxml"
+        },
+        {
+            "type": "java",
+            "name": "Launch TelaCadastroFuncionario",
+            "request": "launch",
+            "mainClass": "view.TelaCadastroFuncionario",
+            "projectName": "SCEPTIC_a66bfb1f",
+            "vmArgs": "--module-path \"C:/Users/Joao-/SCEPTIC/SCEPTIC/ProjetoPOO-minhacasatech/lib/javafx-sdk-17.0.0.1/lib\" --add-modules javafx.controls,javafx.fxml"
+        },
+        {
+            "type": "java",
+            "name": "Launch TelaCadastroLocal",
+            "request": "launch",
+            "mainClass": "view.TelaCadastroLocal",
+            "projectName": "SCEPTIC_a66bfb1f",
+            "vmArgs": "--module-path \"C:/Users/Joao-/SCEPTIC/SCEPTIC/ProjetoPOO-minhacasatech/lib/javafx-sdk-17.0.0.1/lib\" --add-modules javafx.controls,javafx.fxml"
+        },
+        {
+            "type": "java",
+            "name": "Launch TelaCliente",
+            "request": "launch",
+            "mainClass": "view.TelaCliente",
+            "projectName": "SCEPTIC_a66bfb1f",
+            "vmArgs": "--module-path \"C:/Users/Joao-/SCEPTIC/SCEPTIC/ProjetoPOO-minhacasatech/lib/javafx-sdk-17.0.0.1/lib\" --add-modules javafx.controls,javafx.fxml"
+        },
+        {
+            "type": "java",
+            "name": "Launch TelaCompra",
+            "request": "launch",
+            "mainClass": "view.TelaCompra",
+            "projectName": "SCEPTIC_a66bfb1f",
+            "vmArgs": "--module-path \"C:/Users/Joao-/SCEPTIC/SCEPTIC/ProjetoPOO-minhacasatech/lib/javafx-sdk-17.0.0.1/lib\" --add-modules javafx.controls,javafx.fxml"
+        },
+        {
+            "type": "java",
+            "name": "Launch TelaEquipamento",
+            "request": "launch",
+            "mainClass": "view.TelaEquipamento",
+            "projectName": "SCEPTIC_a66bfb1f",
+            "vmArgs": "--module-path \"C:/Users/Joao-/SCEPTIC/SCEPTIC/ProjetoPOO-minhacasatech/lib/javafx-sdk-17.0.0.1/lib\" --add-modules javafx.controls,javafx.fxml"
+        },
+        {
+            "type": "java",
+            "name": "Launch TelaInicio",
+            "request": "launch",
+            "mainClass": "view.TelaInicio",
+            "projectName": "SCEPTIC_a66bfb1f",
+            "vmArgs": "--module-path \"C:/Users/Joao-/SCEPTIC/SCEPTIC/ProjetoPOO-minhacasatech/lib/javafx-sdk-17.0.0.1/lib\" --add-modules javafx.controls,javafx.fxml"
+        },
+        {
+            "type": "java",
+            "name": "Launch TelaLocal",
+            "request": "launch",
+            "mainClass": "view.TelaLocal",
+            "projectName": "SCEPTIC_a66bfb1f",
+            "vmArgs": "--module-path \"C:/Users/Joao-/SCEPTIC/SCEPTIC/ProjetoPOO-minhacasatech/lib/javafx-sdk-17.0.0.1/lib\" --add-modules javafx.controls,javafx.fxml"
+        },
+        {
+            "type": "java",
+            "name": "Launch TelaRelatorioVendas",
+            "request": "launch",
+            "mainClass": "view.TelaRelatorioVendas",
+            "projectName": "SCEPTIC_a66bfb1f",
+            "vmArgs": "--module-path \"C:/Users/Joao-/SCEPTIC/SCEPTIC/ProjetoPOO-minhacasatech/lib/javafx-sdk-17.0.0.1/lib\" --add-modules javafx.controls,javafx.fxml"
+        },
+        {
+            "type": "java",
+            "name": "Launch TeladeLogin",
+            "request": "launch",
+            "mainClass": "view.TeladeLogin",
+            "projectName": "SCEPTIC_a66bfb1f",
+            "vmArgs": "--module-path \"C:/Users/Joao-/SCEPTIC/SCEPTIC/ProjetoPOO-minhacasatech/lib/javafx-sdk-17.0.0.1/lib\" --add-modules javafx.controls,javafx.fxml"
+        },
+        {
+            "type": "java",
+            "name": "Launch Telas",
+            "request": "launch",
+            "mainClass": "view.Telas",
+            "projectName": "SCEPTIC_a66bfb1f",
+            "vmArgs": "--module-path \"C:/Users/Joao-/SCEPTIC/SCEPTIC/ProjetoPOO-minhacasatech/lib/javafx-sdk-17.0.0.1/lib\" --add-modules javafx.controls,javafx.fxml"
+        }
+    ]
 }

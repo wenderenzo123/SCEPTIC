@@ -96,5 +96,25 @@ public class Telas extends Application{
     Scene cena = new Scene(root);
     primaryStage.setScene(cena);
   }
-   
+  public static void telaAtualizarCliente() throws Exception{
+    Parent root = FXMLLoader.load(Telas.class.getResource("VE/AtualizarCliente.fxml"));
+    Scene cena = new Scene(root);
+    primaryStage.setScene(cena);
+  }
+  public static void atualizarFuncionario() throws Exception{
+    Parent root = FXMLLoader.load(Telas.class.getResource("VE/AtualizarResponsavel.fxml"));
+    Scene cena = new Scene(root);
+    primaryStage.setScene(cena);
+  }
+  public static void atualizarLocal() throws Exception{
+    Parent root = FXMLLoader.load(Telas.class.getResource("VE/AtualizarLocal.fxml"));
+    Scene cena = new Scene(root);
+    primaryStage.setScene(cena);
+  }
+  public static void atualizarEquipamento() throws Exception{
+    Parent root = FXMLLoader.load(Telas.class.getResource("VE/AtualizarEquipamento.fxml"));
+    Scene cena = new Scene(root);
+    primaryStage.setScene(cena);
+  }
+  
 }

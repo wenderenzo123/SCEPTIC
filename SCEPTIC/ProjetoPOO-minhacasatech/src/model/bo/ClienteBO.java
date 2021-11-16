@@ -43,16 +43,8 @@ public class ClienteBO implements BaseInterBO<ClienteVO> {
 	}
 
 	public void alterar(ClienteVO cliente) throws SQLException {
-		try {
-			ResultSet rs = dao.listar();
-			if (rs.next()) {
-				throw new InsertException("Não será possivel");
-			} else {
+
 				dao.alterar(cliente);
-			}
-		} catch (SQLException e) {
-			throw new InsertException(e.getMessage());
-		}
 	}
 
 	@Override
