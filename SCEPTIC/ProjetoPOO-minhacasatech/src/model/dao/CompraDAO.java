@@ -38,11 +38,7 @@ public class CompraDAO extends BaseDAO<CompraVO> {
 		try {
 			st = getConnection().createStatement();
 			rs=st.executeQuery(sql);
-			System.out.println(st);
-			while(rs.next()) {
-				System.out.println("Id do equipamento: "+rs.getInt("equipamentos_id_eq") + " Nome do equipamento: "+rs.getString("nome_eq") +
-        " Id do cliente: "+rs.getInt("clientes_id_cli") + " Nome do funcionario: "+rs.getString("nome")+ " Data da compra: "+rs.getString("dt_compra"));
-			}
+			System.out.println(sql);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -100,11 +96,29 @@ public class CompraDAO extends BaseDAO<CompraVO> {
   }
   @Override
   public void remover(CompraVO vo) throws SQLException {
-    // TODO Auto-generated method stub
+		String sql = "DELETE FROM equipamentos_has_clientes WHERE id_eq_cli = ?";
+		PreparedStatement ptst;
+		try {
+			ptst = getConnection().prepareStatement(sql);
+			ptst.setLong(1, vo.getId());
+			ptst.execute();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+  }
+	public void remover(Long vo) throws SQLException {
+    String sql = "DELETE FROM equipamentos_has_clientes WHERE id_eq_cli = ?";
+		PreparedStatement ptst;
+		try {
+			ptst = getConnection().prepareStatement(sql);
+			ptst.setLong(1, vo);
+			ptst.execute();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
   }
   @Override
   public ResultSet listarPorNome(CompraVO vo) throws SQLException {
-    // TODO Auto-generated method stub
     return null;
   }
 

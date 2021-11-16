@@ -3,6 +3,8 @@ package controller;
 
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.beans.property.ReadOnlyObjectProperty;
@@ -11,9 +13,13 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import model.bo.EquipamentoBO;
 import model.vo.EquipamentoVO;
 import model.vo.FuncionarioVO;
@@ -22,7 +28,7 @@ import model.vo.PessoaVO;
 import view.Telas;
 
 public class FrontControllerListarEquipamentos implements Initializable{
-  
+
   @Override
   public void initialize(URL url, ResourceBundle rb) {
     try {
@@ -31,6 +37,24 @@ public class FrontControllerListarEquipamentos implements Initializable{
       e.printStackTrace();
     }
   }
+  @FXML
+  private TextField pesquisar;
+
+  @FXML
+  private Button btncadastrar;
+
+  @FXML
+  private Button btneditar;
+
+  @FXML
+  private Button btnexcluir;
+
+  @FXML
+  private Button btninicio;
+  
+
+  @FXML
+  private Button btnsair;
   @FXML
   private TableView<EquipamentoVO> tblequipamentos;
   @FXML
@@ -49,7 +73,6 @@ public class FrontControllerListarEquipamentos implements Initializable{
   private TableColumn<EquipamentoVO,Integer> clnquantidade;
   @FXML
   private TableColumn<EquipamentoVO,LocalVO> clnlocal;
-  
   public void initTable() throws SQLException{
     clnid.setCellValueFactory(new PropertyValueFactory<>("id"));
     clnnome.setCellValueFactory(new PropertyValueFactory<>("nome"));
@@ -73,11 +96,57 @@ public void  excluir(ActionEvent Event) throws Exception {
   EquipamentoBO Ebo = new EquipamentoBO();
   System.out.println(equi.getValue().getId());
 	Ebo.remover(equi.getValue().getId());
+
 	}
   public void sair(ActionEvent Event) throws Exception {
     Telas.telaLogin();
   }
   public void inicio(ActionEvent Event) throws Exception {
   Telas.telaInicio();
+  }
+  @FXML
+    private RadioButton rblocal;
+
+    @FXML
+    private RadioButton rbnome;
+
+    @FXML
+    private RadioButton rbnumerodeserie;
+
+    @FXML
+    private RadioButton rbresonsavel;
+  public void buscar() throws SQLException {
+    EquipamentoBO ebo = new EquipamentoBO();
+    //RadioButton rb = (RadioButton) grupoRadio.getProperties();
+    List<EquipamentoVO> eqpL= new ArrayList<>();
+    
+    System.out.println(clnnome.getText());
+    //System.out.println(eqpL.get(0).getNome());
+    if(rbnome.isSelected()) {
+      eqpL = ebo.listarPorNome(pesquisar.getText());
+    }else if(rblocal.isSelected()) {
+      eqpL = ebo.listarPoLocal(pesquisar.getText());
+      System.out.println("local");
+    // }else if(rbnumerodeserie.isSelected()) {
+    //   eqpL = ebo.lis(Integer.parseInt(pesquisar.getText()));
+    //   System.out.println("ns");
+    // }else if(rbresonsavel.isSelected()){
+    //   System.out.println("resp");
+    //   //ebo.buscarPorResponsavel(buscar_txf.getText());
+    // }
+    preencherTabelaBusca(eqpL);
+  }
+  }
+  public void preencherTabelaBusca(List<EquipamentoVO> equipamentos) {
+    clnid.setCellValueFactory(new PropertyValueFactory<>("id"));
+    clnnome.setCellValueFactory(new PropertyValueFactory<>("nome"));
+    clnserie.setCellValueFactory(new PropertyValueFactory<>("numeroDeSerie"));
+    clnresponsavel.setCellValueFactory(new PropertyValueFactory<>("nomeResponsavel"));
+    clnpeso.setCellValueFactory(new PropertyValueFactory<>("peso"));
+    clnpreco.setCellValueFactory(new PropertyValueFactory<>("preco"));
+    clnquantidade.setCellValueFactory(new PropertyValueFactory<>("quantidade"));
+    clnlocal.setCellValueFactory(new PropertyValueFactory<>("nomeLocal"));
+  
+    tblequipamentos.setItems(FXCollections.observableArrayList(equipamentos));
   }
 }

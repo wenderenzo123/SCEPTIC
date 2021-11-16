@@ -2,6 +2,7 @@ package model.vo;
 
 public class CompraVO {
   private EquipamentoVO equipamento;
+  private Long id;
   private ClienteVO cliente;
   private String dataCompra;
   private Long quantidade;
@@ -10,6 +11,12 @@ public class CompraVO {
   
   public EquipamentoVO getEquipamento() {
     return equipamento;
+  }
+  public Long getId() {
+    return id;
+  }
+  public void setId(Long id) {
+    this.id = id;
   }
   public String getDescricao() {
     return descricao;
@@ -69,9 +76,21 @@ public class CompraVO {
 				this.equipamento = equipamento;
 		}
   }
-  @Override
-  public String toString(){
-    return cliente.getCPF();
+  // @Override
+  // public String toString(){
+  //   return cliente.getCPF();
 
+  // }
+  public String getEquipamentoNome() {
+    return equipamento.getNome();
+  }
+  public String getEquipamentoSerie() {
+    return equipamento.getNumeroDeSerie();
+  }
+  public double getEquipamentoPeso() {
+    return equipamento.getPeso();
+  }
+  public double getEquipamentopreco() {
+    return equipamento.getPreco();
   }
 }
