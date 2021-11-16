@@ -117,15 +117,17 @@ public void  excluir(ActionEvent Event) throws Exception {
     private RadioButton rbresonsavel;
   public void buscar() throws SQLException {
     EquipamentoBO ebo = new EquipamentoBO();
-    //RadioButton rb = (RadioButton) grupoRadio.getProperties();
     List<EquipamentoVO> eqpL= new ArrayList<>();
+    List<EquipamentoVO> eqpL2= new ArrayList<>();
+    List<EquipamentoVO> eqpL3= new ArrayList<>();
+    List<EquipamentoVO> eqpL4= new ArrayList<>();
     
     System.out.println(clnnome.getText());
     //System.out.println(eqpL.get(0).getNome());
     if(rbnome.isSelected()) {
       eqpL = ebo.listarPorNome(pesquisar.getText());
     }else if(rblocal.isSelected()) {
-      eqpL = ebo.listarPoLocal(pesquisar.getText());
+      eqpL2 = ebo.listarPoLocal(pesquisar.getText());
       System.out.println("local");
     // }else if(rbnumerodeserie.isSelected()) {
     //   eqpL = ebo.lis(Integer.parseInt(pesquisar.getText()));

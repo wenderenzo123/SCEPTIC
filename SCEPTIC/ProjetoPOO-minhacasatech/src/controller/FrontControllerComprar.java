@@ -65,6 +65,7 @@ public class FrontControllerComprar implements Initializable{
   public void carregarclientes() throws SQLException{
     ClienteBO Cbo= new ClienteBO();
     cbbcliente.setItems(FXCollections.observableArrayList(Cbo.listar()));
+    System.out.println("cbbcliente.getId()");
   }
   public void carregarequipamentos() throws SQLException{
     EquipamentoBO Ebo= new EquipamentoBO();
