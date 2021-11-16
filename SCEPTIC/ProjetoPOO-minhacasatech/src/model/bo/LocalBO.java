@@ -18,18 +18,7 @@ public class LocalBO implements BaseInterBO<LocalVO>{
 
   @Override
   public void alterar(LocalVO local) throws SQLException {
-    try {
-      ResultSet rs = dao.listar();
-       if (rs.next()) {
-          throw new InsertException("Não será possivel");
-        }
-       else{
           dao.alterar(local);
-        }
-        }
-       catch (SQLException e){
-         throw new InsertException(e.getMessage());
-       }
   }
   public void remover(Long local) throws SQLException {
     dao.remover(local);    

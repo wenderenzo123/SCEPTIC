@@ -89,7 +89,7 @@ public class FrontControllerListarEquipamentos implements Initializable{
     Telas.telaCadastroEquipamento();
 }
 public void editar(ActionEvent Event) throws Exception {
-  Telas.telaCadastroEquipamento();
+  Telas.atualizarEquipamento();
 }
 public void  excluir(ActionEvent Event) throws Exception {
   ReadOnlyObjectProperty<EquipamentoVO> equi = tblequipamentos.getSelectionModel().selectedItemProperty();
