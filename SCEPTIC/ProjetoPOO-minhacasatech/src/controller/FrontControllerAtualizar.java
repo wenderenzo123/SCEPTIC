@@ -54,10 +54,14 @@ public class FrontControllerAtualizar implements Initializable{
 
 
     public void sair(ActionEvent Event) throws Exception{
-        Telas.telaInicio();
+        Telas.telaLogin();
     }
     public void inicio(ActionEvent Event) throws Exception {
         Telas.telaInicio();
+    }
+    @FXML
+    void voltar(ActionEvent event) throws Exception {
+        Telas.telaListarCliente();
     }
    
 

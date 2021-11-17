@@ -22,10 +22,11 @@
             <Label layoutX="17.0" layoutY="192.0" text="Endereço:" />
             <TextField fx:id="nomeatuacli" layoutX="109.0" layoutY="143.0" prefHeight="31.0" prefWidth="386.0" />
             <TextArea fx:id="enderecoatuacli" layoutX="109.0" layoutY="188.0" prefHeight="31.0" prefWidth="386.0" />
-            <Button fx:id="enviaratuacli" layoutX="88.0" layoutY="261.0" mnemonicParsing="false" onAction="#inicio" prefHeight="31.0" prefWidth="84.0" style="-fx-background-color: #e6f000;" text="INICIO" />
-            <Button fx:id="sairatualicadas" layoutX="337.0" layoutY="261.0" mnemonicParsing="false" onAction="#sair" prefHeight="31.0" prefWidth="84.0" style="-fx-background-color: #e20000;" text="SAIR" />
-            <Button fx:id="confiratuacli1" layoutX="214.0" layoutY="261.0" mnemonicParsing="false" onAction="#atualizar" prefHeight="31.0" prefWidth="84.0" style="-fx-background-color: #00D03A;" text="CONFIRMAR" />
+            <Button fx:id="enviaratuacli" layoutX="43.0" layoutY="261.0" mnemonicParsing="false" onAction="#inicio" prefHeight="31.0" prefWidth="84.0" style="-fx-background-color: #e6f000;" text="INICIO" />
+            <Button fx:id="sairatualicadas" layoutX="377.0" layoutY="261.0" mnemonicParsing="false" onAction="#sair" prefHeight="31.0" prefWidth="84.0" style="-fx-background-color: #e20000;" text="SAIR" />
+            <Button fx:id="confiratuacli1" layoutX="152.0" layoutY="261.0" mnemonicParsing="false" onAction="#atualizar" prefHeight="31.0" prefWidth="84.0" style="-fx-background-color: #00D03A;" text="CONFIRMAR" />
             <ComboBox fx:id="clienatua" layoutX="17.0" layoutY="101.0" prefWidth="150.0" promptText="Cliente" />
+            <Button fx:id="enviarcadastroloc2" layoutX="267.0" layoutY="261.0" mnemonicParsing="false" onAction="#voltar" prefHeight="31.0" prefWidth="84.0" style="-fx-background-color: #0099ff;" text="VOLTAR" />
          </children></Pane>
    </children>
 </Pane>

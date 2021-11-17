@@ -92,4 +92,8 @@ public class FrontControllerEquipamento implements Initializable{
       public void inicio(ActionEvent Event) throws Exception {
       Telas.telaInicio();
       }
+      @FXML
+      void voltar(ActionEvent event) throws Exception {
+        Telas.telaListarEquipamento();
+      }
 }
