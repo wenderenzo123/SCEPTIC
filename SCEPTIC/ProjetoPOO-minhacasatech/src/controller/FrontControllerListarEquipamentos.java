@@ -118,28 +118,28 @@ public void editar(ActionEvent Event) throws Exception {
   public void buscar() throws SQLException {
     EquipamentoBO ebo = new EquipamentoBO();
     List<EquipamentoVO> eqpL= new ArrayList<>();
-    List<EquipamentoVO> eqpL2= new ArrayList<>();
-    List<EquipamentoVO> eqpL3= new ArrayList<>();
-    List<EquipamentoVO> eqpL4= new ArrayList<>();
     
     System.out.println(clnnome.getText());
-    //System.out.println(eqpL.get(0).getNome());
     if(rbnome.isSelected()) {
       eqpL = ebo.listarPorNome(pesquisar.getText());
     }else if(rblocal.isSelected()) {
-      eqpL2 = ebo.listarPoLocal(pesquisar.getText());
+      eqpL = ebo.listarPoLocal(pesquisar.getText());
       System.out.println("local");
-    // }else if(rbnumerodeserie.isSelected()) {
-    //   eqpL = ebo.lis(Integer.parseInt(pesquisar.getText()));
-    //   System.out.println("ns");
+    }else if(rbnumerodeserie.isSelected()) {
+      eqpL = ebo.listarPorNumeroSerie(pesquisar.getText());
     // }else if(rbresonsavel.isSelected()){
     //   System.out.println("resp");
+
     //   //ebo.buscarPorResponsavel(buscar_txf.getText());
     // }
     }
     preencherTabelaBusca(eqpL);
 
+
+    //   ebo.ListarPorResponsavel(pesquisar.getText());
   }
+  
+  
   public void preencherTabelaBusca(List<EquipamentoVO> equipamentos) {
     clnid.setCellValueFactory(new PropertyValueFactory<>("id"));
     clnnome.setCellValueFactory(new PropertyValueFactory<>("nome"));

@@ -50,6 +50,7 @@ public class FrontControllerListarLocal implements Initializable{
     LocalBO Lbo = new LocalBO();
     return FXCollections.observableArrayList(Lbo.listar());
   }
+  
   public void  cadastrar(ActionEvent Event) throws Exception {
     Telas.telaCadastroLocal();
 }

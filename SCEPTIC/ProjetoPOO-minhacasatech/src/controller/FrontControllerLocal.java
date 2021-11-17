@@ -63,5 +63,4 @@ public class FrontControllerLocal implements Initializable{
       public void inicio(ActionEvent Event) throws Exception {
       Telas.telaInicio();
       }
-
 }
