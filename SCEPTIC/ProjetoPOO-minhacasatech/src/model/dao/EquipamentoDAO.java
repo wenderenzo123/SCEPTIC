@@ -112,10 +112,19 @@ public class EquipamentoDAO extends BaseDAO<EquipamentoVO> {
 			st = getConnection().prepareStatement(sql);
 			st.setString(1,vo.getNumeroDeSerie());
 			rs=st.executeQuery();
-			// while(rs.next()) {
-			// 	System.out.println("Id: "+rs.getInt("id_eq") + " Nome: "+rs.getString("nome_eq") +
-			// 	 " Numero de Serie: "+rs.getInt("num_serie_eq") +" Preço: "+rs.getInt("preco_eq"));
-			// }
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return rs;
+	}
+	public ResultSet listarPorNumeroSerie(String vo) throws SQLException {
+		PreparedStatement st;
+		ResultSet rs = null;
+		String sql = "SELECT * FROM equipamentos LEFT JOIN locais ON locais_id_loc = locais.id_loc INNER JOIN responsaveis ON responsaveis_id_res = responsaveis.id_res INNER JOIN pessoa ON pessoa.id_pes = responsaveis.pessoa_id_pes AND num_serie_eq LIKE ?";
+		try {
+			st = getConnection().prepareStatement(sql);
+			st.setString(1,"%"+vo+"%");
+			rs=st.executeQuery();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -125,7 +134,7 @@ public class EquipamentoDAO extends BaseDAO<EquipamentoVO> {
 	public ResultSet listarPorNome(EquipamentoVO vo) throws SQLException {
 		PreparedStatement st;
 		ResultSet rs = null;
-		String sql = "SELECT * FROM equipamentos WHERE nome_eq LIKE ?";
+		String sql = "SELECT * FROM equipamentos LEFT JOIN locais ON locais_id_loc = locais.id_loc INNER JOIN responsaveis ON responsaveis_id_res = responsaveis.id_res INNER JOIN pessoa ON pessoa.id_pes = responsaveis.pessoa_id_pes AND nome_eq LIKE ?";
 		try {
 			st = getConnection().prepareStatement(sql);
 			st.setString(1,"%"+vo.getNome()+"%");
