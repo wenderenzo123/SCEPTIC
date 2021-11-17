@@ -127,9 +127,9 @@ public void editar(ActionEvent Event) throws Exception {
       System.out.println("local");
     }else if(rbnumerodeserie.isSelected()) {
       eqpL = ebo.listarPorNumeroSerie(pesquisar.getText());
-    // }else if(rbresonsavel.isSelected()){
-    //   System.out.println("resp");
-    //   ebo.ListarPorResponsavel(pesquisar.getText());
+    }else if(rbresonsavel.isSelected()){
+     System.out.println("resp");
+     eqpL = ebo.listarPorResponsavel(pesquisar.getText());
   }
   preencherTabelaBusca(eqpL);
   }

@@ -195,6 +195,20 @@ public class EquipamentoDAO extends BaseDAO<EquipamentoVO> {
 		}
 		return rs;
 	}
+	public ResultSet listarPorResponsavel(String vo) throws SQLException {
+		PreparedStatement st;
+		ResultSet rs = null;
+		String sql = "SELECT * FROM equipamentos LEFT JOIN locais ON locais_id_loc = locais.id_loc INNER JOIN responsaveis ON responsaveis_id_res = responsaveis.id_res INNER JOIN pessoa ON pessoa.id_pes = responsaveis.pessoa_id_pes AND nome LIKE ?";
+		try {
+			st = getConnection().prepareStatement(sql);
+			st.setString(1,"%"+vo+"%");
+			rs=st.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return rs;
+	}
+	
 	public ResultSet listarPorLocal(EquipamentoVO vo) throws SQLException {
 		PreparedStatement st;
 		ResultSet rs = null;
