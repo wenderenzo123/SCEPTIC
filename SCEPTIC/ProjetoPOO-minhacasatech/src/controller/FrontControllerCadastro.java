@@ -140,4 +140,15 @@ public void inicio(ActionEvent Event) throws Exception {
 public void voltarlocal(ActionEvent Event) throws Exception {
   Telas.telaListarLocal();
 }
+public void voltarcliente(ActionEvent Event) throws Exception {
+  Telas.telaListarCliente();
+}
+@FXML
+public void voltarresponsavel(ActionEvent event) throws Exception {
+  Telas.telaListarResponsaveis();
+    }
+    @FXML
+    void voltarequipamento(ActionEvent event) throws Exception {
+      Telas.telaListarEquipamento();
+    }
 }

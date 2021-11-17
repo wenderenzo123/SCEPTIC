@@ -46,20 +46,26 @@ public class FuncionarioDAO<VO extends FuncionarioVO> extends PessoaDAO {
 			e.printStackTrace();
 		}
 	}
+	public void remover(Long vo) {
+		try {
+			String sql = "DELETE FROM responsaveis where id_res = ?";
+			PreparedStatement ptst;
+			ptst = getConnection().prepareStatement(sql);
+			ptst.setLong(1, vo);
+			ptst.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 	public ResultSet listar() {
-		String sql = "select * from responsaveis";
+		String sql = "select * from responsaveis INNER JOIN pessoa ON pessoa.id_pes = responsaveis.pessoa_id_pes";
 		ResultSet rs = null;
 		Statement st;
-		// List<FuncionarioVO> list = new ArrayList<FuncionarioVO>();
 		try {
 			st = getConnection().createStatement();
 			System.out.println(st);
 			rs = st.executeQuery(sql);
-			while (rs.next()) {
-				System.out.println(
-						"Id: " + rs.getInt("id_res") + " Email: " + rs.getString("email") + " Tipo: " + rs.getString("tipo"));
-			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

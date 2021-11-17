@@ -76,5 +76,9 @@ public class FrontController {
     public void relatorio(ActionEvent event) throws Exception {
         Telas.telaRelatorio();
     }
+    public void Listarresponsaveis(ActionEvent event) throws Exception {
+        Telas.telaListarResponsaveis();
+    }
+    
     
 }

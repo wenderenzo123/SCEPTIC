@@ -1,5 +1,4 @@
 package view;
-import controller.FrontController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -32,6 +31,8 @@ public class Telas extends Application{
     //telaListarEquipamento();
     //telaListarLocal();
     //telaListarCompra();
+    //atualizarLocal();
+    //telaListarFuncionario();
   }
 
   public static void telaLogin() throws Exception{
@@ -81,6 +82,11 @@ public class Telas extends Application{
     Scene cena = new Scene(root);
     primaryStage.setScene(cena);
   } 
+  public static void telaListarFuncionario() throws Exception{
+    Parent root = FXMLLoader.load(Telas.class.getResource("VE/TelaResponsavel.fxml"));
+    Scene cena = new Scene(root);
+    primaryStage.setScene(cena);
+  } 
   public static void telaListarLocal() throws Exception{
     Parent root = FXMLLoader.load(Telas.class.getResource("VE/TelaLocal.fxml"));
     Scene cena = new Scene(root);
@@ -88,6 +94,11 @@ public class Telas extends Application{
   }
   public static void telaListarCompra() throws Exception{
     Parent root = FXMLLoader.load(Telas.class.getResource("VE/TelaCompra.fxml"));
+    Scene cena = new Scene(root);
+    primaryStage.setScene(cena);
+  }
+  public static void telaListarResponsaveis() throws Exception{
+    Parent root = FXMLLoader.load(Telas.class.getResource("VE/TelaResponsavel.fxml"));
     Scene cena = new Scene(root);
     primaryStage.setScene(cena);
   }

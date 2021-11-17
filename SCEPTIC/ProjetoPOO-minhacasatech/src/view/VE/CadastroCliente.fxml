@@ -28,9 +28,10 @@
             <TextField fx:id="cpfcadascli" layoutX="106.0" layoutY="195.0" prefHeight="25.0" prefWidth="386.0" />
             <TextArea fx:id="enderecocadascli" layoutX="106.0" layoutY="151.0" prefHeight="17.0" prefWidth="386.0" />
             <TextArea fx:id="telefonecli" layoutX="106.0" layoutY="240.0" prefHeight="17.0" prefWidth="386.0" />
-            <Button fx:id="enviarcadastrocli" layoutX="264.0" layoutY="288.0" mnemonicParsing="false" onAction="#casdastrarCliente" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: #00D03A;" text="ENVIAR" />
+            <Button fx:id="enviarcadastrocli" layoutX="214.0" layoutY="288.0" mnemonicParsing="false" onAction="#casdastrarCliente" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: #00D03A;" text="ENVIAR" />
             <Button fx:id="inicio" layoutX="116.0" layoutY="288.0" mnemonicParsing="false" onAction="#inicio" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: #e6f000;" text="INICIO" />
             <Button fx:id="sair" layoutX="411.0" layoutY="288.0" mnemonicParsing="false" onAction="#sair" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: #e20000;" text="SAIR" />
+            <Button fx:id="enviarcadastroloc2" layoutX="316.0" layoutY="288.0" mnemonicParsing="false" onAction="#voltarcliente" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: #0099ff;" text="VOLTAR" />
             <!-- <Button fx:id="sair" layoutX="422.0" layoutY="288.0" mnemonicParsing="false" onAction="#sair" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: #ca0f0f;" text="SAIR" />
             <Button fx:id="inicio" layoutX="106.0" layoutY="288.0" mnemonicParsing="false" onAction="#inicio" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: #e2d003;" text="INICIO" /> -->
          </children></Pane>

@@ -53,6 +53,7 @@ public class PessoaDAO extends BaseDAO<PessoaVO>{
 			ptst = getConnection().prepareStatement(sql);
 			ptst.setLong(1, vo);
 			ptst.executeUpdate();
+			System.out.println(sql);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

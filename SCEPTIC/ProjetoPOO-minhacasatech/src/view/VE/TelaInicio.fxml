@@ -46,7 +46,7 @@
                   <Font size="8.0" />
                </font>
             </Button>
-            <Button fx:id="reponsaveis" layoutX="445.0" layoutY="21.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="65.0" style="-fx-background-color: #FFFFFF;" text="REPONSÁVEIS">
+            <Button fx:id="reponsaveis" layoutX="445.0" layoutY="21.0" mnemonicParsing="false" onAction="#Listarresponsaveis" prefHeight="18.0" prefWidth="65.0" style="-fx-background-color: #FFFFFF;" text="REPONSÁVEIS">
                <font>
                   <Font size="8.0" />
                </font>

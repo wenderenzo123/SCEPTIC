@@ -40,7 +40,6 @@ public class FrontControllerAtualizar implements Initializable{
         EquipamentoVO Eq = new EquipamentoVO();
         Eq.setNome(nomeatuaequi.getText());
         Eq.setPreco(Integer.parseInt(precoatuaequi.getText()));
-        //Eq.setQuantidade(Integer.parseInt(quantestoqueatuaequi.getText()));
         FuncionarioVO Fun = new FuncionarioVO();
         Fun.setId(Long.parseLong(identiresponatuaequi.getText()));
         Eq.setResponsavel(Fun);
