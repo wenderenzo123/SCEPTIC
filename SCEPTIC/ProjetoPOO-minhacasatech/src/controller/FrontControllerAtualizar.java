@@ -36,38 +36,7 @@ public class FrontControllerAtualizar implements Initializable{
     @FXML
     private TextArea idlocalatuaequi;
 
-    public void listarEquipamento() throws Exception {
-        EquipamentoVO Eq = new EquipamentoVO();
-        Eq.setNome(nomeatuaequi.getText());
-        Eq.setPreco(Integer.parseInt(precoatuaequi.getText()));
-        FuncionarioVO Fun = new FuncionarioVO();
-        Fun.setId(Long.parseLong(identiresponatuaequi.getText()));
-        Eq.setResponsavel(Fun);
-        LocalVO Lo = new LocalVO();
-        Lo.setId(Long.parseLong(idlocalatuaequi.getText()));
-        Eq.setLocal(Lo);
-        EquipamentoBO Ebo = new EquipamentoBO();
-        Ebo.alterar(Eq);
-    }
-
     
-
-    @FXML
-    private TextField nomeatuarespom;
-    @FXML
-    private TextArea endeatuarepon;
-    @FXML
-    private TextArea telefoneatuarespon;
-
-    public void listarFuncionario(ActionEvent atualizarFuncionario) throws Exception {
-        FuncionarioVO Fun = new FuncionarioVO();
-        Fun.setNome(nomeatuarespom.getText());
-        Fun.setEndereco(endeatuarepon.getText());
-        Fun.setTelefone(telefoneatuarespon.getText());
-        FuncionarioBO Fbo = new FuncionarioBO();
-        Fbo.alterar(Fun);
-
-    }
 
     @FXML
     private TextField nomeatuacli;
@@ -80,13 +49,7 @@ public class FrontControllerAtualizar implements Initializable{
         ClienteBO Cbo= new ClienteBO();
         clienatua.setItems(FXCollections.observableArrayList(Cbo.listar()));
         System.out.println("clienatua.getId()");
-        //cli.getValue().setNome(nomeatuacli.getText());
-        //cli.getValue().setNome(enderecoatuacli.getText());
-        // cli2.setNome(cli.getValue().getNome());
-        // cli2.setEndereco(cli.getValue().getNome());
-        // ClienteBO Cbo = new ClienteBO();
-        // Cbo.alterar(cli2);
-        // System.out.println(cli.getValue().getNome());
+       
     }
 
 
@@ -96,7 +59,7 @@ public class FrontControllerAtualizar implements Initializable{
     public void inicio(ActionEvent Event) throws Exception {
         Telas.telaInicio();
     }
-
+   
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -109,7 +72,7 @@ public class FrontControllerAtualizar implements Initializable{
         
     }
     @FXML
-     void atualizar(ActionEvent event) throws SQLException {
+    void atualizar(ActionEvent event) throws SQLException {
         clienatua.getSelectionModel().getSelectedItem().getId();
         ClienteBO cli = new ClienteBO();
         System.out.println(clienatua.getSelectionModel().getSelectedItem().getId());
@@ -119,6 +82,7 @@ public class FrontControllerAtualizar implements Initializable{
         CL1.setEndereco(enderecoatuacli.getText());
         cli.alterar(CL1);
     }
+    
     
    
     

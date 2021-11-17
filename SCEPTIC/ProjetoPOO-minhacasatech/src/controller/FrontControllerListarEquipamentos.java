@@ -136,8 +136,9 @@ public void editar(ActionEvent Event) throws Exception {
     //   System.out.println("resp");
     //   //ebo.buscarPorResponsavel(buscar_txf.getText());
     // }
+    }
     preencherTabelaBusca(eqpL);
-  }
+
   }
   public void preencherTabelaBusca(List<EquipamentoVO> equipamentos) {
     clnid.setCellValueFactory(new PropertyValueFactory<>("id"));
