@@ -54,16 +54,7 @@ public class EquipamentoBO implements BaseInterBO<EquipamentoVO> {
 	}
 
 	public void alterar(EquipamentoVO equipamento) throws SQLException {
-		try {
-			ResultSet rs = dao1.listar();
-			if (rs.next()) {
-				throw new InsertException("Não será possivel");
-			} else {
 				dao1.alterar(equipamento);
-			}
-		} catch (SQLException e) {
-			throw new InsertException(e.getMessage());
-		}
 	}
 
 	@Override

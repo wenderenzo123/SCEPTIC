@@ -45,7 +45,11 @@ public class FrontControllerLocal implements Initializable{
         // Lbo.alterar(Loc);
     }
     @FXML
+<<<<<<< HEAD
     void atualizar(ActionEvent event) throws SQLException {
+=======
+    void atualizarloc(ActionEvent event) throws SQLException {
+>>>>>>> d517bfce55d151c19b6c6717013247c503e639f5
         localatua.getSelectionModel().getSelectedItem().getId();
         LocalBO loc = new LocalBO();
         System.out.println(localatua.getSelectionModel().getSelectedItem().getId());
@@ -55,10 +59,20 @@ public class FrontControllerLocal implements Initializable{
         LOC.setCompartimento(compartimentoatualoc.getText());
         loc.alterar(LOC);
     }
+<<<<<<< HEAD
     public void sair(ActionEvent Event) throws Exception{
         Telas.telaInicio();
     }
     public void inicio(ActionEvent Event) throws Exception {
         Telas.telaInicio();
     }
+=======
+
+    public void sair(ActionEvent Event) throws Exception {
+        Telas.telaLogin();
+      }
+      public void inicio(ActionEvent Event) throws Exception {
+      Telas.telaInicio();
+      }
+>>>>>>> d517bfce55d151c19b6c6717013247c503e639f5
 }

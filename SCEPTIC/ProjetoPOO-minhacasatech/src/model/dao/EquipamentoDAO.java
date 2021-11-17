@@ -51,14 +51,18 @@ public class EquipamentoDAO extends BaseDAO<EquipamentoVO> {
 	}
 	@Override
 	public void alterar(EquipamentoVO vo) throws SQLException {
-		String sql = "UPDATE equipamentos SET nome_eq = ?, preco_eq = ? where id_eq = ?";
+		String sql = "UPDATE equipamentos SET nome_eq = ?, preco_eq = ?, quant_eq = ?, responsaveis_id_res = ?, locais_id_loc = ? where id_eq = ?";
 		PreparedStatement ptst;
 		try {
 			ptst = getConnection().prepareStatement(sql);
 			ptst.setString(1,vo.getNome());
 			ptst.setDouble(2,vo.getPreco());
-			ptst.setLong(3,vo.getId());
+			ptst.setInt(3, vo.getQuantidade());
+			ptst.setLong(4, vo.getResponsavel().getId());
+			ptst.setLong(5, vo.getLocal().getId());
+			ptst.setLong(6 ,vo.getId());
 			ptst.execute();
+			System.out.println(sql);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

@@ -48,5 +48,8 @@ public class LocalVO {
 		return getNome();
 
 	}
+<<<<<<< HEAD
 	
+=======
+>>>>>>> d517bfce55d151c19b6c6717013247c503e639f5
 }
