@@ -25,31 +25,7 @@ import model.vo.LocalVO;
 import view.Telas;
 
 public class FrontControllerAtualizar implements Initializable{
-    @FXML
-    private TextField nomeatuaequi;
-    @FXML
-    private TextField precoatuaequi;
-    @FXML
-    private TextArea quantestoqueatuaequi;
-    @FXML 
-    private TextArea identiresponatuaequi;
-    @FXML
-    private TextArea idlocalatuaequi;
-
-    public void listarEquipamento() throws Exception {
-        EquipamentoVO Eq = new EquipamentoVO();
-        Eq.setNome(nomeatuaequi.getText());
-        Eq.setPreco(Integer.parseInt(precoatuaequi.getText()));
-        //Eq.setQuantidade(Integer.parseInt(quantestoqueatuaequi.getText()));
-        FuncionarioVO Fun = new FuncionarioVO();
-        Fun.setId(Long.parseLong(identiresponatuaequi.getText()));
-        Eq.setResponsavel(Fun);
-        LocalVO Lo = new LocalVO();
-        Lo.setId(Long.parseLong(idlocalatuaequi.getText()));
-        Eq.setLocal(Lo);
-        EquipamentoBO Ebo = new EquipamentoBO();
-        Ebo.alterar(Eq);
-    }
+    
 
     
 

@@ -12,6 +12,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import model.bo.LocalBO;
 import model.vo.LocalVO;
+import view.Telas;
 
 public class FrontControllerLocal implements Initializable{
 
@@ -43,8 +44,8 @@ public class FrontControllerLocal implements Initializable{
         // LocalBO Lbo = new LocalBO();
         // Lbo.alterar(Loc);
     }
-
-    void atualizarlocal(ActionEvent event) throws SQLException {
+    @FXML
+    void atualizarloc(ActionEvent event) throws SQLException {
         localatua.getSelectionModel().getSelectedItem().getId();
         LocalBO loc = new LocalBO();
         System.out.println(localatua.getSelectionModel().getSelectedItem().getId());
@@ -54,4 +55,11 @@ public class FrontControllerLocal implements Initializable{
         LOC.setCompartimento(compartimentoatualoc.getText());
         loc.alterar(LOC);
     }
+
+    public void sair(ActionEvent Event) throws Exception {
+        Telas.telaLogin();
+      }
+      public void inicio(ActionEvent Event) throws Exception {
+      Telas.telaInicio();
+      }
 }

@@ -22,8 +22,8 @@ public class Telas extends Application{
     setPrimaryStage(primaryStage);
     primaryStage.setTitle("SCEPTIC");
     primaryStage.show();
-    //telaLogin();
-    telaInicio();
+    telaLogin();
+    //telaInicio();
     //telaCadastroEquipamento();
     //telaCadastroLocal();
     //telaCadastroFuncionario();
