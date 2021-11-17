@@ -45,6 +45,7 @@ public class FrontControllerLocal implements Initializable{
         // Lbo.alterar(Loc);
     }
     @FXML
+
     void atualizar(ActionEvent event) throws SQLException {
         localatua.getSelectionModel().getSelectedItem().getId();
         LocalBO loc = new LocalBO();

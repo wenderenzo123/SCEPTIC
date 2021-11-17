@@ -75,6 +75,7 @@
       "mainClass": "view.TelaAtualizarFuncionario",
       "projectName": "projeto poo_2887a3df",
       "vmArgs": "--module-path \"C:/Users/Galvatron/projeto poo/SCEPTIC/ProjetoPOO-minhacasatech/lib/javafx-sdk-17.0.0.1/lib\" --add-modules javafx.controls,javafx.fxml"
+      
     },
     {
       "type": "java",

@@ -86,4 +86,8 @@ public void initialize(URL location, ResourceBundle resources) {
     e.printStackTrace();
   }
 }
+@FXML
+public void voltarlocal(ActionEvent event) throws Exception {
+Telas.telaInicio();
+}
 }

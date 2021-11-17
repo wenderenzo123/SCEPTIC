@@ -65,7 +65,7 @@ public class FrontControllerListarFuncionario implements Initializable{
   public void initTable() throws SQLException{
     clnemail.setCellValueFactory(new PropertyValueFactory<>("email"));
     clnendereco.setCellValueFactory(new PropertyValueFactory<>("endereco"));
-    // clnnome.setCellValueFactory(new PropertyValueFactory<>("nome"));
+    clnnome.setCellValueFactory(new PropertyValueFactory<>("nome"));
     clntelefone.setCellValueFactory(new PropertyValueFactory<>("telefone"));
     clnid.setCellValueFactory(new PropertyValueFactory<>("id"));
     clntipo.setCellValueFactory(new PropertyValueFactory<>("tipo"));

@@ -130,9 +130,11 @@ public void editar(ActionEvent Event) throws Exception {
     }else if(rbresonsavel.isSelected()){
      System.out.println("resp");
      eqpL = ebo.listarPorResponsavel(pesquisar.getText());
+    }
+    preencherTabelaBusca(eqpL);
   }
-  preencherTabelaBusca(eqpL);
-  }
+  
+  
   public void preencherTabelaBusca(List<EquipamentoVO> equipamentos) {
     clnid.setCellValueFactory(new PropertyValueFactory<>("id"));
     clnnome.setCellValueFactory(new PropertyValueFactory<>("nome"));

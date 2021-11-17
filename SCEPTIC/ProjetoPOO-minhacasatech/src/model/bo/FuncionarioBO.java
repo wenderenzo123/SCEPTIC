@@ -69,16 +69,8 @@ public class FuncionarioBO<VO extends FuncionarioVO> implements BaseInterBO<Func
 	}
 
 	public void alterar(FuncionarioVO funcionario) throws InsertException {
-		try {
-			ResultSet rs = dao.listar();
-			if (rs.next()) {
-				throw new InsertException("Não será possivel");
-			} else {
+
 				dao.alterar(funcionario);
-			}
-		} catch (SQLException e) {
-			throw new InsertException(e.getMessage());
-		}
 	}
 
 	@Override

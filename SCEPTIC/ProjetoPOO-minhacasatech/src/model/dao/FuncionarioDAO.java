@@ -74,11 +74,13 @@ public class FuncionarioDAO<VO extends FuncionarioVO> extends PessoaDAO {
 
 	public void alterar(FuncionarioVO vo) {
 		try {
-			String sql = "UPDATE responsaveis set tipo = ? where id_res = ?";
+			String sql = "UPDATE responsaveis INNER JOIN pessoa ON pessoa.id_pes = responsaveis.pessoa_id_pes set nome = ?, endereco = ?, tele = ? where id_res = ?";
 			PreparedStatement ptst;
 			ptst = getConnection().prepareStatement(sql);
-			ptst.setInt(1, vo.getTipo());
-			ptst.setLong(2, vo.getId());
+			ptst.setString(1, vo.getNome());
+			ptst.setString(2, vo.getEndereco());
+			ptst.setString(3, vo.getTelefone());
+			ptst.setLong(4, vo.getId());
 			ptst.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
